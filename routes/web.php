@@ -10,5 +10,5 @@ Route::name('guest.')
 Route::name('admin.')
     ->prefix('admin')
     ->group(function () {
-        Route::view('/admin', 'welcome');
+        Route::view('/', 'admin.dashboard')->name('dashboard');
     });
