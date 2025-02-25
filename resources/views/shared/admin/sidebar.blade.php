@@ -4,13 +4,9 @@
         <div class="navbar-nav theme-brand flex-row  text-center">
             <div class="nav-logo">
                 <div class="nav-item theme-logo">
-                    <a href="index.html">
-                        <img src="{{ asset('assets/admin/img/logo2.svg') }}" class="navbar-logo" alt="logo">
+                    <a href="{{ route('admin.dashboard') }}">
+                        <img src="{{ asset('assets/admin/img/mva-makina.svg') }}" class="navbar-logo" alt="logo">
                     </a>
-                </div>
-
-                <div class="nav-item theme-text">
-                    <a href="index.html" class="nav-link"> CORK </a>
                 </div>
             </div>
 

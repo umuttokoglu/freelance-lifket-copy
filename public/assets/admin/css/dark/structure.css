@@ -43,12 +43,12 @@ body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark h5, body.dark 
 }
 
 body.dark {
-  /* 
+  /*
   ===============
       Sidebar
   ===============
   */
-  /*  
+  /*
     ======================
         Footer-wrapper
     ======================
@@ -857,7 +857,7 @@ body.dark #sidebar .theme-brand div.theme-logo {
   align-self: center;
 }
 body.dark #sidebar .theme-brand div.theme-logo img {
-  width: 40px;
+  width: 140px;
   height: 40px;
 }
 body.dark .sidebar-closed .sidebar-wrapper.sidebar-theme .theme-brand .sidebar-toggle {
@@ -1320,7 +1320,7 @@ body.dark.alt-menu #content {
 }
 
 /*Page title*/
-/* 
+/*
 =====================
     Navigation Bar
 =====================
@@ -1330,7 +1330,7 @@ body.dark.alt-menu #content {
 /*Notification Dropdown*/
 /* Search */
 /* User Profile Dropdown*/
-/* 
+/*
 ===============
     Sidebar
 ===============
@@ -1355,12 +1355,12 @@ body.dark.alt-menu #content {
     margin-top: 0;
   }
 }
-/*  
+/*
     ======================
         Footer-wrapper
     ======================
 */
-/*  
+/*
     ======================
         MEDIA QUERIES
     ======================
