@@ -50,8 +50,8 @@
                         <div class="media mx-auto">
                             <img src="{{ asset('assets/admin/img/profile-9.jpeg') }}" class="img-fluid me-2" alt="avatar">
                             <div class="media-body">
-                                <h5>Shaun Park</h5>
-                                <p>Project Leader</p>
+                                <h5>{{ auth()->user()->name }}</h5>
+                                <p>Admin</p>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,11 @@
                         </a>
                     </div>
                     <div class="dropdown-item">
-                        <a href="javascript:void(0);">
+                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
+                        <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                  stroke-linejoin="round" class="feather feather-log-out">
@@ -98,7 +102,7 @@
                                 <polyline points="16 17 21 12 16 7"></polyline>
                                 <line x1="21" y1="12" x2="9" y2="12"></line>
                             </svg>
-                            <span>Log Out</span>
+                            <span>{{ __('admin/navbar.logout') }}</span>
                         </a>
                     </div>
                 </div>

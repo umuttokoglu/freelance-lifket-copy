@@ -3,6 +3,8 @@
 <link href="{{ asset('assets/admin/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset('assets/admin/css/light/plugins.css') }}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset('assets/admin/css/dark/plugins.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('assets/admin/css/dark/elements/alert.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('assets/admin/css/light/elements/alert.css') }}" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->

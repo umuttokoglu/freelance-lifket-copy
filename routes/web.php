@@ -1,14 +1,23 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Guest\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('guest.')
     ->group(function () {
-        Route::view('/', 'guest.home')->name('index');
+        Route::get('/', HomeController::class);
     });
 
 Route::name('admin.')
     ->prefix('admin')
     ->group(function () {
-        Route::view('/', 'admin.dashboard')->name('dashboard');
+        Route::get('login', [LoginController::class, 'showLoginForm'])->name('showLoginForm');
+        Route::post('login', [LoginController::class, 'login'])->name('login');
+        Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+        Route::middleware('auth')->group(function () {
+            Route::get('/', DashboardController::class)->name('dashboard');
+        });
     });
