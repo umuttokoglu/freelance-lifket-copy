@@ -11,28 +11,21 @@ use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // 5 ana kategori oluşturuyoruz
         $mainCategories = Category::factory(5)->create();
 
-        $mainCategories->each(function($category) {
-            // Her ana kategori için 2 alt kategori oluşturuyoruz
+        $mainCategories->each(function ($category) {
             $subCategories = Category::factory(2)->create([
                 'parent_id' => $category->id
             ]);
 
-            $subCategories->each(function($subCategory) {
-                // Her alt kategori için 3 ürün oluşturuyoruz
+            $subCategories->each(function ($subCategory) {
                 $products = Product::factory(3)->create([
                     'category_id' => $subCategory->id
                 ]);
 
-                $products->each(function($product) {
-                    // Her ürün için 2 adet ürün görseli oluşturuyoruz
+                $products->each(function ($product) {
                     ProductImage::factory(2)->create([
                         'product_id' => $product->id
                     ]);
@@ -41,9 +34,9 @@ class DatabaseSeeder extends Seeder
         });
 
         User::create([
-            'name'     => 'Delta Vinç',
-            'email'    => 'admin@deltavinc.com',
-            'password' => Hash::make('deltavinc.com'), // Güçlü bir şifre belirleyin
+            'name' => 'MVA Makine',
+            'email' => 'admin@deltavinc.com',
+            'password' => Hash::make('deltavinc.com'),
         ]);
     }
 }

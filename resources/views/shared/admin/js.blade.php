@@ -3,6 +3,7 @@
 <script src="{{ asset('assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/admin/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/app.js') }}"></script>
+<script src="{{ asset('assets/admin/plugins/src/waves/waves.min.js') }}"></script>
 
 <script src="{{ asset('assets/admin/js/custom.js') }}"></script>
 <!-- END GLOBAL MANDATORY SCRIPTS -->

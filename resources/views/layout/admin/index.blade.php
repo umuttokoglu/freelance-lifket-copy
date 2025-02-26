@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,26 +23,26 @@
 @else
     @include('shared.admin.navbar')
 
-    <!--  BEGIN MAIN CONTAINER  -->
     <div class="main-container " id="container">
         <div class="overlay"></div>
         <div class="search-overlay"></div>
 
         @include('shared.admin.sidebar')
 
-        <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
                 <div class="middle-content container-xxl p-0">
-                    @yield('content')
+                    @include('shared.admin.breadcrumb')
+
+                    <div class="row layout-top-spacing">
+                        @yield('content')
+                    </div>
                 </div>
             </div>
 
             @include('shared.admin.footer')
         </div>
-        <!--  END CONTENT AREA  -->
     </div>
-    <!-- END MAIN CONTAINER -->
 @endif
 
 @include('shared.admin.js')

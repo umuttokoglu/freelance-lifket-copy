@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'dashboard' => 'Panel',
+    'dashboard' => 'Yönetim Paneli',
     'categories' => 'Ürün Kategorileri',
     'products' => 'Ürünler',
 ];

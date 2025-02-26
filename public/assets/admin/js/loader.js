@@ -15,8 +15,8 @@ window.addEventListener("load", function(){
                 darkMode: false,
                 boxed: true,
                 logo: {
-                    darkLogo: './assets/admin/img/mva-makina.svg',
-                    lightLogo: './assets/admin/img/mva-makina.svg'
+                    darkLogo: '/assets/admin/img/mva-makina.svg',
+                    lightLogo: '/assets/admin/img/mva-makina.svg'
                 }
             }
         },
@@ -70,7 +70,7 @@ window.addEventListener("load", function(){
             document.body.classList.add('dark');
             if (ifStarterKit) {
                 if (document.querySelector('.navbar-logo')) {
-                    document.querySelector('.navbar-logo').setAttribute('src', './assets/admin/img/mva-makina.svg')
+                    document.querySelector('.navbar-logo').setAttribute('src', '/assets/admin/img/mva-makina.svg')
                 }
             } else {
                 if (document.querySelector('.navbar-logo')) {
@@ -88,7 +88,7 @@ window.addEventListener("load", function(){
             document.body.classList.remove('dark');
             if (ifStarterKit) {
                 if (document.querySelector('.navbar-logo')) {
-                    document.querySelector('.navbar-logo').setAttribute('src', './assets/admin/img/mva-makina.svg')
+                    document.querySelector('.navbar-logo').setAttribute('src', '/assets/admin/img/mva-makina.svg')
                 }
             } else {
                 if (document.querySelector('.navbar-logo')) {

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- favicons -->
-    <link rel="icon" href="./imgs/favicon.ico" />
-    <link rel="apple-touch-icon" href="./imgs/favicon-192.png" />
+    <link rel="icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="apple-touch-icon" href="{{ asset('favicon.ico') }}" />
     <meta name="author" content="Travolgi">
 
     <!-- title page & SEO meta -->
