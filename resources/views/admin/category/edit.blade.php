@@ -44,7 +44,7 @@
                     @csrf
 
                     <div class="col-md-4">
-                        <img src="{{ $category->image }}" alt="{{ $category->title }}" class="w-100">
+                        <img src="/{{ $category->image }}" alt="{{ $category->title }}" class="w-100">
                     </div>
 
                     <div class="col-md-8">

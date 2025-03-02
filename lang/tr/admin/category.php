@@ -5,6 +5,7 @@ return [
         'title' => 'Kategoriler',
         'button' => [
             'add' => 'Yeni Ana Kategori Ekle',
+            'sub_cat_add' => 'Yeni Alt Kategori Ekle',
         ],
         'table' => [
             'title' => 'Kategoriler',
@@ -33,26 +34,30 @@ return [
         ],
     ],
     'create' => [
-        'title' => 'Ana Kategori Ekle',
+        'title' => 'Kategori Ekle',
         'form' => [
             'title' => [
-                'label' => 'Ana Kategori Adı',
-                'placeholder' => 'Ana Kategori için başlık...',
+                'label' => 'Kategori Adı',
+                'placeholder' => 'Kategori için başlık...',
             ],
             'description_tr' => [
-                'label' => 'Ana Kategori Açıklama (TR)',
-                'placeholder' => 'Ana Kategori için Türkçe açıklama gir...',
+                'label' => 'Kategori Açıklama (TR)',
+                'placeholder' => 'Kategori için Türkçe açıklama gir...',
             ],
             'description_en' => [
-                'label' => 'Ana Kategori Açıklama (EN)',
-                'placeholder' => 'Ana Kategori için İngilizce açıklama gir...',
+                'label' => 'Kategori Açıklama (EN)',
+                'placeholder' => 'Kategori için İngilizce açıklama gir...',
             ],
-            'image' => 'Ana Kategori Görseli',
+            'image' => 'Kategori Görseli',
+            'parent_id' => [
+                'label' => 'Ana Kategori',
+                'placeholder' => 'Seçiniz...',
+            ],
         ],
         'button' => [
-            'save' => 'Ana Kategoriyi Kaydet',
+            'save' => 'Kategoriyi Kaydet',
         ],
-        'success' => 'Ana Kategori Başarıyla Eklendi.',
+        'success' => 'Kategori Başarıyla Eklendi.',
     ],
     'edit' => [
         'title' => ':category Düzenle',
@@ -76,5 +81,8 @@ return [
         ],
         'success' => 'Ana Kategori Başarıyla Güncellendi.',
     ],
-    'destroy' => 'Kategori başarıyla silindi.'
+    'destroy' => [
+        'success' => 'Ana Kategori ve alt kategorileri başarıyla silindi.',
+        'fail' => 'Ana kategor silinirken bir sorun oluştu. Lütfen tekrar deneyiniz!',
+    ],
 ];

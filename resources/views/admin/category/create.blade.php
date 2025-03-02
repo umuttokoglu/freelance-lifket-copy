@@ -42,6 +42,19 @@
                       enctype="multipart/form-data">
                     @csrf
 
+                    @if($isSubCategory)
+                        <input type="hidden" name="is_sub_category" value="{{ $isSubCategory }}">
+
+                        <div class="col-md-12">
+                            <label class="form-label">{{ __('admin/category.create.form.parent_id.label') }}</label>
+                            <input type="text" class="form-control" id="parent_id" name="parent_id">
+
+                            @error('parent_id')
+                            <small class="text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    @endif
+
                     <div class="col-md-6">
                         <label class="form-label">{{ __('admin/category.create.form.image') }}</label>
                         <input type="file" class="form-control" id="image" name="image">

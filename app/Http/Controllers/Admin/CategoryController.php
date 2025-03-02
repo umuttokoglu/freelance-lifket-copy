@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\StoreCategoryRequest;
 use App\Http\Requests\Admin\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
@@ -25,16 +26,18 @@ class CategoryController extends Controller
 
     public function create(): View
     {
-        return view('admin.category.create');
+        $isSubCategory = request()->boolean('sub_cat');
+
+        return view('admin.category.create', compact('isSubCategory'));
     }
 
     public function store(StoreCategoryRequest $request)
     {
-        $fileUrl = url($request->file('image')->store('category', 'public'));
+        $filePath = $request->file('image')->store('/category', 'public');
 
         $data = $request->validated();
         $data['user_id'] = auth()->user()->id;
-        $data['image'] = $fileUrl;
+        $data['image'] = $filePath;
 
         Category::query()->create($data);
 
@@ -50,11 +53,11 @@ class CategoryController extends Controller
 
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $fileUrl = url($request->file('image')->store('category', 'public'));
+        $filePath = $request->file('image')->store('/category', 'public');
 
         $data = $request->validated();
         $data['user_id'] = auth()->user()->id;
-        $data['image'] = $fileUrl;
+        $data['image'] = $filePath;
 
         $category->update($data);
 
@@ -65,9 +68,18 @@ class CategoryController extends Controller
 
     public function destroy(Category $category): RedirectResponse
     {
-        $category->delete();
+        $image = $category->image;
+        $isDeleted = $category->delete();
 
-        session()->flash('message', __('admin/category.destroy'));
+        if (!$isDeleted) {
+            session()->flash('message', __('admin/category.destroy.fail'));
+
+            return response()->redirectToRoute('admin.category.index');
+        }
+
+        unlink(storage_path('app/public/' . $image));
+
+        session()->flash('message', __('admin/category.destroy.success'));
 
         return response()->redirectToRoute('admin.category.index');
     }

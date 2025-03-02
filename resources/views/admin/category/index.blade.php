@@ -26,6 +26,7 @@
 
                     <div class="col-xl-6 col-md-6 col-sm-6 col-6">
                         <a href="{{ route('admin.category.create') }}" class="btn btn-light-success mt-3">{{ __('admin/category.index.button.add') }}</a>
+                        <a href="{{ route('admin.category.create', ['sub_cat' => 1]) }}" class="btn btn-light-secondary mt-3">{{ __('admin/category.index.button.sub_cat_add') }}</a>
                     </div>
                 </div>
 
@@ -52,7 +53,7 @@
                             @foreach($categories as $category)
                                 <tr>
                                     <td class="text-center">
-                                        <img src="{{ $category->image }}" width="150" alt="">
+                                        <img src="/{{ $category->image }}" width="150" alt="">
                                     </td>
                                     <td>
                                         <p>{{ $category->title }}</p>
