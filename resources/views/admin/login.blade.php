@@ -18,7 +18,7 @@
                             <p>{{ __('admin/login.form.desc') }}</p>
                         </div>
 
-                        @include('shared.admin.session_error')
+                        @include('shared.admin.session_message')
 
                         <form action="{{ route('admin.login') }}" method="post">
                             @csrf

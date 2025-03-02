@@ -16,7 +16,7 @@ class HomeController extends Controller
         // Eager loading ile ilişkili ürünlerin görsellerini de çekiyoruz
         $products = $category->products()->with('images')->get();
 
-        dd($category, $products);
+        //dd($category, $products);
 
         return view('guest.home');
     }

@@ -13,6 +13,12 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        User::create([
+            'name' => 'MVA Makine',
+            'email' => 'admin@deltavinc.com',
+            'password' => Hash::make('deltavinc.com'),
+        ]);
+
         $mainCategories = Category::factory(5)->create();
 
         $mainCategories->each(function ($category) {
@@ -32,11 +38,5 @@ class DatabaseSeeder extends Seeder
                 });
             });
         });
-
-        User::create([
-            'name' => 'MVA Makine',
-            'email' => 'admin@deltavinc.com',
-            'password' => Hash::make('deltavinc.com'),
-        ]);
     }
 }

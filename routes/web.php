@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Guest\HomeController;
@@ -21,6 +22,8 @@ Route::name('admin.')
         Route::middleware('auth')->group(function () {
             Route::get('/', DashboardController::class)->name('dashboard');
 
-            Route::resource('category', CategoryController::class);
+            Route::resource('category', CategoryController::class)->except('show');
+
+            Route::resource('contact', ContactController::class)->only('index');
         });
     });

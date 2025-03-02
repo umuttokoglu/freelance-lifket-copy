@@ -1,30 +1,34 @@
-// Basic
+let trQuillPlaceholder = document.getElementById('description_tr').getAttribute('data-placeholder');
+let enQuillPlaceholder = document.getElementById('description_en').getAttribute('data-placeholder');
 
-var quill = new Quill('#editor-container', {
-  modules: {
-    toolbar: [
-      [{ header: [1, 2, false] }],
-      ['bold', 'italic', 'underline'],
-      ['image', 'code-block']
-    ]
-  },
-  placeholder: 'Compose an epic...',
-  theme: 'snow'  // or 'bubble'
+let quill = new Quill('#description_tr', {
+    modules: {
+        toolbar: [
+            [{header: [1, 2, false]}],
+            ['bold', 'italic', 'underline'],
+            ['image', 'code-block']
+        ]
+    },
+    placeholder: trQuillPlaceholder,
+    theme: 'snow'  // or 'bubble'
 });
 
+quill.on('text-change', function(delta, oldDelta, source) {
+    $('#hidden_description_tr').val(quill.container.firstChild.innerHTML);
+});
 
-// With Tooltip
-
-  var quill = new Quill('#quill-tooltip', {
+let quill1 = new Quill('#description_en', {
     modules: {
-      toolbar: '#toolbar-container'
+        toolbar: [
+            [{header: [1, 2, false]}],
+            ['bold', 'italic', 'underline'],
+            ['image', 'code-block']
+        ]
     },
-    placeholder: 'Compose an epic...',
-    theme: 'snow'
-  });
-  
-  // Enable all tooltips
-  var bsTooltip = document.querySelectorAll('[data-toggle="tooltip"]')
-  for (let index = 0; index < bsTooltip.length; index++) {
-      var tooltip = new bootstrap.Tooltip(bsTooltip[index])
-  }
+    placeholder: enQuillPlaceholder,
+    theme: 'snow'  // or 'bubble'
+});
+
+quill1.on('text-change', function(delta, oldDelta, source) {
+    $('#hidden_description_en').val(quill.container.firstChild.innerHTML);
+});
