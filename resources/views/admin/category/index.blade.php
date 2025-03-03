@@ -100,7 +100,7 @@
                                                 </svg>
                                             </a>
 
-                                            <form id="category-delete-form"
+                                            <form id="category-delete-form-{{ $category->id }}"
                                                   action="{{ route('admin.category.destroy', ['category' => $category]) }}"
                                                   method="POST"
                                                   style="display: none;">
@@ -112,7 +112,7 @@
                                                class="action-btn btn-delete bs-tooltip"
                                                data-toggle="tooltip" data-placement="top"
                                                title="{{ __('admin/category.index.table.th.actions.delete') }}"
-                                               onclick="event.preventDefault(); document.getElementById('category-delete-form').submit();">
+                                               onclick="event.preventDefault(); document.getElementById('category-delete-form-{{ $category->id }}').submit();">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                      stroke-width="2"
