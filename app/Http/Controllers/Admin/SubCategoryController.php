@@ -79,7 +79,6 @@ class SubCategoryController extends Controller
 
     public function destroy(Category $subCategory): RedirectResponse
     {
-        dd($subCategory);
         $image = $subCategory->image;
         $isDeleted = $subCategory->delete();
 

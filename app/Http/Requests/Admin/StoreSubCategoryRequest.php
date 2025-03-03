@@ -17,7 +17,7 @@ class StoreSubCategoryRequest extends FormRequest
         return [
             'parent_id' => ['required', 'integer', 'exists:categories,id'],
             'title' => ['required', 'string', 'max:255', 'min:5'],
-            'image' => ['required', 'file', 'mimes:jpg,png', 'dimensions:min_width=600,min_height=400', 'max:200'],
+            'image' => ['required', 'file', 'mimes:jpg,png', 'max:500'],
             'description_tr' => ['required', 'string', 'max:1000', 'min:5'],
             'description_en' => ['required', 'string', 'max:1000', 'min:5'],
         ];

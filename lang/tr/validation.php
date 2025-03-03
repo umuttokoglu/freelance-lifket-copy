@@ -93,7 +93,7 @@ return [
     'mac_address' => ':attribute geçerli bir MAC adresi olmalıdır.',
     'max' => [
         'array' => ':attribute :max öğeden daha fazlasına sahip olmamalıdır.',
-        'file' => ':attribute :max kilobyte boyutundan büyük olmalıdır.',
+        'file' => ':attribute :max kilobyte boyutundan büyük olmamalıdır.',
         'numeric' => ':attribute, :max değerinden büyük olmamalıdır.',
         'string' => ':attribute, :max karakterden daha uzun olmamalıdır.',
     ],
