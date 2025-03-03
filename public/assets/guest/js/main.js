@@ -1,11 +1,3 @@
-/*---------------------------------------------------------
-*	Author:			Travolgi
-*	Theme:			BuildXpert
-*	Version:			1.0.0
-*	Created: 		02/08/2024
-*	Last update:	02/08/2024
----------------------------------------------------------*/
-
 /*--------------------------------------------------------
 *	HELPER FUNCTIONS
 --------------------------------------------------------*/
@@ -150,7 +142,7 @@ if (heroSlider) {
 
 
 /*--------------------------------------------------------
-*	FILTERS 
+*	FILTERS
 --------------------------------------------------------*/
 const filters = getAllElements('#filter-list li'),
 		products = getAllElements('#product-grid .project');
@@ -180,14 +172,14 @@ if(filters) {
 
 
 /*--------------------------------------------------------
-*	CAROUSELS 
+*	CAROUSELS
 --------------------------------------------------------*/
 const carouselsInline = getAllElements('.carousel-inline');
 
 if (carouselsInline) {
 	carouselsInline.forEach(carousel => {
 		let scrollAmount = 0;
-		
+
 		function autoScroll() {
 			scrollAmount += 1;
 			if (scrollAmount >= carousel.scrollWidth - carousel.clientWidth) {
@@ -212,12 +204,12 @@ const toggleFaq = e => {
 	const currentFaq = e.target.parentNode,
 			iconFaq = currentFaq.querySelector('button i'),
 			visible = currentFaq.getAttribute(dataFaq);
-			
+
 	faqs.forEach(faq => {
 		changeAttribute(faq, dataFaq, false);
 		changeClass(faq.querySelector('button i'), 'lnr-chevron-up', 'lnr-chevron-down');
 	});
-	
+
 	if(visible === 'false') {
 		changeAttribute(currentFaq, dataFaq);
 		changeClass(iconFaq, 'lnr-chevron-down', 'lnr-chevron-up');
@@ -233,13 +225,13 @@ if (faqs) {
 
 
 /*--------------------------------------------------------
-*	FOOTER 
+*	FOOTER
 --------------------------------------------------------*/
-getElement('#thisYear').innerHTML= new Date().getFullYear(); 
+getElement('#thisYear').innerHTML= new Date().getFullYear();
 
 const main = getElement('main'),
 		footer = getElement('footer');
-		
+
 main.style.marginBottom = footer + "px";
 
 function updateFooterHeight() {

@@ -4,13 +4,13 @@
     </button>
 
     <a href="{{ route('guest.home') }}" class="logo">
-        <img img="{{ asset('assets/mva-makina.svg') }}" alt="{{ config('app.name') }} logo">
+        <img img="{{ asset('favicon.ico') }}" alt="{{ config('app.name') }} logo">
     </a>
 
     <nav id="navbar" data-visible="false">
         <ul>
-            <li><a href="{{ route('guest.home') }}">Anasyfa</a></li>
-            <li><a href="{{ route('guest.home') }}">Hakkımızda</a></li>
+            <li><a href="{{ route('guest.home') }}">Anasayfa</a></li>
+            <li><a href="{{ route('guest.about') }}">Hakkımızda</a></li>
             <li><a href="{{ route('guest.iletisim.index') }}">İletişim</a></li>
         </ul>
     </nav>

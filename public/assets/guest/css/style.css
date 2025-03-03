@@ -653,7 +653,6 @@ header #search-form {
 	position: relative;
 	display: grid;
 	place-content: center;
-	aspect-ratio: 5/4;
 	transition: var(--trnst);
 }
 .project img {
@@ -779,7 +778,6 @@ footer .logo {
 }
 footer .logo img {
 	width: 18rem;
-	filter: invert(1);
 }
 
 /*-------------------------------------------------------
