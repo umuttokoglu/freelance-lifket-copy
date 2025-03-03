@@ -9,9 +9,21 @@ use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
-class CategoryController extends Controller
+class SubCategoryController extends Controller
 {
     public function index(): View
+    {
+        $subCategories = Category::query()
+            ->withCount('products')
+            ->with(['user', 'parent'])
+            ->whereNotNull('parent_id')
+            ->latest()
+            ->paginate(10);
+
+        return view('admin.sub_category.index', compact('subCategories'));
+    }
+
+    public function create(): View
     {
         $categories = Category::query()
             ->withCount('children')
@@ -20,12 +32,7 @@ class CategoryController extends Controller
             ->latest()
             ->get();
 
-        return view('admin.category.index', compact('categories'));
-    }
-
-    public function create(): View
-    {
-        return view('admin.category.create');
+        return view('admin.sub_category.create', compact('categories'));
     }
 
     public function store(StoreCategoryRequest $request)
@@ -38,12 +45,12 @@ class CategoryController extends Controller
 
         Category::query()->create($data);
 
-        session()->flash('message', __('admin/category.create.success'));
+        session()->flash('message', 'Alt Ürün Kategorisi Başarıyla Eklendi.');
 
-        return response()->redirectToRoute('admin.category.index');
+        return response()->redirectToRoute('admin.sub-category.index');
     }
 
-    public function edit(Category $category)
+    /*public function edit(Category $category)
     {
         return view('admin.category.edit', compact('category'));
     }
@@ -61,23 +68,24 @@ class CategoryController extends Controller
         session()->flash('message', __('admin/category.edit.success'));
 
         return response()->redirectToRoute('admin.category.index');
-    }
+    }*/
 
-    public function destroy(Category $category): RedirectResponse
+    public function destroy(Category $subCategory): RedirectResponse
     {
-        $image = $category->image;
-        $isDeleted = $category->delete();
+        dd($subCategory);
+        $image = $subCategory->image;
+        $isDeleted = $subCategory->delete();
 
         if (!$isDeleted) {
-            session()->flash('message', __('admin/category.destroy.fail'));
+            session()->flash('error', 'Alt ürün kategorisi ile ilişkili ürünler olduğu için kayıt silinemedi. İlk önce ürünleri silmelisiniz.');
 
-            return response()->redirectToRoute('admin.category.index');
+            return response()->redirectToRoute('admin.sub-category.index');
         }
 
         unlink(storage_path('app/public/' . $image));
 
-        session()->flash('message', __('admin/category.destroy.success'));
+        session()->flash('message', 'Alt ürün kategorisi başarıyla silindi!');
 
-        return response()->redirectToRoute('admin.category.index');
+        return response()->redirectToRoute('admin.sub-category.index');
     }
 }

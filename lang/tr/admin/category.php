@@ -83,6 +83,6 @@ return [
     ],
     'destroy' => [
         'success' => 'Ana Kategori ve alt kategorileri başarıyla silindi.',
-        'fail' => 'Ana kategor silinirken bir sorun oluştu. Lütfen tekrar deneyiniz!',
+        'fail' => 'Ana kategori silinirken bir sorun oluştu. Lütfen tekrar deneyiniz!',
     ],
 ];

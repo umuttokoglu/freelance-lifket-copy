@@ -2,11 +2,11 @@
 
 @extends('layout.admin.index')
 
-@section('adminPageTitle', __('admin/category.index.title'))
+@section('adminPageTitle', 'İletişim')
 
 @section('adminBreadcrumb')
     <li class="breadcrumb-item">
-        {{ __('admin/category.index.title') }}
+        {{ 'İletişim' }}
     </li>
 @endsection
 
@@ -21,12 +21,7 @@
             <div class="widget-header">
                 <div class="row mb-4">
                     <div class="col-xl-6 col-md-6 col-sm-6 col-6">
-                        <h4>{{ __('admin/category.index.table.title') }}</h4>
-                    </div>
-
-                    <div class="col-xl-6 col-md-6 col-sm-6 col-6">
-                        <a href="{{ route('admin.category.create') }}"
-                           class="btn btn-light-success mt-3">{{ __('admin/category.index.button.add') }}</a>
+                        <h4>İletişim</h4>
                     </div>
                 </div>
 

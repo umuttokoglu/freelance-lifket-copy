@@ -2,7 +2,7 @@
 
 @extends('layout.admin.index')
 
-@section('adminPageTitle', __('admin/category.create.title'))
+@section('adminPageTitle', __('admin/category.edit.title', ['category' => $category->title]))
 
 @section('adminBreadcrumb')
     <li class="breadcrumb-item active">
@@ -12,7 +12,7 @@
     </li>
 
     <li class="breadcrumb-item">
-        {{ __('admin/category.create.title') }}
+        {{ __('admin/category.edit.title', ['category' => $category->title]) }}
     </li>
 @endsection
 
@@ -32,47 +32,52 @@
             <div class="widget-header">
                 <div class="row">
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                        <h4>{{ __('admin/category.create.title') }}</h4>
+                        <h4>{{ __('admin/category.edit.title', ['category' => $category->title]) }}</h4>
                     </div>
                 </div>
             </div>
 
             <div class="widget-content widget-content-area">
-                <form class="row g-3" method="post" action="{{ route('admin.category.store') }}"
+                <form class="row g-3" method="post" action="{{ route('admin.category.update', $category) }}"
                       enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
 
-                    <div class="col-md-6">
-                        <label class="form-label">{{ __('admin/category.create.form.image') }}</label>
-                        <input type="file" class="form-control" id="image" name="image">
-
-                        @error('image')
-                        <small class="text text-danger">{{ $message }}</small>
-                        @enderror
+                    <div class="col-md-4">
+                        <img src="/{{ $category->image }}" alt="{{ $category->title }}" class="w-100">
                     </div>
 
-                    <div class="col-md-6">
-                        <label for="title" class="form-label">{{ __('admin/category.create.form.title.label') }}</label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}"
-                               placeholder="{{ __('admin/category.create.form.title.placeholder') }}">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="form-label">{{ __('admin/category.edit.form.image') }}</label>
+                            <input type="file" class="form-control" id="image" name="image">
 
-                        @error('title')
-                        <small class="text text-danger">{{ $message }}</small>
-                        @enderror
+                            @error('image')
+                            <small class="text text-danger">{{ $message }}</small>
+                            @enderror
+
+                            <label for="title" class="form-label mt-4">{{ __('admin/category.edit.form.title.label') }}</label>
+                            <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $category->title) }}"
+                                   placeholder="{{ __('admin/category.edit.form.title.placeholder') }}">
+
+                            @error('title')
+                            <small class="text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
                     </div>
 
                     <div class="col-md-12">
                         <label for="inputPassword4"
-                               class="form-label">{{ __('admin/category.create.form.description_tr.label') }}</label>
+                               class="form-label">{{ __('admin/category.edit.form.description_tr.label') }}</label>
 
                         <div class="row m-1">
                             <div id="description_tr"
-                                 data-placeholder="{{ __('admin/category.create.form.description_tr.placeholder') }}">
-                                {{ strip_tags(old('description_tr')) }}
+                                 data-placeholder="{{ __('admin/category.edit.form.description_tr.placeholder') }}">
+                                {{ strip_tags(old('description_tr', $category->description_tr)) }}
                             </div>
 
                             <textarea id="hidden_description_tr" name="description_tr" class="d-none">
-                                {{ strip_tags(old('description_tr')) }}
+                                {{ strip_tags(old('description_tr', $category->description_tr)) }}
                             </textarea>
                         </div>
 
@@ -83,16 +88,16 @@
 
                     <div class="col-12">
                         <label for="inputAddress"
-                               class="form-label">{{ __('admin/category.create.form.description_en.label') }}</label>
+                               class="form-label">{{ __('admin/category.edit.form.description_en.label') }}</label>
 
                         <div class="row m-1">
                             <div id="description_en"
-                                 data-placeholder="{{ __('admin/category.create.form.description_en.placeholder') }}">
-                                {{ strip_tags(old('description_en')) }}
+                                 data-placeholder="{{ __('admin/category.edit.form.description_en.placeholder') }}">
+                                {{ strip_tags(old('description_en', $category->description_en)) }}
                             </div>
 
                             <textarea id="hidden_description_en" name="description_en" class="d-none">
-                                {{ strip_tags(old('description_en')) }}
+                                {{ strip_tags(old('description_en', $category->description_en)) }}
                             </textarea>
                         </div>
 
@@ -103,7 +108,7 @@
 
                     <div class="col-12">
                         <button type="submit"
-                                class="btn btn-primary">{{ __('admin/category.create.button.save') }}</button>
+                                class="btn btn-primary">{{ __('admin/category.edit.button.save') }}</button>
                     </div>
                 </form>
             </div>

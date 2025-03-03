@@ -2,11 +2,11 @@
 
 @extends('layout.admin.index')
 
-@section('adminPageTitle', __('admin/category.index.title'))
+@section('adminPageTitle', 'Alt Ürün Kategorileri')
 
 @section('adminBreadcrumb')
     <li class="breadcrumb-item">
-        {{ __('admin/category.index.title') }}
+        {{ 'Alt Ürün Kategorileri' }}
     </li>
 @endsection
 
@@ -21,12 +21,11 @@
             <div class="widget-header">
                 <div class="row mb-4">
                     <div class="col-xl-6 col-md-6 col-sm-6 col-6">
-                        <h4>{{ __('admin/category.index.table.title') }}</h4>
+                        <h4>{{ 'Alt Ürün Kategorileri' }}</h4>
                     </div>
 
                     <div class="col-xl-6 col-md-6 col-sm-6 col-6">
-                        <a href="{{ route('admin.category.create') }}"
-                           class="btn btn-light-success mt-3">{{ __('admin/category.index.button.add') }}</a>
+                        <a href="{{ route('admin.sub-category.create') }}" class="btn btn-light-success mt-3">{{ 'Yeni Alt Ürün Kategorisi Ekle' }}</a>
                     </div>
                 </div>
 
@@ -35,48 +34,49 @@
 
 
             <div class="widget-content widget-content-area">
-                @if($categories->isNotEmpty())
+                @if($subCategories->isNotEmpty())
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th class="text-center" scope="col">{{ __('admin/category.index.table.th.image') }}</th>
-                                <th scope="col">{{ __('admin/category.index.table.th.title') }}</th>
+                                <th class="text-center" scope="col">{{ 'Görsel' }}</th>
+                                <th scope="col">{{ 'Alt Kategori Adı' }}</th>
+                                <th scope="col">{{ 'Ana Kategori' }}</th>
                                 <th class="text-center"
-                                    scope="col">{{ __('admin/category.index.table.th.sub_category_count.name') }}</th>
-                                <th scope="col">{{ __('admin/category.index.table.th.created_by') }}</th>
-                                <th scope="col">{{ __('admin/category.index.table.th.created_at') }}</th>
+                                    scope="col">{{ 'Ürün Sayısı' }}</th>
+                                <th scope="col">{{ 'Oluşturan' }}</th>
+                                <th scope="col">{{ 'Oluşturulma Tarihi' }}</th>
                                 <th class="text-center" scope="col"></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($categories as $category)
+                            @foreach($subCategories as $subCategory)
                                 <tr>
                                     <td class="text-center">
-                                        <img src="/{{ $category->image }}" width="150" alt="">
+                                        <img src="/{{ $subCategory->image }}" width="150" alt="">
                                     </td>
                                     <td>
-                                        <p>{{ $category->title }}</p>
+                                        <p>{{ $subCategory->title }}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ $subCategory->parent->title }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <span
-                                            class="badge badge-light-{{ $category->children_count ? 'success' : 'danger' }}"
-                                            title="{{ $category->children_count ? __('admin/category.index.table.th.sub_category_count.title.sub_cat') : __('admin/category.index.table.th.sub_category_count.title.no_asub_cat') }}">
-                                            {{ __('admin/category.index.table.td.sub_category_count', ['sub_cat_count' => $category->children_count]) }}
+                                        <span class="badge badge-light-{{ $subCategory->products_count ? 'success' : 'danger' }}"
+                                              title="{{ $subCategory->products_count ? __('admin/category.index.table.th.sub_category_count.title.sub_cat') : __('admin/category.index.table.th.sub_category_count.title.no_asub_cat') }}">
+                                            {{ $subCategory->products_count . ' Ürün' }}
                                         </span>
                                     </td>
                                     <td>
-                                        {{ $category->user->name }}
+                                        {{ $subCategory->user->name }}
                                     </td>
                                     <td>
-                                        {{ Carbon::parse($category->created_at)->translatedFormat('d F Y H:i') }}
+                                        {{ Carbon::parse($subCategory->created_at)->translatedFormat('d F Y H:i') }}
                                     </td>
                                     <td class="text-center">
                                         <div class="action-btns">
                                             <a href="javascript:void(0);" class="action-btn btn-view bs-tooltip me-2"
-                                               data-toggle="tooltip" data-placement="top"
-                                               title="{{ __('admin/category.index.table.th.actions.view') }}"
-                                               target="_blank">
+                                               data-toggle="tooltip" data-placement="top" title="{{ __('admin/category.index.table.th.actions.view') }}" target="_blank">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                      stroke-width="2"
@@ -86,10 +86,8 @@
                                                     <circle cx="12" cy="12" r="3"></circle>
                                                 </svg>
                                             </a>
-                                            <a href="{{ route('admin.category.edit', $category) }}"
-                                               class="action-btn btn-edit bs-tooltip me-2"
-                                               data-toggle="tooltip" data-placement="top"
-                                               title="{{ __('admin/category.index.table.th.actions.update') }}">
+                                            <a href="{{ route('admin.sub-category.edit', $subCategory) }}" class="action-btn btn-edit bs-tooltip me-2"
+                                               data-toggle="tooltip" data-placement="top" title="{{ __('admin/category.index.table.th.actions.update') }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                      stroke-width="2"
@@ -100,19 +98,18 @@
                                                 </svg>
                                             </a>
 
-                                            <form id="category-delete-form"
-                                                  action="{{ route('admin.category.destroy', ['category' => $category]) }}"
+                                            <form id="sub-category-delete-form"
+                                                  action="{{ route('admin.sub-category.destroy', ['sub_category' => $subCategory]) }}"
                                                   method="POST"
                                                   style="display: none;">
                                                 @method('DELETE')
                                                 @csrf
                                             </form>
 
-                                            <a href="{{ route('admin.category.destroy', ['category' => $category->id]) }}"
+                                            <a href="{{ route('admin.sub-category.destroy', ['sub_category' => $subCategory]) }}"
                                                class="action-btn btn-delete bs-tooltip"
-                                               data-toggle="tooltip" data-placement="top"
-                                               title="{{ __('admin/category.index.table.th.actions.delete') }}"
-                                               onclick="event.preventDefault(); document.getElementById('category-delete-form').submit();">
+                                               data-toggle="tooltip" data-placement="top" title="{{ __('admin/category.index.table.th.actions.delete') }}"
+                                               onclick="event.preventDefault(); document.getElementById('sub-category-delete-form').submit();">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                      stroke-width="2"

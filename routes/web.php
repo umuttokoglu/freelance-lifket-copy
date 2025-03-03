@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Guest\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,8 @@ Route::name('admin.')
             Route::get('/', DashboardController::class)->name('dashboard');
 
             Route::resource('category', CategoryController::class)->except('show');
+
+            Route::resource('sub-category', SubCategoryController::class)->except('show');
 
             Route::resource('contact', ContactController::class)->only('index');
         });

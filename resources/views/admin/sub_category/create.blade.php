@@ -2,17 +2,17 @@
 
 @extends('layout.admin.index')
 
-@section('adminPageTitle', __('admin/category.create.title'))
+@section('adminPageTitle', 'Alt Ürün Kategorisi Ekle')
 
 @section('adminBreadcrumb')
     <li class="breadcrumb-item active">
-        <a href="{{ route('admin.category.index') }}">
+        <a href="{{ route('admin.sub-category.index') }}">
             {{ __('admin/category.index.title') }}
         </a>
     </li>
 
     <li class="breadcrumb-item">
-        {{ __('admin/category.create.title') }}
+        {{ 'Alt Ürün Kategorisi Ekle' }}
     </li>
 @endsection
 
@@ -32,18 +32,33 @@
             <div class="widget-header">
                 <div class="row">
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                        <h4>{{ __('admin/category.create.title') }}</h4>
+                        <h4>{{ 'Alt Ürün Kategorisi Ekle' }}</h4>
                     </div>
                 </div>
             </div>
 
             <div class="widget-content widget-content-area">
-                <form class="row g-3" method="post" action="{{ route('admin.category.store') }}"
+                <form class="row g-3" method="post" action="{{ route('admin.sub-category.store') }}"
                       enctype="multipart/form-data">
                     @csrf
 
+                    <div class="col-md-12">
+                        <label for="parent_id" class="form-label">{{ __('admin/category.create.form.parent_id.label') }}</label>
+                        <select id="parent_id" name="parent_id" placeholder="Ana Kategori Seç..." autocomplete="off" class="form-control">
+                            <option value="">Ana Kategori Seç...</option>
+
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            @endforeach
+                        </select>
+
+                        @error('parent_id')
+                        <small class="text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
                     <div class="col-md-6">
-                        <label class="form-label">{{ __('admin/category.create.form.image') }}</label>
+                        <label class="form-label">{{ 'Alt Ürün Kategorisi Görseli' }}</label>
                         <input type="file" class="form-control" id="image" name="image">
 
                         @error('image')
@@ -52,7 +67,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <label for="title" class="form-label">{{ __('admin/category.create.form.title.label') }}</label>
+                        <label for="title" class="form-label">{{ 'Alt Ürün Kategorisi Adı' }}</label>
                         <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}"
                                placeholder="{{ __('admin/category.create.form.title.placeholder') }}">
 
@@ -62,16 +77,16 @@
                     </div>
 
                     <div class="col-md-12">
-                        <label for="inputPassword4"
-                               class="form-label">{{ __('admin/category.create.form.description_tr.label') }}</label>
+                        <label for="sub_description_tr"
+                               class="form-label">{{ 'Alt Ürün Kategorisi Açıklama (TR)' }}</label>
 
                         <div class="row m-1">
-                            <div id="description_tr"
+                            <div id="sub_description_tr"
                                  data-placeholder="{{ __('admin/category.create.form.description_tr.placeholder') }}">
                                 {{ strip_tags(old('description_tr')) }}
                             </div>
 
-                            <textarea id="hidden_description_tr" name="description_tr" class="d-none">
+                            <textarea id="sub_hidden_description_tr" name="description_tr" class="d-none">
                                 {{ strip_tags(old('description_tr')) }}
                             </textarea>
                         </div>
@@ -82,16 +97,16 @@
                     </div>
 
                     <div class="col-12">
-                        <label for="inputAddress"
-                               class="form-label">{{ __('admin/category.create.form.description_en.label') }}</label>
+                        <label for="sub_description_en"
+                               class="form-label">{{ 'Alt Ürün Kategorisi Açıklama (EN)' }}</label>
 
                         <div class="row m-1">
-                            <div id="description_en"
+                            <div id="sub_description_en"
                                  data-placeholder="{{ __('admin/category.create.form.description_en.placeholder') }}">
                                 {{ strip_tags(old('description_en')) }}
                             </div>
 
-                            <textarea id="hidden_description_en" name="description_en" class="d-none">
+                            <textarea id="sub_hidden_description_en" name="description_en" class="d-none">
                                 {{ strip_tags(old('description_en')) }}
                             </textarea>
                         </div>
@@ -103,7 +118,7 @@
 
                     <div class="col-12">
                         <button type="submit"
-                                class="btn btn-primary">{{ __('admin/category.create.button.save') }}</button>
+                                class="btn btn-primary">{{ 'Alt Ürün Kategorisi Ekle' }}</button>
                     </div>
                 </form>
             </div>
