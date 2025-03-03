@@ -473,23 +473,34 @@
                 <span class="corner-line line3" aria-hidden="true"></span>
                 <span class="corner-line line4" aria-hidden="true"></span>
                 <!-- title -->
-                <h5>Write us a message</h5>
-                <h2 class="mb-0">Contact us</h2>
+                <h5>Bir Mesaj Yazın</h5>
+                <h2 class="mb-0">Bizimle İletişime Geçin</h2>
             </div>
-            <p data-aos="fade-down" data-aos-delay="100">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla
-                quod deleniti, adipisci at expedita aperiam officiis sint dolorum eius corrupti culpa iure omnis.
-                Aperiam beatae dolorum itaque magnam. Tenetur, praesentium.</p>
+
+            <p data-aos="fade-down" data-aos-delay="100">Profesyonel servis anlayışımız ile siz değerli iş ortaklarımıza
+                hakettiğiniz hızlı ve kaliteli servis hizmetini ekonomik fiyatlarla vermeyi taahhüt ediyoruz.</p></p>
         </div>
-        <!-- contact form -->
-        <form method="post" action="./php/contactform.php" data-aos="zoom-out" data-aos-delay="200">
-            <!-- field -->
-            <input type="text" name="name" id="name" placeholder="Name here...">
-            <!-- field -->
-            <input type="email" name="email" id="email" placeholder="Email here...">
-            <!-- field -->
-            <textarea name="message" id="message" rows="8" placeholder="Message here..."></textarea>
-            <!-- submit button -->
-            <button type="submit">Send</button>
+
+        <form method="post" action="{{ route('guest.iletisim.store') }}" data-aos="zoom-in" data-aos-delay="100">
+            @csrf
+
+            <input type="text" name="name" id="name" placeholder="Adınız...">
+            @error('name')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
+            <input type="email" name="email" id="email" placeholder="E-posta adresiniz...">
+            @error('email')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
+            <textarea name="message" id="message" rows="8" placeholder="Mesjınız..."></textarea>
+            @error('message')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
+            <button type="submit" style="margin-left: 5px;">Gönder</button>
+
+            @if(session()->has('message'))
+                <p> {{ session('message') }} </p>
+            @endif
         </form>
     </section>
 

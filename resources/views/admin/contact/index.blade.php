@@ -13,6 +13,8 @@
 @section('adminPageCss')
     <link href="{{ asset('assets/admin/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/admin/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/admin/css/dark/components/modal.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/admin/css/light/components/modal.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -30,48 +32,36 @@
 
 
             <div class="widget-content widget-content-area">
-                @if($categories->isNotEmpty())
+                @if($messages->isNotEmpty())
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th class="text-center" scope="col">{{ __('admin/category.index.table.th.image') }}</th>
-                                <th scope="col">{{ __('admin/category.index.table.th.title') }}</th>
-                                <th class="text-center"
-                                    scope="col">{{ __('admin/category.index.table.th.sub_category_count.name') }}</th>
-                                <th scope="col">{{ __('admin/category.index.table.th.created_by') }}</th>
-                                <th scope="col">{{ __('admin/category.index.table.th.created_at') }}</th>
+                                <th scope="col">İsim</th>
+                                <th scope="col">E-posta</th>
+                                <th class="text-center" scope="col">Gönderilme Tarihi</th>
                                 <th class="text-center" scope="col"></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($categories as $category)
+                            @foreach($messages as $message)
                                 <tr>
+                                    <td>
+                                        <p>{{ $message->name }}</p>
+                                    </td>
+                                    <td>
+                                        {{ $message->email }}
+                                    </td>
                                     <td class="text-center">
-                                        <img src="/{{ $category->image }}" width="150" alt="">
-                                    </td>
-                                    <td>
-                                        <p>{{ $category->title }}</p>
-                                    </td>
-                                    <td class="text-center">
-                                        <span
-                                            class="badge badge-light-{{ $category->children_count ? 'success' : 'danger' }}"
-                                            title="{{ $category->children_count ? __('admin/category.index.table.th.sub_category_count.title.sub_cat') : __('admin/category.index.table.th.sub_category_count.title.no_asub_cat') }}">
-                                            {{ __('admin/category.index.table.td.sub_category_count', ['sub_cat_count' => $category->children_count]) }}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        {{ $category->user->name }}
-                                    </td>
-                                    <td>
-                                        {{ Carbon::parse($category->created_at)->translatedFormat('d F Y H:i') }}
+                                        {{ Carbon::parse($message->created_at)->translatedFormat('d F Y H:i') }}
                                     </td>
                                     <td class="text-center">
                                         <div class="action-btns">
-                                            <a href="javascript:void(0);" class="action-btn btn-view bs-tooltip me-2"
+                                            <a href="#" class="action-btn btn-view btn-message-view bs-tooltip me-2"
+                                               data-message="{{ $message->message }}"
+                                               data-author="{{ $message->name }}"
                                                data-toggle="tooltip" data-placement="top"
-                                               title="{{ __('admin/category.index.table.th.actions.view') }}"
-                                               target="_blank">
+                                               title="Mesajı Gör">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                      stroke-width="2"
@@ -81,33 +71,20 @@
                                                     <circle cx="12" cy="12" r="3"></circle>
                                                 </svg>
                                             </a>
-                                            <a href="{{ route('admin.category.edit', $category) }}"
-                                               class="action-btn btn-edit bs-tooltip me-2"
-                                               data-toggle="tooltip" data-placement="top"
-                                               title="{{ __('admin/category.index.table.th.actions.update') }}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                     stroke-width="2"
-                                                     stroke-linecap="round" stroke-linejoin="round"
-                                                     class="feather feather-edit-2">
-                                                    <path
-                                                        d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-                                                </svg>
-                                            </a>
 
-                                            <form id="category-delete-form"
-                                                  action="{{ route('admin.category.destroy', ['category' => $category]) }}"
+                                            <form id="contact-delete-form-{{ $message->id }}"
+                                                  action="{{ route('admin.contact.destroy', ['contact' => $message]) }}"
                                                   method="POST"
                                                   style="display: none;">
                                                 @method('DELETE')
                                                 @csrf
                                             </form>
 
-                                            <a href="{{ route('admin.category.destroy', ['category' => $category->id]) }}"
+                                            <a href="{{ route('admin.contact.destroy', ['contact' => $message]) }}"
                                                class="action-btn btn-delete bs-tooltip"
                                                data-toggle="tooltip" data-placement="top"
                                                title="{{ __('admin/category.index.table.th.actions.delete') }}"
-                                               onclick="event.preventDefault(); document.getElementById('category-delete-form').submit();">
+                                               onclick="event.preventDefault(); document.getElementById('contact-delete-form-{{ $message->id }}').submit();">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                      stroke-width="2"
@@ -127,6 +104,8 @@
                             </tbody>
                         </table>
                     </div>
+
+                    {{ $messages->links('pagination::bootstrap-5') }}
                 @else
                     <div class="alert alert-light-warning alert-dismissible fade show border-0 mb-4" role="alert">
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
@@ -149,4 +128,45 @@
 
 @section('adminPageJs')
     <script src="{{ asset('assets/admin/js/scrollspyNav.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.btn-message-view').click(function() {
+                // data-message attribute'unu oku
+                var message = $(this).data('message');
+                var author = $(this).data('author');
+
+                // Dinamik modal HTML'sini oluştur
+                var modalHtml = `<div class="modal fade" id="readMesage" tabindex="-1" role="dialog" aria-labelledby="readMesageTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalCenterTitle">${author}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                        <p class="modal-text">${message}</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-light-dark" data-bs-dismiss="modal">Okudum</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+    `;
+
+                // Modalı body'e ekle
+                $('body').append(modalHtml);
+
+                // Modalı aç (Bootstrap modal örneği kullanılarak)
+                $('#readMesage').modal('show');
+
+                // Modal kapatıldığında DOM'dan kaldır
+                $('#readMesage').on('hidden.bs.modal', function () {
+                    $(this).remove();
+                });
+            });
+        });
+    </script>
 @endsection

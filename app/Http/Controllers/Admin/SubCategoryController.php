@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreCategoryRequest;
+use App\Http\Requests\Admin\StoreSubCategoryRequest;
 use App\Http\Requests\Admin\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
@@ -23,7 +24,7 @@ class SubCategoryController extends Controller
         return view('admin.sub_category.index', compact('subCategories'));
     }
 
-    public function create(): View
+    public function create(): View|RedirectResponse
     {
         $categories = Category::query()
             ->withCount('children')
@@ -32,10 +33,16 @@ class SubCategoryController extends Controller
             ->latest()
             ->get();
 
+        if ($categories->isEmpty()) {
+            session()->flash('error', 'İlk önce ana kategori eklemelisiniz. Lütfen ana kategori ekledikten sonra tekrar deneyiniz.');
+
+            return response()->redirectToRoute('admin.sub-category.index');
+        }
+
         return view('admin.sub_category.create', compact('categories'));
     }
 
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreSubCategoryRequest $request)
     {
         $filePath = $request->file('image')->store('/category', 'public');
 

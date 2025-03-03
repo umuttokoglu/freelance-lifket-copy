@@ -1,12 +1,4 @@
 /*---------------------------------------------------------
-*	Author:			Travolgi
-*	Theme:			BuildXpert
-*	Version:			1.0.0
-*	Created: 		02/08/2024
-*	Last update:	02/08/2024
----------------------------------------------------------*/
-
-/*---------------------------------------------------------
 *
 *		CONTENT:
 *
@@ -638,11 +630,11 @@ header #search-form {
 	place-items: start;
 	padding: 10%;
 }
-.service { 
+.service {
 	padding: 2rem;
 	border: .1rem solid var(--grey);
 }
-.service i { 
+.service i {
 	font-size: 3rem;
 	margin-bottom: 1.5rem;
 }
@@ -889,7 +881,7 @@ footer .logo img {
 		padding-right: 1rem;
 		margin: 0;
 	}
-	
+
 	.breadcump-image {
 		padding-top: 10%;
 	}

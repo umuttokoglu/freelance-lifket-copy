@@ -8,10 +8,10 @@
     <!-- favicons -->
     <link rel="icon" href="{{ asset('favicon.ico') }}" />
     <link rel="apple-touch-icon" href="{{ asset('favicon.ico') }}" />
-    <meta name="author" content="Travolgi">
+    <meta name="author" content="{{ config('app.name') }}">
 
     <!-- title page & SEO meta -->
-    <title>BuildXpert - The Ultimate HTML Template for Architects and Builders</title>
+    <title>{{ config('app.name') }}</title>
     <meta name="description" content="Versatile and powerful HTML template to quickly create a professional website for your architecture studio or construction company">
     <meta name="keywords" content="architects, builders, website, html template, website template, landing page, responsive, html5 themes, multipurpose template, html, html5, css, template, themes">
 
@@ -19,14 +19,12 @@
 </head>
 
 <body>
-<!-- Accessibility: Skip to content -->
 <a href="#main" class="skip-to-content">Skip to content</a>
-<!-- Preload page -->
+
 <div id="preload">
     <div class="container">
-        <!-- your logo here -->
-        <img src="./imgs/logo.svg" width="250" alt="BuildXpert logo">
-        <span>Loading...</span>
+        <img src="{{ asset('assets/admin/img/mva-makina.svg') }}" width="250" alt="{{ config('app.name') }} logo">
+        <span>Yükleniyor...</span>
     </div>
 </div>
 
@@ -38,10 +36,9 @@
 
 @include('shared.guest.footer')
 
-<!-- scrool to top button -->
 <button id="goTop">
     <i class="lnr lnr-chevron-up"></i>
-    <span class="sr-only">Scrool to top</span>
+    <span class="sr-only">Yukarıya Dön</span>
 </button>
 
 @include('shared.guest.js')

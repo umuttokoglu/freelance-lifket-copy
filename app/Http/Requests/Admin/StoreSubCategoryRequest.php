@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreCategoryRequest extends FormRequest
+class StoreSubCategoryRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -15,6 +15,7 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'parent_id' => ['required', 'integer', 'exists:categories,id'],
             'title' => ['required', 'string', 'max:255', 'min:5'],
             'image' => ['required', 'file', 'mimes:jpg,png', 'dimensions:min_width=600,min_height=400', 'max:200'],
             'description_tr' => ['required', 'string', 'max:1000', 'min:5'],
@@ -25,6 +26,7 @@ class StoreCategoryRequest extends FormRequest
     public function attributes(): array
     {
         return [
+            'parent_id' => __('admin/category.create.form.parent_id.label'),
             'title' => __('admin/category.create.form.title.label'),
             'image' => __('admin/category.create.form.image'),
             'description_tr' => __('admin/category.create.form.description_tr.label'),

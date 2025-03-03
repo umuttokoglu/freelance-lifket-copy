@@ -44,11 +44,14 @@
 
                     <div class="col-md-12">
                         <label for="parent_id" class="form-label">{{ __('admin/category.create.form.parent_id.label') }}</label>
-                        <select id="parent_id" name="parent_id" placeholder="Ana Kategori Seç..." autocomplete="off" class="form-control">
+                        <select id="parent_id" name="parent_id" placeholder="Ana Kategori Seç..." autocomplete="off"
+                                class="form-control">
                             <option value="">Ana Kategori Seç...</option>
 
                             @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                <option value="{{ $category->id }}" @selected(old('parent_id') == $category->id)>
+                                    {{ $category->title }}
+                                </option>
                             @endforeach
                         </select>
 
@@ -77,16 +80,16 @@
                     </div>
 
                     <div class="col-md-12">
-                        <label for="sub_description_tr"
+                        <label for="description_tr"
                                class="form-label">{{ 'Alt Ürün Kategorisi Açıklama (TR)' }}</label>
 
                         <div class="row m-1">
-                            <div id="sub_description_tr"
+                            <div id="description_tr"
                                  data-placeholder="{{ __('admin/category.create.form.description_tr.placeholder') }}">
                                 {{ strip_tags(old('description_tr')) }}
                             </div>
 
-                            <textarea id="sub_hidden_description_tr" name="description_tr" class="d-none">
+                            <textarea id="hidden_description_tr" name="description_tr" class="d-none">
                                 {{ strip_tags(old('description_tr')) }}
                             </textarea>
                         </div>
@@ -97,16 +100,16 @@
                     </div>
 
                     <div class="col-12">
-                        <label for="sub_description_en"
+                        <label for="description_en"
                                class="form-label">{{ 'Alt Ürün Kategorisi Açıklama (EN)' }}</label>
 
                         <div class="row m-1">
-                            <div id="sub_description_en"
+                            <div id="description_en"
                                  data-placeholder="{{ __('admin/category.create.form.description_en.placeholder') }}">
                                 {{ strip_tags(old('description_en')) }}
                             </div>
 
-                            <textarea id="sub_hidden_description_en" name="description_en" class="d-none">
+                            <textarea id="hidden_description_en" name="description_en" class="d-none">
                                 {{ strip_tags(old('description_en')) }}
                             </textarea>
                         </div>
