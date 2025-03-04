@@ -50,11 +50,14 @@ class CategoryController extends Controller
 
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $filePath = $request->file('image')->store('/category', 'root_public');
-
         $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $filePath = $request->file('image')->store('/category', 'root_public');
+            $data['image'] = $filePath;
+        }
+
         $data['user_id'] = auth()->user()->id;
-        $data['image'] = $filePath;
 
         $category->update($data);
 
