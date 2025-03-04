@@ -73,7 +73,7 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="action-btns">
-                                            <a href="javascript:void(0);" class="action-btn btn-view bs-tooltip me-2"
+                                            <a href="{{ route('guest.hizmetler.index', ['hizmetler' => $category]) }}" class="action-btn btn-view bs-tooltip me-2"
                                                data-toggle="tooltip" data-placement="top"
                                                title="{{ __('admin/category.index.table.th.actions.view') }}"
                                                target="_blank">
