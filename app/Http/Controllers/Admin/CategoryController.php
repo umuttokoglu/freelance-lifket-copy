@@ -30,7 +30,7 @@ class CategoryController extends Controller
 
     public function store(StoreCategoryRequest $request)
     {
-        $filePath = $request->file('image')->store('/category', 'public');
+        $filePath = $request->file('image')->store('/category', 'root_public');
 
         $data = $request->validated();
         $data['user_id'] = auth()->user()->id;
@@ -50,7 +50,7 @@ class CategoryController extends Controller
 
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $filePath = $request->file('image')->store('/category', 'public');
+        $filePath = $request->file('image')->store('/category', 'root_public');
 
         $data = $request->validated();
         $data['user_id'] = auth()->user()->id;
@@ -74,7 +74,7 @@ class CategoryController extends Controller
             return response()->redirectToRoute('admin.category.index');
         }
 
-        unlink(storage_path('app/public/' . $image));
+        unlink(public_path($image));
 
         session()->flash('message', __('admin/category.destroy.success'));
 

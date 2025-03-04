@@ -44,7 +44,7 @@ class SubCategoryController extends Controller
 
     public function store(StoreSubCategoryRequest $request)
     {
-        $filePath = $request->file('image')->store('/category', 'public');
+        $filePath = $request->file('image')->store('/category', 'root_public');
 
         $data = $request->validated();
         $data['user_id'] = auth()->user()->id;
@@ -88,7 +88,7 @@ class SubCategoryController extends Controller
             return response()->redirectToRoute('admin.sub-category.index');
         }
 
-        unlink(storage_path('app/public/' . $image));
+        unlink(public_path($image));
 
         session()->flash('message', 'Alt ürün kategorisi başarıyla silindi!');
 
