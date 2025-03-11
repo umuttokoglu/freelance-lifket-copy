@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
@@ -13,8 +14,10 @@ class Product extends Model
 
     protected $fillable = [
         'category_id',
+        'image',
         'title',
-        'description'
+        'description_tr',
+        'description_en',
     ];
 
     // Ürünün ait olduğu kategori
@@ -23,9 +26,14 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    // Ürünün görselleri (hasMany ilişkisi)
-    public function images(): HasMany|Product
+    // Benzer ürünler ilişkisi (kendine referanslı many-to-many)
+    public function similarProducts(): BelongsToMany
     {
-        return $this->hasMany(ProductImage::class);
+        return $this->belongsToMany(
+            Product::class,
+            'product_similar',
+            'product_id',
+            'similar_id'
+        );
     }
 }

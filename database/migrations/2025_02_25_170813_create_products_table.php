@@ -11,9 +11,9 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->string('title');
-            // Birden fazla görsel için JSON sütunu kullanıyoruz
-            $table->json('images')->nullable();
-            $table->text('description')->nullable();
+            $table->string('image')->nullable();
+            $table->text('description_tr')->nullable();
+            $table->text('description_en')->nullable();
             $table->timestamps();
 
             // Opsiyonel: kategori ile ilişkilendirme (foreign key constraint)

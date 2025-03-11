@@ -59,11 +59,11 @@
                                         <p>{{ $category->title }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <span
+                                        <a href="{{ route('admin.sub-category.index') }}"
                                             class="badge badge-light-{{ $category->children_count ? 'success' : 'danger' }}"
                                             title="{{ $category->children_count ? __('admin/category.index.table.th.sub_category_count.title.sub_cat') : __('admin/category.index.table.th.sub_category_count.title.no_asub_cat') }}">
                                             {{ __('admin/category.index.table.td.sub_category_count', ['sub_cat_count' => $category->children_count]) }}
-                                        </span>
+                                        </a>
                                     </td>
                                     <td>
                                         {{ $category->user->name }}

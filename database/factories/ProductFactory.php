@@ -12,11 +12,12 @@ class ProductFactory extends Factory
 
     public function definition(): array
     {
-        // Eğer veritabanında kategori yoksa, Category::factory()->create() ile de oluşturabilirsiniz.
         return [
             'category_id' => Category::inRandomOrder()->first()->id,
-            'title'       => $this->faker->words(3, true),
-            'description' => $this->faker->paragraph,
+            'image' => $this->faker->imageUrl(),
+            'title' => $this->faker->words(3, true),
+            'description_tr' => $this->faker->paragraph,
+            'description_en' => $this->faker->paragraph,
         ];
     }
 }

@@ -2,11 +2,11 @@
 
 @extends('layout.admin.index')
 
-@section('adminPageTitle', 'Alt Ürün Kategorileri')
+@section('adminPageTitle', 'Ürünler')
 
 @section('adminBreadcrumb')
     <li class="breadcrumb-item">
-        {{ 'Alt Ürün Kategorileri' }}
+        {{ 'Ürünler' }}
     </li>
 @endsection
 
@@ -21,12 +21,12 @@
             <div class="widget-header">
                 <div class="row mb-4">
                     <div class="col-xl-6 col-md-6 col-sm-6 col-6">
-                        <h4>{{ 'Alt Ürün Kategorileri' }}</h4>
+                        <h4>{{ 'Ürünler' }}</h4>
                     </div>
 
                     <div class="col-xl-6 col-md-6 col-sm-6 col-6">
-                        <a href="{{ route('admin.sub-category.create') }}"
-                           class="btn btn-light-success mt-3">{{ 'Yeni Alt Ürün Kategorisi Ekle' }}</a>
+                        <a href="{{ route('admin.products.create') }}"
+                           class="btn btn-light-success mt-3">{{ 'Yeni Ürün Ekle' }}</a>
                     </div>
                 </div>
 
@@ -35,65 +35,55 @@
 
 
             <div class="widget-content widget-content-area">
-                @if($subCategories->isNotEmpty())
+                @if($products->isNotEmpty())
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th class="text-center" scope="col">{{ 'Görsel' }}</th>
-                                <th scope="col">{{ 'Alt Kategori Adı' }}</th>
-                                <th scope="col">{{ 'Ana Kategori' }}</th>
+                                <th class="text-center" scope="col">{{ 'Ürün Görseli' }}</th>
+                                <th scope="col">{{ 'Ürün Adı' }}</th>
                                 <th class="text-center"
-                                    scope="col">{{ 'Ürün Sayısı' }}</th>
-                                <th scope="col">{{ 'Oluşturan' }}</th>
-                                <th scope="col">{{ 'Oluşturulma Tarihi' }}</th>
+                                    scope="col">{{ 'Alt Kategori Adı' }}</th>
+                                <th scope="col">{{ __('admin/category.index.table.th.created_at') }}</th>
                                 <th class="text-center" scope="col"></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($subCategories as $subCategory)
+                            @foreach($products as $product)
                                 <tr>
                                     <td class="text-center">
-                                        <img src="/{{ $subCategory->image }}" width="150" alt="">
+                                        <img src="/{{ $product->image }}" width="150" alt="">
                                     </td>
                                     <td>
-                                        <p>{{ $subCategory->title }}</p>
-                                    </td>
-                                    <td>
-                                        <p>{{ $subCategory->parent->title }}</p>
+                                        <p>{{ $product->title }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin.products.index') }}"
-                                           class="badge badge-light-{{ $subCategory->products_count ? 'success' : 'danger' }}"
-                                           title="{{ $subCategory->products_count ? __('admin/category.index.table.th.sub_category_count.title.sub_cat') : __('admin/category.index.table.th.sub_category_count.title.no_asub_cat') }}">
-                                            {{ $subCategory->products_count . ' Ürün' }}
-                                        </a>
+                                        <p>{{ $product->category->title }}</p>
                                     </td>
                                     <td>
-                                        {{ $subCategory->user->name }}
-                                    </td>
-                                    <td>
-                                        {{ Carbon::parse($subCategory->created_at)->translatedFormat('d F Y H:i') }}
+                                        {{ Carbon::parse($product->created_at)->translatedFormat('d F Y H:i') }}
                                     </td>
                                     <td class="text-center">
                                         <div class="action-btns">
-                                            <a href="{{ route('guest.hizmetler.show', ['hizmetler' => $subCategory->parent_id]) }}"
+                                            <a href="{{ route('admin.similar-products.edit', ['similar_product' => $product]) }}"
                                                class="action-btn btn-view bs-tooltip me-2"
                                                data-toggle="tooltip" data-placement="top"
-                                               title="{{ __('admin/category.index.table.th.actions.view') }}"
+                                               title="{{ 'Benzer Ürün Seç' }}"
                                                target="_blank">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                     stroke-width="2"
-                                                     stroke-linecap="round" stroke-linejoin="round"
-                                                     class="feather feather-eye">
-                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                     class="feather feather-copy">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path
+                                                        d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                                                 </svg>
                                             </a>
-                                            {{--
-                                            <a href="{{ route('admin.sub-category.edit', $subCategory) }}" class="action-btn btn-edit bs-tooltip me-2"
-                                               data-toggle="tooltip" data-placement="top" title="{{ __('admin/category.index.table.th.actions.update') }}">
+
+                                            <a href="{{ route('admin.products.edit', $product) }}"
+                                               class="action-btn btn-edit bs-tooltip me-2"
+                                               data-toggle="tooltip" data-placement="top"
+                                               title="{{ __('admin/category.index.table.th.actions.update') }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                      stroke-width="2"
@@ -103,20 +93,20 @@
                                                         d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
                                                 </svg>
                                             </a>
-                                            --}}
-                                            <form id="sub-category-delete-form-{{ $subCategory->id }}"
-                                                  action="{{ route('admin.sub-category.destroy', ['sub_category' => $subCategory]) }}"
+
+                                            <form id="product-delete-form-{{ $product->id }}"
+                                                  action="{{ route('admin.products.destroy', ['product' => $product]) }}"
                                                   method="POST"
                                                   style="display: none;">
                                                 @method('DELETE')
                                                 @csrf
                                             </form>
 
-                                            <a href="{{ route('admin.sub-category.destroy', ['sub_category' => $subCategory]) }}"
+                                            <a href="{{ route('admin.products.destroy', ['product' => $product->id]) }}"
                                                class="action-btn btn-delete bs-tooltip"
                                                data-toggle="tooltip" data-placement="top"
                                                title="{{ __('admin/category.index.table.th.actions.delete') }}"
-                                               onclick="event.preventDefault(); document.getElementById('sub-category-delete-form-{{ $subCategory->id }}').submit();">
+                                               onclick="event.preventDefault(); document.getElementById('product-delete-form-{{ $product->id }}').submit();">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                      stroke-width="2"
@@ -135,6 +125,8 @@
                             @endforeach
                             </tbody>
                         </table>
+
+                        {{ $products->links() }}
                     </div>
                 @else
                     <div class="alert alert-light-warning alert-dismissible fade show border-0 mb-4" role="alert">
@@ -148,7 +140,7 @@
                             </svg>
                         </button>
 
-                        {{ __('admin/category.index.table.empty') }}
+                        {{ 'Kayıtlarımızda gösterilecek ürün yok. Lütfen ilk önce ürün ekleyiniz!'  }}
                     </div>
                 @endif
             </div>
