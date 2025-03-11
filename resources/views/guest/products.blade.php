@@ -24,8 +24,8 @@
             <span class="corner-line line3" aria-hidden="true"></span>
             <span class="corner-line line4" aria-hidden="true"></span>
 
-            <h2>Latest News & Updates</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, quos obcaecati. Tempora laborum pariatur deserunt, reprehenderit illum voluptate.</p>
+            <h2>Başlık 10</h2>
+            <p>Metin 12</p>
         </div>
 
         <div class="grid gtc-3">
