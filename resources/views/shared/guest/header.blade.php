@@ -4,7 +4,7 @@
     </button>
 
     <a href="{{ route('guest.home') }}" class="logo">
-        <img img="{{ asset('favicon.ico') }}" alt="{{ config('app.name') }} logo">
+        <img img="{{ asset('assets/mva-makina.svg') }}" alt="{{ config('app.name') }} logo">
     </a>
 
     <nav id="navbar" data-visible="false">

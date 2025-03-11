@@ -1,12 +1,9 @@
 @extends('layout.guest.index')
 
 @section('content')
-
-    {{-- @TODO: Blog Yapılacak mı? --}}
-
     <section class="p-0">
         <article class="grid service-block">
-            <img src="./imgs/interior.webp" alt="Service - BuildXpert template" data-aos="zoom-in" data-aos-delay="100">
+            <img src="{{ asset('assets/guest/img/g1.png') }}" alt="Service - BuildXpert template" data-aos="zoom-in" data-aos-delay="100">
 
             <div>
                 <div class="title-corners title-left" data-aos="fade-down">
@@ -15,21 +12,16 @@
                     <span class="corner-line line3" aria-hidden="true"></span>
                     <span class="corner-line line4" aria-hidden="true"></span>
 
-                    <h5>MVA Makina...</h5>
-                    <h2 class="mb-0">Biz Kimiz</h2>
+                    <h5>Küçük Başlık 1</h5>
+                    <h2 class="mb-0">Başlık 1</h2>
                 </div>
 
-                <p data-aos="fade-down" data-aos-delay="200">MVA MAKİNA olarak sektörde 15 yıldan uzun süredir
-                    edindiğimiz bilgi, birikim ve tecrübemiz ile halatlı ve zincirli
-                    vinçler için servis, bakım ve yıllık periyodik bakım hizmetleri konularında hizmet vermekte olup,
-                    vinçler üzerinde
-                    mekanik ve elektrik revizyon işlemleri ile vinç ekipmanlarının modernizasyonunu da
-                    gerçekleştirebilmekteyiz.</p>
+                <p data-aos="fade-down" data-aos-delay="200">Metin 1</p>
             </div>
         </article>
 
         <article class="grid service-block">
-            <img src="./imgs/idea.webp" alt="Service - BuildXpert template" data-aos="zoom-in" data-aos-delay="100">
+            <img src="{{ asset('assets/guest/img/g2.png') }}" alt="Service - BuildXpert template" data-aos="zoom-in" data-aos-delay="100">
 
             <div>
                 <div class="title-corners title-left" data-aos="fade-down">
@@ -38,37 +30,24 @@
                     <span class="corner-line line3" aria-hidden="true"></span>
                     <span class="corner-line line4" aria-hidden="true"></span>
 
-                    <h5>Sektörde öncü</h5>
-                    <h2 class="mb-0">MVA Makina</h2>
+                    <h5>Küçük Başlık 2</h5>
+                    <h2 class="mb-0">Başlık 2</h2>
                 </div>
 
-                <p data-aos="fade-down" data-aos-delay="100">Vinç ekipmanlarının temini ve montajı, kumanda pano
-                    modernizasyonu, sürücülü pano revizyonları, kablo sistemi
-                    yenileme, kablo taşıma sistemleri, uzaktan kumanda dönüşümleri gibi alanlarda da hizmet vermekte ve
-                    gelişmiş
-                    teknolojileri tecrübemizle birleştirerek elektrik ve kontrol sistemleri alanında müşteri odaklı özel
-                    çözümler
-                    üretmekteyiz.
-                </p>
+                <p data-aos="fade-down" data-aos-delay="100">Metin 2</p>
             </div>
         </article>
     </section>
 
-    {{-- @TODO: FAQ Yapılacak mı? --}}
-
-    <!-- project section -->
     <section class="container">
-        <!-- title wrapper with corners -->
         <div class="title-corners" data-aos="fade-up">
-            <!-- corners line -->
             <span class="corner-line line1"></span>
             <span class="corner-line line2"></span>
             <span class="corner-line line3"></span>
             <span class="corner-line line4"></span>
-            <!-- title -->
-            <h2>Hizmetlerimiz</h2>
-            <p>Profesyonel servis anlayışımız ile siz değerli iş ortaklarımıza hakettiğiniz hızlı ve kaliteli servis
-                hizmetini ekonomik fiyatlarla vermeyi taahhüt ediyoruz.</p>
+
+            <h2>Başlık 3</h2>
+            <p>Metin 3</p>
         </div>
 
         <div class="grid gtc-3 mb-3">
@@ -100,12 +79,11 @@
                 <span class="corner-line line3" aria-hidden="true"></span>
                 <span class="corner-line line4" aria-hidden="true"></span>
 
-                <h5>Bir Mesaj Yazın</h5>
-                <h2 class="mb-0">Bizimle İletişime Geçin</h2>
+                <h5>Küçük Başlık 3</h5>
+                <h2 class="mb-0">Başlık 4</h2>
             </div>
 
-            <p data-aos="fade-down" data-aos-delay="100">Profesyonel servis anlayışımız ile siz değerli iş ortaklarımıza
-                hakettiğiniz hızlı ve kaliteli servis hizmetini ekonomik fiyatlarla vermeyi taahhüt ediyoruz.</p></p>
+            <p data-aos="fade-down" data-aos-delay="100">Metin 4</p></p>
         </div>
 
         <form method="post" action="{{ route('guest.iletisim.store') }}" data-aos="zoom-in" data-aos-delay="100">

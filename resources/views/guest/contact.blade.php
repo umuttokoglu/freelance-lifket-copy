@@ -18,8 +18,7 @@
                 <h2 class="mb-0">Bizimle İletişime Geçin</h2>
             </div>
 
-            <p data-aos="fade-down" data-aos-delay="100">Profesyonel servis anlayışımız ile siz değerli iş ortaklarımıza
-                hakettiğiniz hızlı ve kaliteli servis hizmetini ekonomik fiyatlarla vermeyi taahhüt ediyoruz.</p>
+            <p data-aos="fade-down" data-aos-delay="100">Metin 9</p>
 
             <div class="mt-3" data-aos="fade-up" data-aos-delay="200">
                 <p class="mb-1">
