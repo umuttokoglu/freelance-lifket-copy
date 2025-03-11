@@ -280,6 +280,9 @@ iframe {
 .mt-3 {
 	margin-top: 3rem;
 }
+.mt-5 {
+	margin-top: 5rem;
+}
 .m-auto {
 	margin: auto;
 }
@@ -796,6 +799,9 @@ footer .logo img {
 	}
 	.gtc-3 {
 		grid-template-columns: repeat(3, 1fr);
+	}
+	.gtc-4 {
+		grid-template-columns: repeat(4, 1fr);
 	}
 	.md-space-between {
 		justify-content: space-between;

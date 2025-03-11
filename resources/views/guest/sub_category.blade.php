@@ -19,11 +19,13 @@
                 <img src="/{{ $subCategory->image }}" style="aspect-ratio: 3.06/2;" alt="{{ $subCategory->title }}"
                      data-aos="fade-right" data-aos-delay="100">
 
-                <div class="grid gtc-1">
-                    <img src="./imgs/idea.webp" class="square ratio-5-3 object-cover"
-                         alt="Project details - BuildXpert template" data-aos="fade-right" data-aos-delay="300">
-                    <img src="./imgs/interior.webp" class="square ratio-5-3 object-cover"
-                         alt="Project details - BuildXpert template" data-aos="fade-right" data-aos-delay="300">
+                <div class="grid gtc-2-1 mb-5">
+                    <div data-aos="fade-down" data-aos-delay="100">
+                        <h2 class="uppercase">{{ $subCategory->title }}</h2>
+                        {!! $subCategory->description_tr !!}
+
+                        <a class="btn mt-3" href="{{ route('guest.urunler.index', ['sub_category' => $subCategory->id]) }}">Ürünleri Gör</a>
+                    </div>
                 </div>
             </div>
         @endforeach

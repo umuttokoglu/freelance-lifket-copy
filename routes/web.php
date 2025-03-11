@@ -4,13 +4,14 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
-use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\SimilarProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Guest\AboutController;
 use App\Http\Controllers\Guest\CategoryController as GuestCategoryController;
 use App\Http\Controllers\Guest\ContactController as GuestContactController;
 use App\Http\Controllers\Guest\HomeController;
+use App\Http\Controllers\Guest\ProductController as GuestProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('guest.')
@@ -20,6 +21,8 @@ Route::name('guest.')
         Route::get('hakkimizda', AboutController::class)->name('about');
 
         Route::resource('hizmetler', GuestCategoryController::class)->only(['index', 'show']);
+
+        Route::resource('urunler', GuestProductController::class)->only(['index', 'show']);
 
         Route::resource('iletisim', GuestContactController::class)->only('index', 'store');
     });
@@ -38,7 +41,7 @@ Route::name('admin.')
 
             Route::resource('sub-category', SubCategoryController::class)->except('show');
 
-            Route::resource('products', ProductController::class)->except('show');
+            Route::resource('products', AdminProductController::class)->except('show');
 
             Route::resource('similar-products', SimilarProductController::class)->only('edit', 'update', 'destroy');
 

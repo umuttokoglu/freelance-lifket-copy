@@ -73,11 +73,11 @@
                         <div class="row m-1">
                             <div id="description_tr"
                                  data-placeholder="{{ __('admin/category.edit.form.description_tr.placeholder') }}">
-                                {{ strip_tags(old('description_tr', $category->description_tr)) }}
+                                {!! old('description_tr', $category->description_tr) !!}
                             </div>
 
                             <textarea id="hidden_description_tr" name="description_tr" class="d-none">
-                                {{ strip_tags(old('description_tr', $category->description_tr)) }}
+                                {!! old('description_tr', $category->description_tr) !!}
                             </textarea>
                         </div>
 
@@ -93,11 +93,11 @@
                         <div class="row m-1">
                             <div id="description_en"
                                  data-placeholder="{{ __('admin/category.edit.form.description_en.placeholder') }}">
-                                {{ strip_tags(old('description_en', $category->description_en)) }}
+                                {!! old('description_en', $category->description_en) !!}
                             </div>
 
                             <textarea id="hidden_description_en" name="description_en" class="d-none">
-                                {{ strip_tags(old('description_en', $category->description_en)) }}
+                                {!! old('description_en', $category->description_en) !!}
                             </textarea>
                         </div>
 

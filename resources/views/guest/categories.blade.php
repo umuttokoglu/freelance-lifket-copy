@@ -32,10 +32,8 @@
     <section class="border-y" data-aos="fade-up" data-aos-delay="100">
         <div class="container flex flex-wrap align-center md-space-between g-2">
             <div>
-                <h2>MVA MAKİNA SERVİS SAN. VE TİC. LTD. ŞTİ.</h2>
-                <p>Gelişmiş teknolojileri tecrübe ile birleştirerek mekanik, elektrik ve kontrol sistemleri alanlarında
-                    müşteri odaklı özel çözümler üretmekte olup, profesyonel servis anlayışı ile siz değerli iş
-                    ortaklarımıza hakettiği hızlı, kaliteli ve ekonomik servis hizmetini vermeyi taahhüt etmektedir.</p>
+                <h2>Başlık 7</h2>
+                <p>Metin 9</p>
             </div>
             <a href="{{ route('guest.iletisim.index') }}" class="btn">Bizimle İletişime Geçin</a>
         </div>

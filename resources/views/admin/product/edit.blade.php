@@ -91,11 +91,11 @@
                         <div class="row m-1">
                             <div id="description_tr"
                                  data-placeholder="{{ 'Ürün için Türkçe açıklama giriniz..' }}">
-                                {{ strip_tags(old('description_tr', $product->description_tr)) }}
+                                {!! old('description_tr', $product->description_tr) !!}
                             </div>
 
                             <textarea id="hidden_description_tr" name="description_tr" class="d-none">
-                                {{ strip_tags(old('description_tr', $product->description_tr)) }}
+                                {!! old('description_tr', $product->description_tr) !!}
                             </textarea>
                         </div>
 
@@ -111,11 +111,11 @@
                         <div class="row m-1">
                             <div id="description_en"
                                  data-placeholder="{{ 'Ürün için İngilizce açıklama giriniz..' }}">
-                                {{ strip_tags(old('description_en', $product->description_en)) }}
+                                {!! old('description_en', $product->description_en) !!}
                             </div>
 
                             <textarea id="hidden_description_en" name="description_en" class="d-none">
-                                {{ strip_tags(old('description_en', $product->description_en)) }}
+                                {!! old('description_en', $product->description_en) !!}
                             </textarea>
                         </div>
 
@@ -126,7 +126,7 @@
 
                     <div class="col-12">
                         <button type="submit"
-                                class="btn btn-primary">{{ __('admin/category.edit.button.save') }}</button>
+                                class="btn btn-primary">{{ 'Ürünü Güncelle' }}</button>
                     </div>
                 </form>
             </div>
