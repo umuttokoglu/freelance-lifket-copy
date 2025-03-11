@@ -19,7 +19,7 @@
                             </div>
                             <div class="">
                                 <p class="w-value">{{ \Illuminate\Support\Number::format($categoryCount) }}</p>
-                                <h5 class="">Kategori Sayısı</h5>
+                                <h5 class="">Ana Kategori Sayısı</h5>
                             </div>
                         </div>
                     </div>

@@ -12,7 +12,7 @@ class DashboardController extends Controller
 {
     public function __invoke(): View
     {
-        $categoryCount = Category::query()->count();
+        $categoryCount = Category::query()->whereNull('parent_id')->count();
         $productCount = Product::query()->count();
         $messageCount = Contact::query()->count();
 
