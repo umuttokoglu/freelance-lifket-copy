@@ -20,11 +20,12 @@ class SimilarProductController extends Controller
             ->where('product_id', '=', $product->id)
             ->get();
 
-        $products = Product::query()
-            ->where('id', '!=', $product->id)
-            ->leftJoin('product_similar', 'product_similar.similar_id', '=', 'products.id')
-            ->whereNull('product_similar.similar_id')
-            ->latest()
+        $similarIds = ProductSimilar::where('product_id', $product->id)
+            ->pluck('similar_id')
+            ->toArray();
+
+        $products = Product::where('id', '!=', $product->id)
+            ->whereNotIn('id', $similarIds)
             ->get();
 
         return view('admin.similar_product.edit', compact('product', 'products', 'similarProducts'));
