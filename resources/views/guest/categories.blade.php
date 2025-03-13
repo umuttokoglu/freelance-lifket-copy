@@ -13,19 +13,23 @@
 
     <section class="container">
         <div class="grid gtc-3" id="product-grid">
-            @foreach($categories as $category)
-                <div class="project design" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="{{ $category->image }}" alt="{{ $category->title }}">
+            @if($categories->isNotEmpty())
+                @foreach($categories as $category)
+                    <div class="project design" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="{{ $category->image }}" alt="{{ $category->title }}">
 
-                    <div class="holder">
-                        <a class="btn-plus" href="{{ route('guest.hizmetler.show', $category) }}">
-                            <i class="lnr lnr-cross"></i>
-                        </a>
+                        <div class="holder">
+                            <a class="btn-plus" href="{{ route('guest.hizmetler.show', $category) }}">
+                                <i class="lnr lnr-cross"></i>
+                            </a>
+                        </div>
+
+                        <h3>{{ $category->title }}</h3>
                     </div>
+                @endforeach
+            @else
 
-                    <h3>{{ $category->title }}</h3>
-                </div>
-            @endforeach
+            @endif
         </div>
     </section>
 

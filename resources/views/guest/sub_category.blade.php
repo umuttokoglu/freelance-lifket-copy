@@ -14,21 +14,27 @@
     </section>
 
     <section class="container">
-        @foreach($subCategories as $subCategory)
-            <div class="grid gtc-2-1 mb-3">
-                <img src="/{{ $subCategory->image }}" style="aspect-ratio: 3.06/2;" alt="{{ $subCategory->title }}"
-                     data-aos="fade-right" data-aos-delay="100">
+        @if($subCategories->isNotEmpty())
+            @foreach($subCategories as $subCategory)
+                <div class="grid gtc-2-1 mb-3">
+                    <img src="/{{ $subCategory->image }}" style="aspect-ratio: 3.06/2;" alt="{{ $subCategory->title }}"
+                         data-aos="fade-right" data-aos-delay="100">
 
-                <div class="grid gtc-2-1 mb-5">
-                    <div data-aos="fade-down" data-aos-delay="100">
-                        <h2 class="uppercase">{{ $subCategory->title }}</h2>
-                        {!! $subCategory->description_tr !!}
+                    <div class="grid gtc-2-1 mb-5">
+                        <div data-aos="fade-down" data-aos-delay="100">
+                            <h2 class="uppercase">{{ $subCategory->title }}</h2>
+                            {!! $subCategory->description_tr !!}
 
-                        <a class="btn mt-3" href="{{ route('guest.urunler.index', ['sub_category' => $subCategory->id]) }}">Ürünleri Gör</a>
+                            <a class="btn mt-3"
+                               href="{{ route('guest.urunler.index', ['sub_category' => $subCategory->id]) }}">Ürünleri
+                                Gör</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        @else
+            <p>Listelenecek ürün bulunmuyor.</p>
+        @endif
 
         <div class="grid gtc-2-1 mb-5">
             <div data-aos="fade-down" data-aos-delay="100">

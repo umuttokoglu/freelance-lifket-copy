@@ -29,19 +29,23 @@
         </div>
 
         <div class="grid gtc-3">
-            @foreach($products as $product)
-                <article class="post" data-aos="fade-right" data-aos-delay="100">
-                    <a href="{{ route('guest.urunler.show', $product->id) }}">
-                        <img src="/{{ $product->image }}" alt="{{ $product->title }}">
-                    </a>
+            @if($products->isNotEmpty())
+                @foreach($products as $product)
+                    <article class="post" data-aos="fade-right" data-aos-delay="100">
+                        <a href="{{ route('guest.urunler.show', $product->id) }}">
+                            <img src="/{{ $product->image }}" alt="{{ $product->title }}">
+                        </a>
 
-                    <h3>
-                        <a href="{{ route('guest.urunler.show', $product->id) }}">{{ $product->title }}</a>
-                    </h3>
+                        <h3>
+                            <a href="{{ route('guest.urunler.show', $product->id) }}">{{ $product->title }}</a>
+                        </h3>
 
-                    <a href="{{ route('guest.urunler.show',$product->id ) }}" class="btn-arrow">Ürünü İncele <i class="lnr lnr-arrow-right" aria-hidden="true"></i></a>
-                </article>
-            @endforeach
+                        <a href="{{ route('guest.urunler.show',$product->id ) }}" class="btn-arrow">Ürünü İncele <i class="lnr lnr-arrow-right" aria-hidden="true"></i></a>
+                    </article>
+                @endforeach
+            @else
+                <p>Listelenecek ürün bulunmuyor.</p>
+            @endif
         </div>
     </section>
 
