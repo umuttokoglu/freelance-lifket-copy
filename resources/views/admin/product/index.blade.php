@@ -13,6 +13,8 @@
 @section('adminPageCss')
     <link href="{{ asset('assets/admin/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/admin/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="../src/assets/css/light/components/modal.css" rel="stylesheet" type="text/css" />
+    <link href="../src/assets/css/light/components/modal.css" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -40,10 +42,9 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th class="text-center" scope="col">{{ 'Ürün Görseli' }}</th>
                                 <th scope="col">{{ 'Ürün Adı' }}</th>
-                                <th class="text-center"
-                                    scope="col">{{ 'Alt Kategori Adı' }}</th>
+                                <th class="text-center" scope="col">{{ 'Alt Kategori Adı' }}</th>
+                                <th class="text-center" scope="col">{{ 'Görseller' }}</th>
                                 <th scope="col">{{ __('admin/category.index.table.th.created_at') }}</th>
                                 <th class="text-center" scope="col"></th>
                             </tr>
@@ -51,14 +52,16 @@
                             <tbody>
                             @foreach($products as $product)
                                 <tr>
-                                    <td class="text-center">
-                                        <img src="/{{ $product->image }}" width="150" alt="">
-                                    </td>
                                     <td>
                                         <p>{{ $product->title }}</p>
                                     </td>
                                     <td class="text-center">
                                         <p>{{ $product->category->title }}</p>
+                                    </td>
+                                    <td class="text-center">
+                                       <span class="badge badge-success image-count" data-product-id="{{ $product->id }}" style="cursor:pointer;">
+                                            {{ $product->images_count }} Adet Görsel
+                                        </span>
                                     </td>
                                     <td>
                                         {{ Carbon::parse($product->created_at)->translatedFormat('d F Y H:i') }}
@@ -146,8 +149,54 @@
             </div>
         </div>
     </div>
+
+    <!-- Lightbox Modal -->
+    <div class="modal fade" id="lightboxModal" tabindex="-1" role="dialog" aria-labelledby="lightboxModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="lightboxModalLabel">Ürün Görselleri</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="lightboxContent" class="d-flex flex-wrap justify-content-center">
+                        <!-- Görseller burada yüklenecek -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('adminPageJs')
     <script src="{{ asset('assets/admin/js/scrollspyNav.js') }}"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.image-count').on('click', function(){
+                var productId = $(this).data('product-id');
+
+                $.ajax({
+                    url: '/admin/product/images/' + productId,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        var content = '';
+                        // Dönen görsellerin URL'lerini kullanarak preview görüntüleri oluşturuyoruz.
+                        $.each(response.images, function(i, imagePath){
+                            let path = '{{ asset("' + imagePath + '") }}'
+                            content += '<img src="'+ imagePath +'" class="img-thumbnail m-1" style="width: 150px; height:150px; object-fit:cover;">';
+                        });
+                        $('#lightboxContent').html(content);
+                        $('#lightboxModal').modal('show');
+                    },
+                    error: function(){
+                        alert('Görseller yüklenirken bir hata oluştu.');
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

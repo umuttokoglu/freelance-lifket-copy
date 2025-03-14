@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\SimilarProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Guest\AboutController;
 use App\Http\Controllers\Guest\CategoryController as GuestCategoryController;
 use App\Http\Controllers\Guest\ContactController as GuestContactController;
@@ -41,7 +42,11 @@ Route::name('admin.')
 
             Route::resource('sub-category', SubCategoryController::class)->except('show');
 
+            Route::post('/upload', [UploadController::class, 'upload'])->name('upload');
+            Route::post('/upload/delete', [UploadController::class, 'delete'])->name('upload.delete');
+
             Route::resource('products', AdminProductController::class)->except('show');
+            Route::get('/product/images/{id}', [AdminProductController::class, 'images'])->name('product.images');
 
             Route::resource('similar-products', SimilarProductController::class)->only('edit', 'update', 'destroy');
 

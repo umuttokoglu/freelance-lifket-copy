@@ -36,4 +36,9 @@ class Product extends Model
             'similar_id'
         );
     }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(ProductImage::class);
+    }
 }

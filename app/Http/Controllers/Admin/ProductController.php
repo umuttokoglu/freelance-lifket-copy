@@ -7,7 +7,9 @@ use App\Http\Requests\Admin\StoreProductRequest;
 use App\Http\Requests\Admin\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -15,6 +17,7 @@ class ProductController extends Controller
     public function index(): View
     {
         $products = Product::query()
+            ->withCount('images')
             ->with(['category'])
             ->latest()
             ->paginate(10);
@@ -40,13 +43,51 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request)
     {
-        $filePath = $request->file('image')->store('/product', 'root_public');
-
         $data = $request->validated();
         $data['user_id'] = auth()->user()->id;
-        $data['image'] = $filePath;
 
-        Product::query()->create($data);
+        $product = Product::query()->create($data);
+
+        // Geçici görseller listesi varsa, JSON'dan diziye çeviriyoruz.
+        $tempImages = $request->temporary_images ? json_decode($request->temporary_images, true) : [];
+
+        foreach($tempImages as $tempFile) {
+            $destinationPath = 'products/' . $product->id;
+            $fileName = basename($tempFile);
+
+            // Önce temp dosyasının varlığını kontrol edelim (kaynak disk: 'public')
+            if(!Storage::disk('public')->exists($tempFile)){
+                \Log::error("Temp dosya bulunamadı: " . $tempFile);
+                continue;
+            }
+
+            // Hedef dizin ('root_public' diski, yani public dizini) yoksa oluştur
+            if(!Storage::disk('root_public')->exists($destinationPath)){
+                Storage::disk('root_public')->makeDirectory($destinationPath);
+            }
+
+            // Dosyayı kaynak diskten okuyup, hedef diske yazalım.
+            try {
+                $fileContents = Storage::disk('public')->get($tempFile);
+                $written = Storage::disk('root_public')->put($destinationPath . '/' . $fileName, $fileContents);
+                if($written){
+                    // Dosya hedefe başarılı bir şekilde yazıldıysa, kaynak dosyayı silelim.
+                    Storage::disk('public')->delete($tempFile);
+                } else {
+                    \Log::error("Dosya yazılamadı: " . $tempFile . " -> " . $destinationPath . '/' . $fileName);
+                    continue;
+                }
+            } catch (\Exception $e) {
+                \Log::error("Taşıma sırasında hata: " . $e->getMessage());
+                continue;
+            }
+
+            // Ürün resmi kaydı oluşturuyoruz.
+            ProductImage::create([
+                'product_id' => $product->id,
+                'path' => $destinationPath . '/' . $fileName,
+            ]);
+        }
 
         session()->flash('message', 'Ürün başarıyla eklendi.');
 
@@ -97,5 +138,18 @@ class ProductController extends Controller
         session()->flash('message', 'Ürün başarıyla silindi.');
 
         return response()->redirectToRoute('admin.products.index');
+    }
+
+    public function images($id)
+    {
+        // İlgili ürünün görsellerini yükle (eager loading kullanarak)
+        $product = Product::with('images')->findOrFail($id);
+
+        // Her resim için 'path' değerini full URL haline getiriyoruz
+        $images = $product->images->pluck('path')->map(function($path){
+            return asset($path);
+        });
+
+        return response()->json(['images' => $images]);
     }
 }
