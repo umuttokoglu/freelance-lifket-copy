@@ -1,7 +1,7 @@
 @extends('layout.guest.index')
 
 @section('content')
-    <section class="page-title-breadcump-image px-5x100" style="--bgimage: url('../imgs/slide2.webp');" data-aos="fade-up" data-aos-delay="100">
+    <section class="page-title-breadcump-image px-5x100" style="--bgimage: url('../../../assets/bg-image.jpg');" data-aos="fade-up" data-aos-delay="100">
         <div class="breadcump-image">
             <div class="breadcump-box">
                 <h1 class="mb-1">Ürünler</h1>

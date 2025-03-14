@@ -1,7 +1,7 @@
 @extends('layout.guest.index')
 
 @section('content')
-    <section class="page-title-breadcump-image px-5x100" style="--bgimage: url('../imgs/slide2.webp');" data-aos="fade-up" data-aos-delay="100">
+    <section class="page-title-breadcump-image px-5x100" style="--bgimage: url('../../../assets/bg-image.jpg');" data-aos="fade-up" data-aos-delay="100">
         <div class="breadcump-image">
             <div class="breadcump-box">
                 <h1 class="mb-1">Ürün</h1>
@@ -18,16 +18,19 @@
     </section>
 
     <section class="container">
-        <img src="/{{ $product->image }}" class="mb-1" alt="{{ $product->title }}" data-aos="zoom-in" data-aos-delay="100">
+        <div class="post-d-flex">
+            <img src="/{{ $product->image }}" class="mb-1 post-img" alt="{{ $product->title }}" data-aos="zoom-in" data-aos-delay="100">
 
-        <div class="p-5x100">
-            <h2 data-aos="fade-down" data-aos-delay="100">{{ $product->title }}</h2>
+            <div>
+                <h2 data-aos="fade-down" data-aos-delay="100">{{ $product->title }}</h2>
 
-            <div data-aos="fade-down" data-aos-delay="300">
-                {!! $product->description_tr !!}
+                <div data-aos="fade-down" data-aos-delay="300">
+                    {!! $product->description_tr !!}
+                </div>
             </div>
+        </div>
 
-            @if($similarProducts->isNotEmpty())
+        <div class="p-5x100">@if($similarProducts->isNotEmpty())
                 <h2 class="mt-5" data-aos="fade-down" data-aos-delay="100">{{ 'Benzer Ürünler' }}</h2>
 
                 <div class="grid gtc-4 mt-3">

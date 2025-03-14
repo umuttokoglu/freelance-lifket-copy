@@ -3,7 +3,8 @@
 @section('content')
     <section class="p-0">
         <article class="grid service-block">
-            <img src="{{ asset('assets/guest/img/g1.png') }}" alt="Service - BuildXpert template" data-aos="zoom-in" data-aos-delay="100">
+            <img src="{{ asset('assets/guest/img/home-1.jpg') }}" alt="Service - BuildXpert template" data-aos="zoom-in"
+                 data-aos-delay="100">
 
             <div>
                 <div class="title-corners title-left" data-aos="fade-down">
@@ -16,12 +17,15 @@
                     <h2 class="mb-0">Başlık 1</h2>
                 </div>
 
-                <p data-aos="fade-down" data-aos-delay="200">Metin 1</p>
+                <p data-aos="fade-down" data-aos-delay="200">Lorem ipsum dolor sit amet consectetur adipiscing elit egestas, dictum quis sed ad justo aliquet vivamus,
+                    torquent nascetur diam montes eget lobortis euismod. Rutrum sapien pretium mollis sociis laoreet fames
+                    dignissim aliquet scelerisque proin per lacinia nullam faucibus.</p>
             </div>
         </article>
 
         <article class="grid service-block">
-            <img src="{{ asset('assets/guest/img/g2.png') }}" alt="Service - BuildXpert template" data-aos="zoom-in" data-aos-delay="100">
+            <img src="{{ asset('assets/guest/img/home-2.jpg') }}" alt="Service - BuildXpert template" data-aos="zoom-in"
+                 data-aos-delay="100">
 
             <div>
                 <div class="title-corners title-left" data-aos="fade-down">
@@ -34,7 +38,9 @@
                     <h2 class="mb-0">Başlık 2</h2>
                 </div>
 
-                <p data-aos="fade-down" data-aos-delay="100">Metin 2</p>
+                <p data-aos="fade-down" data-aos-delay="100">Lorem ipsum dolor sit amet consectetur adipiscing elit egestas, dictum quis sed ad justo aliquet vivamus,
+                    torquent nascetur diam montes eget lobortis euismod. Rutrum sapien pretium mollis sociis laoreet fames
+                    dignissim aliquet scelerisque proin per lacinia nullam faucibus.</p>
             </div>
         </article>
     </section>
@@ -46,21 +52,19 @@
             <span class="corner-line line3"></span>
             <span class="corner-line line4"></span>
 
-            <h2>Başlık 3</h2>
-            <p>Metin 3</p>
+            <h2>Hizmetlerimiz</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit egestas, dictum quis sed ad justo aliquet vivamus,
+                torquent nascetur diam montes eget lobortis euismod. Rutrum sapien pretium mollis sociis laoreet fames
+                dignissim aliquet scelerisque proin per lacinia nullam faucibus.</p>
         </div>
 
         <div class="grid gtc-3 mb-3">
             @if($categories->isNotEmpty())
                 @foreach($categories as $category)
                     <div class="project" data-aos="zoom-in" data-aos-delay="100">
-                        <img src="{{ $category->image }}" alt="{{ $category->title }}">
-
-                        <div class="holder">
-                            <a class="btn-plus" href="{{ route('guest.hizmetler.show', $category) }}">
-                                <i class="lnr lnr-cross"></i>
-                            </a>
-                        </div>
+                        <a href="{{ route('guest.hizmetler.show', $category) }}">
+                            <img src="{{ $category->image }}" alt="{{ $category->title }}">
+                        </a>
                     </div>
                 @endforeach
             @endif
@@ -79,11 +83,13 @@
                 <span class="corner-line line3" aria-hidden="true"></span>
                 <span class="corner-line line4" aria-hidden="true"></span>
 
-                <h5>Küçük Başlık 3</h5>
-                <h2 class="mb-0">Başlık 4</h2>
+                <h5>Merak Ettikleriniz İçin</h5>
+                <h2 class="mb-0">Bizimle İletişime Geçin</h2>
             </div>
 
-            <p data-aos="fade-down" data-aos-delay="100">Metin 4</p></p>
+            <p data-aos="fade-down" data-aos-delay="100">Lorem ipsum dolor sit amet consectetur adipiscing elit egestas, dictum quis sed ad justo aliquet vivamus,
+                torquent nascetur diam montes eget lobortis euismod. Rutrum sapien pretium mollis sociis laoreet fames
+                dignissim aliquet scelerisque proin per lacinia nullam faucibus.</p></p>
         </div>
 
         <form method="post" action="{{ route('guest.iletisim.store') }}" data-aos="zoom-in" data-aos-delay="100">

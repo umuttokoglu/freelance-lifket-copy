@@ -1,9 +1,19 @@
 @extends('layout.guest.index')
 
 @section('content')
-    <section class="p-0">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12062.051707182394!2d29.2727071!3d40.9044981!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x46bbe4b38f41a502!!5e0!3m2!1sen!2s!4v1410374156081"
-                width="1120" height="360" frameborder="0" style="border:0"´data-aos-delay="100"></iframe>
+    <section class="page-title-breadcump-image px-5x100" style="--bgimage: url('../../../assets/bg-image.jpg');"
+             data-aos="fade-up" data-aos-delay="100">
+        <div class="breadcump-image">
+            <div class="breadcump-box">
+                <h1 class="mb-1">İletişim</h1>
+
+                <div class="breadcump">
+                    <a href="{{ route('guest.home') }}">Anasayfa</a>
+                    <span class="breadcump-delimiter"></span>
+                    <span>İletişim</span>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="container grid">
@@ -18,7 +28,10 @@
                 <h2 class="mb-0">Bizimle İletişime Geçin</h2>
             </div>
 
-            <p data-aos="fade-down" data-aos-delay="100">Metin 9</p>
+            <p data-aos="fade-down" data-aos-delay="100">Lorem ipsum dolor sit amet consectetur adipiscing elit egestas,
+                dictum quis sed ad justo aliquet vivamus,
+                torquent nascetur diam montes eget lobortis euismod. Rutrum sapien pretium mollis sociis laoreet fames
+                dignissim aliquet scelerisque proin per lacinia nullam faucibus.</p>
 
             <div class="mt-3" data-aos="fade-up" data-aos-delay="200">
                 <p class="mb-1">
@@ -63,8 +76,15 @@
             <button type="submit" style="margin-left: 5px;">Gönder</button>
 
             @if(session()->has('message'))
-                   <p> {{ session('message') }} </p>
+                <p> {{ session('message') }} </p>
             @endif
         </form>
+    </section>
+
+
+    <section class="p-0">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12062.051707182394!2d29.2727071!3d40.9044981!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x46bbe4b38f41a502!!5e0!3m2!1sen!2s!4v1410374156081"
+            width="1120" height="360" frameborder="0" style="border:0" ´data-aos-delay="100"></iframe>
     </section>
 @endsection

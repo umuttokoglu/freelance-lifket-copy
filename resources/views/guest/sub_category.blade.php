@@ -1,15 +1,20 @@
 @extends('layout.guest.index')
 
 @section('content')
-    <section class="container page-title-breadcump" data-aos="fade-up" data-aos-delay="100">
-        <h1 class="mb-0">{{ $hizmetler->title }}</h1>
+    <section class="page-title-breadcump-image px-5x100" style="--bgimage: url('../../../assets/bg-image.jpg');"
+             data-aos="fade-up" data-aos-delay="100">
+        <div class="breadcump-image">
+            <div class="breadcump-box">
+                <h1 class="mb-1">{{ $hizmetler->title }}</h1>
 
-        <div class="breadcump">
-            <a href="{{ route('guest.home') }}">Anasayfa</a>
-            <span class="breadcump-delimiter"></span>
-            <a href="{{ route('guest.hizmetler.index') }}">Hizmetlerimiz</a>
-            <span class="breadcump-delimiter"></span>
-            <span>{{ $hizmetler->title }}</span>
+                <div class="breadcump">
+                    <a href="{{ route('guest.home') }}">Anasayfa</a>
+                    <span class="breadcump-delimiter"></span>
+                    <a href="{{ route('guest.hizmetler.index') }}">Hizmetlerimiz</a>
+                    <span class="breadcump-delimiter"></span>
+                    <span>{{ $hizmetler->title }}</span>
+                </div>
+            </div>
         </div>
     </section>
 

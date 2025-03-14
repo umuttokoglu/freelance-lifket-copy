@@ -13,7 +13,7 @@ class HomeController extends Controller
         $categories = Category::query()
             ->whereNull('parent_id')
             ->latest()
-            ->limit(3)
+            ->limit(6)
             ->get();
 
         return view('guest.home', compact('categories'));

@@ -538,7 +538,7 @@ header #search-form {
 	background-size: cover;
 }
 .breadcump-box {
-	max-width: 35rem;
+	max-width: 40rem;
 	background: var(--white);
 	padding: 2.5rem;
 }
@@ -563,9 +563,31 @@ header #search-form {
 	aspect-ratio: 3/2;
 	object-fit: cover;
 }
+.post img:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
 .post div.flex {
 	font-size: 1rem;
 	margin-bottom: var(--g);
+}
+.post-img {
+    width: 50%!important;
+}
+
+.post-d-flex {
+    display: flex!important;
+    justify-content: space-between;
+}
+@media (max-width: 825px) {
+    .post-img {
+        width: 100% !important;
+    }
+
+    .post-d-flex {
+        display: flex!important;
+        flex-direction: column;
+    }
 }
 
 
@@ -657,6 +679,10 @@ header #search-form {
 	display: grid;
 	place-content: center;
 	transition: var(--trnst);
+}
+.project img:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
 }
 .project img {
 	aspect-ratio: 5/4;

@@ -1,13 +1,18 @@
 @extends('layout.guest.index')
 
 @section('content')
-    <section class="page-title-breadcump p-5x100" data-aos="fade-up" data-aos-delay="100">
-        <h1 class="mb-0">Hizmetlerimiz</h1>
+    <section class="page-title-breadcump-image px-5x100" style="--bgimage: url('../../../assets/bg-image.jpg');"
+             data-aos="fade-up" data-aos-delay="100">
+        <div class="breadcump-image">
+            <div class="breadcump-box">
+                <h1 class="mb-1">Hizmetlerimiz</h1>
 
-        <div class="breadcump">
-            <a href="{{ route('guest.home') }}">Anasayfa</a>
-            <span class="breadcump-delimiter"></span>
-            <span>Hizmetlerimiz</span>
+                <div class="breadcump">
+                    <a href="{{ route('guest.home') }}">Anasayfa</a>
+                    <span class="breadcump-delimiter"></span>
+                    <span>Hizmetlerimiz</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -16,13 +21,9 @@
             @if($categories->isNotEmpty())
                 @foreach($categories as $category)
                     <div class="project design" data-aos="zoom-in" data-aos-delay="100">
-                        <img src="{{ $category->image }}" alt="{{ $category->title }}">
-
-                        <div class="holder">
-                            <a class="btn-plus" href="{{ route('guest.hizmetler.show', $category) }}">
-                                <i class="lnr lnr-cross"></i>
-                            </a>
-                        </div>
+                        <a href="{{ route('guest.hizmetler.show', $category) }}">
+                            <img src="{{ $category->image }}" alt="{{ $category->title }}">
+                        </a>
 
                         <h3>{{ $category->title }}</h3>
                     </div>
