@@ -24,6 +24,13 @@
           href="{{ asset('assets/admin/plugins/css/dark/editors/quill/quill.snow.css') }}">
     <link rel="stylesheet" type="text/css"
           href="{{ asset('assets/admin/plugins/css/light/editors/quill/quill.snow.css') }}">
+
+
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/src/filepond/filepond.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/src/filepond/FilePondPluginImagePreview.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/css/light/filepond/custom-filepond.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/css/dark/filepond/custom-filepond.css') }}">
 @endsection
 
 @section('content')
@@ -43,6 +50,23 @@
                     @csrf
 
                     <div class="col-md-12">
+                        <label class="form-label">{{ 'Ürün Görselleri' }}</label>
+                        <input type="file"
+                               class="filepond file-upload-multiple"
+                               name="product_images[]"
+                               multiple
+                               data-allow-reorder="true"
+                               data-max-file-size="3MB"
+                               data-max-files="5">
+
+                        {{-- <input type="file" class="form-control" id="image" name="image"> --}}
+
+                        @error('image')
+                        <small class="text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
                         <label for="category_id" class="form-label">{{ 'Alt Kategori' }}</label>
                         <select id="category_id" name="category_id" placeholder="Alt Kategori Seç..." autocomplete="off"
                                 class="form-control">
@@ -56,15 +80,6 @@
                         </select>
 
                         @error('category_id')
-                        <small class="text text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label">{{ 'Ürün Görseli' }}</label>
-                        <input type="file" class="form-control" id="image" name="image">
-
-                        @error('image')
                         <small class="text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
@@ -130,7 +145,20 @@
 @endsection
 
 @section('adminPageJs')
+    <script>let csrf = "{{ csrf_token() }}";</script>
+    <script>let uploadUrl = "{{ route('admin.uploads.process') }}";</script>
+    <script>let revertUrl = "{{ route('admin.uploads.revert') }}";</script>
     <script src="{{ asset('assets/admin/js/scrollspyNav.js') }}"></script>
+
+    <script src="{{ asset('assets/admin/plugins/src/filepond/filepond.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/src/filepond/FilePondPluginFileValidateType.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/src/filepond/FilePondPluginImageExifOrientation.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/src/filepond/FilePondPluginImagePreview.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/src/filepond/FilePondPluginImageCrop.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/src/filepond/FilePondPluginImageResize.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/src/filepond/FilePondPluginImageTransform.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/src/filepond/filepondPluginFileValidateSize.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/src/filepond/custom-filepond.js') }}"></script>
 
     <script src="{{ asset('assets/admin/plugins/src/editors/quill/quill.js') }}"></script>
     <script src="{{ asset('assets/admin/plugins/src/editors/quill/custom-quill.js') }}"></script>

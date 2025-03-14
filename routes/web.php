@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FileUploadController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\SimilarProductController;
@@ -40,6 +41,9 @@ Route::name('admin.')
             Route::resource('category', AdminCategoryController::class)->except('show');
 
             Route::resource('sub-category', SubCategoryController::class)->except('show');
+
+            Route::post('uploads/process', [FileUploadController::class, 'process'])->name('uploads.process');
+            Route::delete('uploads/revert', [FileUploadController::class, 'revert'])->name('uploads.revert');
 
             Route::resource('products', AdminProductController::class)->except('show');
 

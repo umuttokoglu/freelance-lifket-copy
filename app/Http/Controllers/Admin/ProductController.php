@@ -40,6 +40,22 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request)
     {
+        dd($request);
+
+        $newFiles = [];
+        if ($request->input('image')) {
+            foreach ($request->input('image') as $file) {
+                $newFilename = Str::after($file, 'tmp/');
+                Storage::disk('public')->move($file, "images/$newFilename");
+                $newFiles[] = ['image' => "images/$newFilename"];
+            }
+        }
+
+        $fileLocation = Storage::putFile(
+            path: 'imports',
+            file: new File(Storage::path($request['product_images']))
+        );
+
         $filePath = $request->file('image')->store('/product', 'root_public');
 
         $data = $request->validated();
