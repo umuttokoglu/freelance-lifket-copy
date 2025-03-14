@@ -13,8 +13,8 @@
 @section('adminPageCss')
     <link href="{{ asset('assets/admin/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/admin/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="../src/assets/css/light/components/modal.css" rel="stylesheet" type="text/css" />
-    <link href="../src/assets/css/light/components/modal.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/admin/css/dark/components/modal.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/admin/css/light/components/modal.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -150,20 +150,22 @@
         </div>
     </div>
 
-    <!-- Lightbox Modal -->
     <div class="modal fade" id="lightboxModal" tabindex="-1" role="dialog" aria-labelledby="lightboxModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="lightboxModalLabel">Ürün Görselleri</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
-                        <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <svg> ... </svg>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div id="lightboxContent" class="d-flex flex-wrap justify-content-center">
                         <!-- Görseller burada yüklenecek -->
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn btn-light-dark" data-bs-dismiss="modal"><i class="flaticon-cancel-12"></i> Kapat</button>
                 </div>
             </div>
         </div>
@@ -183,12 +185,17 @@
                     method: 'GET',
                     dataType: 'json',
                     success: function(response) {
-                        var content = '';
+                        var content = '<div class="row">';
                         // Dönen görsellerin URL'lerini kullanarak preview görüntüleri oluşturuyoruz.
                         $.each(response.images, function(i, imagePath){
-                            let path = '{{ asset("' + imagePath + '") }}'
-                            content += '<img src="'+ imagePath +'" class="img-thumbnail m-1" style="width: 150px; height:150px; object-fit:cover;">';
+                            content += '<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 mb-4">' +
+                                '    <a href="'+ imagePath +'" target="_blank">' +
+                                '        <img src="'+ imagePath +'" alt="image" class="img-fluid" />' +
+                                '    </a>' +
+                                '</div>';
                         });
+                        content += '</div>';
+
                         $('#lightboxContent').html(content);
                         $('#lightboxModal').modal('show');
                     },

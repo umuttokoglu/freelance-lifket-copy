@@ -47,6 +47,7 @@ Route::name('admin.')
 
             Route::resource('products', AdminProductController::class)->except('show');
             Route::get('/product/images/{id}', [AdminProductController::class, 'images'])->name('product.images');
+            Route::post('/product/images/{id}/delete', [AdminProductController::class, 'deleteImage'])->name('product.image.delete');
 
             Route::resource('similar-products', SimilarProductController::class)->only('edit', 'update', 'destroy');
 

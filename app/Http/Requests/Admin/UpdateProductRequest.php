@@ -17,7 +17,7 @@ class UpdateProductRequest extends FormRequest
         return [
             'category_id' => ['required', 'exists:categories,id'],
             'title' => ['required', 'string', 'max:255', 'min:5'],
-            'image' => ['sometimes', 'file', 'mimes:jpg,png', 'max:500'],
+            'temporary_images' => ['sometimes'],
             'description_tr' => ['required', 'string', 'max:1000', 'min:5'],
             'description_en' => ['required', 'string', 'max:1000', 'min:5'],
         ];
@@ -28,7 +28,7 @@ class UpdateProductRequest extends FormRequest
         return [
             'category_id' => 'Alt Kategori',
             'title' => 'Ürün Adı',
-            'image' => 'Ürün Görseli',
+            'temporary_images' => 'Ürün Görsel(ler)i',
             'description_tr' => 'Ürün Açıklama (TR)',
             'description_en' => 'Ürün Açıklama (EN)',
         ];

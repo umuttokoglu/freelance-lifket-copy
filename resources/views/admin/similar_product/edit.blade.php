@@ -38,7 +38,7 @@
                 <div class="row mb-5">
                     <div class="row col-md-6">
                         <div class="col-md-4">
-                            <img src="/{{ $product->image }}" alt="{{ $product->title }}" class="w-100">
+                            <img src="/{{ $product->images()->first()->path }}" alt="{{ $product->title }}" class="w-100">
                         </div>
                         <div class="col-md-8">
                             <p>{{ $product->title }}</p>

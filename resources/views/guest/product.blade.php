@@ -1,7 +1,8 @@
 @extends('layout.guest.index')
 
 @section('content')
-    <section class="page-title-breadcump-image px-5x100" style="--bgimage: url('../../../assets/bg-image.jpg');" data-aos="fade-up" data-aos-delay="100">
+    <section class="page-title-breadcump-image px-5x100" style="--bgimage: url('../../../assets/bg-image.jpg');"
+             data-aos="fade-up" data-aos-delay="100">
         <div class="breadcump-image">
             <div class="breadcump-box">
                 <h1 class="mb-1">Ürün</h1>
@@ -19,7 +20,30 @@
 
     <section class="container">
         <div class="post-d-flex">
-            <img src="/{{ $product->image }}" class="mb-1 post-img" alt="{{ $product->title }}" data-aos="zoom-in" data-aos-delay="100">
+            <div>
+                <div class="slider-container">
+                    <!-- Slider alanı -->
+                    <div class="slider">
+                        @foreach($product->images as $image)
+                            <div class="slide">
+                                <img src="/{{ $image->path }}" alt="Görsel {{ $loop->iteration }}">
+                            </div>
+                        @endforeach
+                    </div>
+                    <!-- Önceki ve sonraki butonlar -->
+                    <button class="prev">&#10094;</button>
+                    <button class="next">&#10095;</button>
+                </div>
+                <!-- Dot indikatörler -->
+                <div class="dots-container">
+                    @foreach($product->images as $image)
+                        <span class="dot" data-index="{{ $loop->index }}"></span>
+                        @if($loop->index > 4)
+                            @break
+                        @endif
+                    @endforeach
+                </div>
+            </div>
 
             <div>
                 <h2 data-aos="fade-down" data-aos-delay="100">{{ $product->title }}</h2>
@@ -30,7 +54,8 @@
             </div>
         </div>
 
-        <div class="p-5x100">@if($similarProducts->isNotEmpty())
+        <div class="p-5x100">
+            @if($similarProducts->isNotEmpty())
                 <h2 class="mt-5" data-aos="fade-down" data-aos-delay="100">{{ 'Benzer Ürünler' }}</h2>
 
                 <div class="grid gtc-4 mt-3">
@@ -44,7 +69,8 @@
                                 <a href="{{ route('guest.urunler.show', $product->id) }}">{{ $product->title }}</a>
                             </h3>
 
-                            <a href="{{ route('guest.urunler.show', $product->id) }}" class="btn-arrow">Ürünü İncele <i class="lnr lnr-arrow-right" aria-hidden="true"></i></a>
+                            <a href="{{ route('guest.urunler.show', $product->id) }}" class="btn-arrow">Ürünü İncele <i
+                                    class="lnr lnr-arrow-right" aria-hidden="true"></i></a>
                         </article>
                     @endforeach
                 </div>
@@ -63,3 +89,113 @@
     </section>
 @endsection
 
+@section('pageCss')
+    <style>
+        /* Slider kapsayıcısı */
+        .slider-container {
+            position: relative;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+        }
+        /* Slider (slide'ların bulunduğu alan) */
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        /* Her bir slide */
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .slide img {
+            width: 100%;
+            display: block;
+            object-fit: contain;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 2;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        /* Dot indikatörler */
+        .dots-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 5px;
+            background: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .dot.active {
+            background: #333;
+        }
+    </style>
+@endsection
+
+@section('pageJs')
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var currentSlide = 0;
+            var slides = $('.slide');
+            var totalSlides = slides.length;
+
+            function goToSlide(index) {
+                if (index < 0) {
+                    index = totalSlides - 1;
+                }
+                if (index >= totalSlides) {
+                    index = 0;
+                }
+                currentSlide = index;
+                // Slider alanını sola kaydırarak ilgili slide'ı gösteriyoruz
+                $('.slider').css('transform', 'translateX(' + (-currentSlide * 100) + '%)');
+                // Dot'lardan aktif olanı güncelle
+                $('.dot').removeClass('active');
+                $('.dot[data-index="'+ currentSlide +'"]').addClass('active');
+            }
+
+            // Önceki buton tıklaması
+            $('.prev').click(function(){
+                goToSlide(currentSlide - 1);
+            });
+            // Sonraki buton tıklaması
+            $('.next').click(function(){
+                goToSlide(currentSlide + 1);
+            });
+            // Dot tıklaması
+            $('.dot').click(function(){
+                var index = $(this).data('index');
+                goToSlide(index);
+            });
+
+            // İlk slide'ı göster
+            goToSlide(0);
+        });
+    </script>
+@endsection

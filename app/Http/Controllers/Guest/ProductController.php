@@ -25,7 +25,7 @@ class ProductController extends Controller
 
     public function show(Product $urunler): View
     {
-        $product = $urunler;
+        $product = $urunler->with('images')->first();
 
         $similarProducts = ProductSimilar::query()
             ->join('products', 'products.id', '=', 'product_similar.similar_id')
