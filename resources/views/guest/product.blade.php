@@ -20,7 +20,7 @@
 
     <section class="container">
         <div class="post-d-flex">
-            <div>
+            <div style="width: 50%;margin-right: 20px;">
                 <div class="slider-container">
                     <!-- Slider alanı -->
                     <div class="slider">
@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <div>
+            <div style="width: 50%;margin-left: 20px;">
                 <h2 data-aos="fade-down" data-aos-delay="100">{{ $product->title }}</h2>
 
                 <div data-aos="fade-down" data-aos-delay="300">
