@@ -19,38 +19,37 @@
     </section>
 
     <section class="container">
-        <div class="post-d-flex">
-            <div style="width: 50%;margin-right: 20px;">
-                <div class="slider-container">
-                    <!-- Slider alanı -->
-                    <div class="slider">
+        <div class="a">
+            <!-- Üst Satır: Slider ve Başlık -->
+            <div class="top-row">
+                <div class="left-col">
+                    <div class="slider-container">
+                        <div class="slider">
+                            @foreach($product->images as $image)
+                                <div class="slide">
+                                    <img src="/{{ $image->path }}" alt="Görsel {{ $loop->iteration }}">
+                                </div>
+                            @endforeach
+                        </div>
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <div class="dots-container">
                         @foreach($product->images as $image)
-                            <div class="slide">
-                                <img src="/{{ $image->path }}" alt="Görsel {{ $loop->iteration }}">
-                            </div>
+                            <span class="dot" data-index="{{ $loop->index }}"></span>
+                            @if($loop->index > 4)
+                                @break
+                            @endif
                         @endforeach
                     </div>
-                    <!-- Önceki ve sonraki butonlar -->
-                    <button class="prev">&#10094;</button>
-                    <button class="next">&#10095;</button>
                 </div>
-                <!-- Dot indikatörler -->
-                <div class="dots-container">
-                    @foreach($product->images as $image)
-                        <span class="dot" data-index="{{ $loop->index }}"></span>
-                        @if($loop->index > 4)
-                            @break
-                        @endif
-                    @endforeach
+                <div class="right-col">
+                    <h2 data-aos="fade-down" data-aos-delay="100">{{ $product->title }}</h2>
                 </div>
             </div>
-
-            <div style="width: 50%;margin-left: 20px;">
-                <h2 data-aos="fade-down" data-aos-delay="100">{{ $product->title }}</h2>
-
-                <div data-aos="fade-down" data-aos-delay="300">
-                    {!! $product->description_tr !!}
-                </div>
+            <!-- Alt Satır: Ürün Açıklaması (Tam Genişlik) -->
+            <div class="bottom-row" data-aos="fade-down" data-aos-delay="300">
+                {!! $product->description_tr !!}
             </div>
         </div>
 
@@ -91,6 +90,33 @@
 
 @section('pageCss')
     <style>
+        /* Genel container için */
+        .a {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Satırlar arası boşluk */
+        }
+        /* İlk satır: Slider ve başlık */
+        .top-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .left-col {
+            flex: 0 0 calc(50% - 10px); /* 50% genişlikten, gap yarısı kadar çıkarıyoruz */
+        }
+        .right-col {
+            flex: 0 0 calc(50% - 10px);
+            display: flex;
+            align-items: center; /* Başlık dikeyde ortalanır */
+            justify-content: center;
+        }
+        /* İkinci satır: Ürün açıklaması tam genişlik */
+        .bottom-row {
+            width: 100%;
+        }
+
         /* Slider kapsayıcısı */
         .slider-container {
             position: relative;
