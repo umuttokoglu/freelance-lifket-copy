@@ -18,8 +18,8 @@ class StoreProductRequest extends FormRequest
             'category_id' => ['required', 'exists:categories,id'],
             'title' => ['required', 'string', 'max:255', 'min:5'],
             'temporary_images' => ['required', 'string'],
-            'description_tr' => ['required', 'string', 'max:10000', 'min:5'],
-            'description_en' => ['required', 'string', 'max:10000', 'min:5'],
+            'description_tr' => ['required', 'string', 'max:15000', 'min:5'],
+            'description_en' => ['required', 'string', 'max:15000', 'min:5'],
         ];
     }
 
