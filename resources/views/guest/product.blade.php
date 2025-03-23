@@ -44,6 +44,10 @@
                 <div class="right-col">
                     <h2 data-aos="fade-down" data-aos-delay="100">{{ $product->title }}</h2>
 
+                    <hr>
+
+                    <h5>Öne Çıkan Özellikler</h5>
+
                     @if($product->features)
                         <ul class="list-group" data-aos="fade-down" data-aos-delay="100">
                             @foreach($product->features as $feature)
