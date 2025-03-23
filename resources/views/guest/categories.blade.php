@@ -5,12 +5,12 @@
              data-aos="fade-up" data-aos-delay="100">
         <div class="breadcump-image">
             <div class="breadcump-box">
-                <h1 class="mb-1">Hizmetlerimiz</h1>
+                <h1 class="mb-1">Ürünlerimiz</h1>
 
                 <div class="breadcump">
                     <a href="{{ route('guest.home') }}">Anasayfa</a>
                     <span class="breadcump-delimiter"></span>
-                    <span>Hizmetlerimiz</span>
+                    <span>Ürünlerimiz</span>
                 </div>
             </div>
         </div>
