@@ -44,9 +44,7 @@
                 <div class="right-col">
                     <h2 data-aos="fade-down" data-aos-delay="100">{{ $product->title }}</h2>
 
-                    <hr>
-
-                    <h5>Öne Çıkan Özellikler</h5>
+                    <h4 style="font-weight:bold; margin: 10px 0;">Öne Çıkan Özellikler</h4>
 
                     @if($product->features)
                         <ul class="list-group" data-aos="fade-down" data-aos-delay="100">
