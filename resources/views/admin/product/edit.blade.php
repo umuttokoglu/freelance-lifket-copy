@@ -144,45 +144,25 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12">
-                        <label for="inputPassword4"
-                               class="form-label">{{ 'Ürün Açıklama (TR)' }}</label>
-
-                        <div class="row m-1">
-                            <div id="description_tr"
-                                 data-placeholder="{{ 'Ürün için Türkçe açıklama giriniz..' }}">
-                                {!! old('description_tr', $product->description_tr) !!}
-                            </div>
-
-                            <textarea id="hidden_description_tr" name="description_tr" class="d-none">
-                                {!! old('description_tr', $product->description_tr) !!}
-                            </textarea>
-                        </div>
-
+                    <!-- Türkçe Açıklama -->
+                    <div class="form-group">
+                        <label for="description_tr">Türkçe Açıklama</label>
+                        <textarea name="description_tr" id="description_tr" class="form-control" rows="6">{{ old('description_tr', $product->description_tr) }}</textarea>
                         @error('description_tr')
                         <small class="text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
-                    <div class="col-12">
-                        <label for="inputAddress"
-                               class="form-label">{{ 'Ürün Açıklama (EN)' }}</label>
-
-                        <div class="row m-1">
-                            <div id="description_en"
-                                 data-placeholder="{{ 'Ürün için İngilizce açıklama giriniz..' }}">
-                                {!! old('description_en', $product->description_en) !!}
-                            </div>
-
-                            <textarea id="hidden_description_en" name="description_en" class="d-none">
-                                {!! old('description_en', $product->description_en) !!}
-                            </textarea>
-                        </div>
-
+                    <!-- İngilizce Açıklama -->
+                    <div class="form-group">
+                        <label for="description_en">İngilizce Açıklama</label>
+                        <textarea name="description_en" id="description_en" class="form-control" rows="6">{{ old('description_en', $product->description_en) }}</textarea>
                         @error('description_en')
                         <small class="text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
+
+
 
                     <div class="col-12">
                         <button type="submit"
@@ -197,8 +177,31 @@
 @section('adminPageJs')
     <script src="{{ asset('assets/admin/js/scrollspyNav.js') }}"></script>
 
-    <script src="{{ asset('assets/admin/plugins/src/editors/quill/quill.js') }}"></script>
-    <script src="{{ asset('assets/admin/plugins/src/editors/quill/custom-quill.js') }}"></script>
+    <!-- CKEditor 5 Classic Editor CDN -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+    <script>
+        // Türkçe açıklama için CKEditor kurulumu
+        ClassicEditor
+            .create(document.querySelector('#description_tr'), {
+                ckfinder: {
+                    uploadUrl: '{{ route('admin.product.image.upload') . '?_token=' . csrf_token() }}'
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        // İngilizce açıklama için CKEditor kurulumu
+        ClassicEditor
+            .create(document.querySelector('#description_en'), {
+                ckfinder: {
+                    uploadUrl: '{{ route('admin.product.image.upload') . '?_token=' . csrf_token() }}'
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 
     <script>
         $(document).ready(function(){

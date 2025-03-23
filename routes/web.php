@@ -45,9 +45,15 @@ Route::name('admin.')
             Route::post('/upload', [UploadController::class, 'upload'])->name('upload');
             Route::post('/upload/delete', [UploadController::class, 'delete'])->name('upload.delete');
 
+            Route::post('/admin/product/image-upload', [AdminProductController::class, 'uploadDescriptionImage'])
+                ->name('product.image.upload');
+
             Route::resource('products', AdminProductController::class)->except('show');
             Route::get('/product/images/{id}', [AdminProductController::class, 'images'])->name('product.images');
             Route::post('/product/images/{id}/delete', [AdminProductController::class, 'deleteImage'])->name('product.image.delete');
+            Route::get('/product/feature/{product}/add', [AdminProductController::class, 'addFeature'])->name('product.feature.add');
+            Route::post('/product/feature/{product}/store', [AdminProductController::class, 'storeFeature'])->name('product.feature.store');
+            Route::put('/product/feature/{product}/update', [AdminProductController::class, 'updateFeature'])->name('product.feature.update');
 
             Route::resource('similar-products', SimilarProductController::class)->only('edit', 'update', 'destroy');
 

@@ -13,8 +13,8 @@
 @section('adminPageCss')
     <link href="{{ asset('assets/admin/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/admin/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('assets/admin/css/dark/components/modal.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/admin/css/light/components/modal.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/admin/css/dark/components/modal.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/admin/css/light/components/modal.css') }}" rel="stylesheet" type="text/css"/>
 @endsection
 
 @section('content')
@@ -45,6 +45,7 @@
                                 <th scope="col">{{ 'Ürün Adı' }}</th>
                                 <th class="text-center" scope="col">{{ 'Alt Kategori Adı' }}</th>
                                 <th class="text-center" scope="col">{{ 'Görseller' }}</th>
+                                <th class="text-center" scope="col">{{ 'Özellikler' }}</th>
                                 <th scope="col">{{ __('admin/category.index.table.th.created_at') }}</th>
                                 <th class="text-center" scope="col"></th>
                             </tr>
@@ -59,8 +60,14 @@
                                         <p>{{ $product->category->title }}</p>
                                     </td>
                                     <td class="text-center">
-                                       <span class="badge badge-success image-count" data-product-id="{{ $product->id }}" style="cursor:pointer;">
+                                       <span class="badge badge-success image-count"
+                                             data-product-id="{{ $product->id }}" style="cursor:pointer;">
                                             {{ $product->images_count }} Adet Görsel
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                       <span class="badge badge-secondary" style="cursor:pointer;">
+                                            {{ $product->features_count }} Adet Özellik
                                         </span>
                                     </td>
                                     <td>
@@ -68,6 +75,20 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="action-btns">
+                                            <a href="{{ route('admin.product.feature.add', ['product' => $product]) }}"
+                                               class="action-btn btn-view bs-tooltip me-2"
+                                               data-toggle="tooltip" data-placement="top"
+                                               title="{{ 'Ürüne Özellik Ekle' }}"
+                                               target="_blank">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                     class="feather feather-terminal">
+                                                    <polyline points="4 17 10 11 4 5"></polyline>
+                                                    <line x1="12" y1="19" x2="20" y2="19"></line>
+                                                </svg>
+                                            </a>
+
                                             <a href="{{ route('admin.similar-products.edit', ['similar_product' => $product]) }}"
                                                class="action-btn btn-view bs-tooltip me-2"
                                                data-toggle="tooltip" data-placement="top"
@@ -150,13 +171,14 @@
         </div>
     </div>
 
-    <div class="modal fade" id="lightboxModal" tabindex="-1" role="dialog" aria-labelledby="lightboxModalLabel" aria-hidden="true">
+    <div class="modal fade" id="lightboxModal" tabindex="-1" role="dialog" aria-labelledby="lightboxModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="lightboxModalLabel">Ürün Görselleri</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <svg> ... </svg>
+                        <svg> ...</svg>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -165,7 +187,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn btn-light-dark" data-bs-dismiss="modal"><i class="flaticon-cancel-12"></i> Kapat</button>
+                    <button class="btn btn btn-light-dark" data-bs-dismiss="modal"><i class="flaticon-cancel-12"></i>
+                        Kapat
+                    </button>
                 </div>
             </div>
         </div>
@@ -176,21 +200,21 @@
     <script src="{{ asset('assets/admin/js/scrollspyNav.js') }}"></script>
 
     <script>
-        $(document).ready(function(){
-            $('.image-count').on('click', function(){
+        $(document).ready(function () {
+            $('.image-count').on('click', function () {
                 var productId = $(this).data('product-id');
 
                 $.ajax({
                     url: '/admin/product/images/' + productId,
                     method: 'GET',
                     dataType: 'json',
-                    success: function(response) {
+                    success: function (response) {
                         var content = '<div class="row">';
                         // Dönen görsellerin URL'lerini kullanarak preview görüntüleri oluşturuyoruz.
-                        $.each(response.images, function(i, imagePath){
+                        $.each(response.images, function (i, imagePath) {
                             content += '<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 mb-4">' +
-                                '    <a href="'+ imagePath +'" target="_blank">' +
-                                '        <img src="'+ imagePath +'" alt="image" class="img-fluid" />' +
+                                '    <a href="' + imagePath + '" target="_blank">' +
+                                '        <img src="' + imagePath + '" alt="image" class="img-fluid" />' +
                                 '    </a>' +
                                 '</div>';
                         });
@@ -199,7 +223,7 @@
                         $('#lightboxContent').html(content);
                         $('#lightboxModal').modal('show');
                     },
-                    error: function(){
+                    error: function () {
                         alert('Görseller yüklenirken bir hata oluştu.');
                     }
                 });

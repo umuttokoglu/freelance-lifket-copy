@@ -16,67 +16,6 @@
     </li>
 @endsection
 
-@section('adminPageCss')
-    <link href="{{ asset('assets/admin/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('assets/admin/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css"/>
-
-    <link rel="stylesheet" type="text/css"
-          href="{{ asset('assets/admin/plugins/css/dark/editors/quill/quill.snow.css') }}">
-    <link rel="stylesheet" type="text/css"
-          href="{{ asset('assets/admin/plugins/css/light/editors/quill/quill.snow.css') }}">
-
-    <style>
-        .preview-image {
-            position: relative;
-            display: inline-block;
-            margin: 5px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 5px;
-            width: 160px; /* progress bar ve kenar boşluklarını kapsayacak genişlik */
-        }
-        .preview-image img {
-            width: 150px;
-            height: 150px; /* Sabit boyut */
-            object-fit: cover;
-            border-radius: 8px;
-            display: block;
-            margin: 0 auto;
-        }
-        .remove-image {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: rgba(0, 0, 0, 0.5);
-            border: none;
-            color: #fff;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            font-size: 16px;
-            line-height: 30px;
-            text-align: center;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .remove-image:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-        /* Duplicate uyarısı için */
-        .preview-image.duplicate-warning {
-            border: 2px solid green;
-        }
-        /* Progress bar için ufak stil düzenlemesi */
-        .progress {
-            height: 8px;
-            margin-top: 8px;
-        }
-        .progress-bar {
-            transition: width 0.4s ease;
-        }
-    </style>
-@endsection
-
 @section('content')
     <div id="flLoginForm" class="col-lg-12 layout-spacing">
         <div class="statbox widget box box-shadow">
@@ -137,18 +76,37 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-12">
+                    <!-- Türkçe Açıklama -->
+                    <div class="form-group">
+                        <label for="description_tr">Türkçe Açıklama</label>
+                        <textarea name="description_tr" id="description_tr" class="form-control" rows="6">{{ old('description_tr') }}</textarea>
+                        @error('description_tr')
+                        <small class="text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <!-- İngilizce Açıklama -->
+                    <div class="form-group">
+                        <label for="description_en">İngilizce Açıklama</label>
+                        <textarea name="description_en" id="description_en" class="form-control" rows="6">{{ old('description_en') }}</textarea>
+                        @error('description_en')
+                        <small class="text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                   {{--
+                    <div class="col-md-6">
                         <label for="inputPassword4"
                                class="form-label">{{ 'Ürün Açıklama (TR)' }}</label>
 
                         <div class="row m-1">
                             <div id="description_tr"
                                  data-placeholder="{{ 'Ürün için Türkçe açıklama giriniz...' }}">
-                                {{ strip_tags(old('description_tr')) }}
+                                {{ old('description_tr') }}
                             </div>
 
                             <textarea id="hidden_description_tr" name="description_tr" class="d-none">
-                                {{ strip_tags(old('description_tr')) }}
+                                {{ old('description_tr') }}
                             </textarea>
                         </div>
 
@@ -157,25 +115,25 @@
                         @enderror
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-6">
                         <label for="inputAddress"
                                class="form-label">{{ 'Ürün Açıklama (EN)' }}</label>
 
                         <div class="row m-1">
                             <div id="description_en"
                                  data-placeholder="{{ 'Ürün için İngilizce açıklama giriniz...' }}">
-                                {{ strip_tags(old('description_en')) }}
+                                {{ old('description_en') }}
                             </div>
 
                             <textarea id="hidden_description_en" name="description_en" class="d-none">
-                                {{ strip_tags(old('description_en')) }}
+                                {{ old('description_en') }}
                             </textarea>
                         </div>
 
                         @error('description_en')
                         <small class="text text-danger">{{ $message }}</small>
                         @enderror
-                    </div>
+                    </div>--}}
 
                     <div class="col-12">
                         <button type="submit"
@@ -185,6 +143,67 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('adminPageCss')
+    <link href="{{ asset('assets/admin/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/admin/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css"/>
+
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('assets/admin/plugins/css/dark/editors/quill/quill.snow.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('assets/admin/plugins/css/light/editors/quill/quill.snow.css') }}">
+
+    <style>
+        .preview-image {
+            position: relative;
+            display: inline-block;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 5px;
+            width: 160px; /* progress bar ve kenar boşluklarını kapsayacak genişlik */
+        }
+        .preview-image img {
+            width: 150px;
+            height: 150px; /* Sabit boyut */
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+        .remove-image {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 16px;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .remove-image:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        /* Duplicate uyarısı için */
+        .preview-image.duplicate-warning {
+            border: 2px solid green;
+        }
+        /* Progress bar için ufak stil düzenlemesi */
+        .progress {
+            height: 8px;
+            margin-top: 8px;
+        }
+        .progress-bar {
+            transition: width 0.4s ease;
+        }
+    </style>
 @endsection
 
 @section('adminPageJs')
@@ -353,6 +372,32 @@
         });
     </script>
 
+    <!-- CKEditor 5 CDN -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+    <script>
+        // Türkçe açıklama editor'ü
+        ClassicEditor
+            .create(document.querySelector('#description_tr'), {
+                ckfinder: {
+                    uploadUrl: '{{ route('admin.product.image.upload').'?_token='.csrf_token() }}'
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        // İngilizce açıklama editor'ü
+        ClassicEditor
+            .create(document.querySelector('#description_en'), {
+                ckfinder: {
+                    uploadUrl: '{{ route('admin.product.image.upload').'?_token='.csrf_token() }}'
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+{{--
     <script src="{{ asset('assets/admin/plugins/src/editors/quill/quill.js') }}"></script>
-    <script src="{{ asset('assets/admin/plugins/src/editors/quill/custom-quill.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/src/editors/quill/custom-quill.js') }}"></script>--}}
 @endsection
