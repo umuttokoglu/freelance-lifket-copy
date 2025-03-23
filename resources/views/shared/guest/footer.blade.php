@@ -11,7 +11,7 @@
             <ul class="flex align-center justify-center flex-wrap uppercase">
                 <li><a href="{{ route('guest.home') }}">Anasayfa</a></li>
                 <li><a href="{{ route('guest.about') }}">Hakkımızda</a></li>
-                <li><a href="{{ route('guest.hizmetler.index') }}">Hizmetlerimiz</a></li>
+                <li><a href="{{ route('guest.hizmetler.index') }}">Ürünler</a></li>
                 <li><a href="{{ route('guest.iletisim.index') }}">İletişim</a></li>
             </ul>
         </nav>
