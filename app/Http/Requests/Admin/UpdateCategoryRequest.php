@@ -15,7 +15,7 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255', 'min:5'],
-            'image' => ['required', 'file', 'mimes:jpg,png', 'max:1000'],
+            'image' => ['sometimes', 'file', 'mimes:jpg,png', 'max:1000'],
             'description_tr' => ['required', 'string', 'max:1000', 'min:5'],
             'description_en' => ['required', 'string', 'max:1000', 'min:5'],
         ];

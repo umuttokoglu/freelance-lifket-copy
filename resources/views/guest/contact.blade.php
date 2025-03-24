@@ -80,11 +80,4 @@
             @endif
         </form>
     </section>
-
-
-    <section class="p-0">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12062.051707182394!2d29.2727071!3d40.9044981!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x46bbe4b38f41a502!!5e0!3m2!1sen!2s!4v1410374156081"
-            width="1120" height="360" frameborder="0" style="border:0" ´data-aos-delay="100"></iframe>
-    </section>
 @endsection

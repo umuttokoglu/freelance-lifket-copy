@@ -10,8 +10,6 @@
                 <div class="breadcump">
                     <a href="{{ route('guest.home') }}">Anasayfa</a>
                     <span class="breadcump-delimiter"></span>
-                    <a href="{{ route('guest.hizmetler.index') }}">Hizmetlerimiz</a>
-                    <span class="breadcump-delimiter"></span>
                     <span>{{ $hizmetler->title }}</span>
                 </div>
             </div>

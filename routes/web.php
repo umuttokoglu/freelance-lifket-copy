@@ -21,7 +21,7 @@ Route::name('guest.')
 
         Route::get('hakkimizda', AboutController::class)->name('about');
 
-        Route::resource('hizmetler', GuestCategoryController::class)->only(['index', 'show']);
+        Route::resource('hizmetler', GuestCategoryController::class)->only(['show']);
 
         Route::resource('urunler', GuestProductController::class)->only(['index', 'show']);
 

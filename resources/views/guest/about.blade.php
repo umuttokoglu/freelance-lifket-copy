@@ -41,35 +41,6 @@
     </section>
 
     <section class="p-0">
-        <article class="grid service-block">
-            <img src="{{ asset('assets/guest/img/about-2.jpg') }}" alt="Interior design - BuildXpert template" data-aos="zoom-in"
-                 data-aos-delay="100">
-
-            <div>
-                <div class="title-corners title-left" data-aos="fade-down">
-                    <span class="corner-line line1" aria-hidden="true"></span>
-                    <span class="corner-line line2" aria-hidden="true"></span>
-                    <span class="corner-line line3" aria-hidden="true"></span>
-                    <span class="corner-line line4" aria-hidden="true"></span>
-
-                    <h5>Küçük Başlık 4</h5>
-                    <h2 class="mb-0">Başlık 5</h2>
-                </div>
-
-                <ul>
-                    <li>
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit egestas, dictum quis sed ad justo aliquet vivamus,
-                        torquent nascetur diam montes eget lobortis euismod. Rutrum sapien pretium mollis sociis laoreet fames
-                        dignissim aliquet scelerisque proin per lacinia nullam faucibus.
-                    </li>
-                </ul>
-
-                <a href="{{ route('guest.hizmetler.index') }}" class="btn-arrow" data-aos="fade-down"
-                   data-aos-delay="200">
-                    Hizmetlerimizi Gör <i class="lnr lnr-arrow-right" aria-hidden="true"></i>
-                </a>
-            </div>
-        </article>
 
         <article class="grid service-block">
             <img src="{{ asset('assets/guest/img/about-3.jpg') }}" alt="About us idea - BuildXpert template" data-aos="zoom-in"
