@@ -20,8 +20,11 @@
         @if($subCategories->isNotEmpty())
             @foreach($subCategories as $subCategory)
                 <div class="grid gtc-2-1 mb-3">
-                    <img src="/{{ $subCategory->image }}" style="aspect-ratio: 3.06/2;" alt="{{ $subCategory->title }}"
-                         data-aos="fade-right" data-aos-delay="100">
+                    <a href="{{ route('guest.urunler.index', ['sub_category' => $subCategory->id]) }}">
+                        <img src="/{{ $subCategory->image }}" style="aspect-ratio: 3.06/2;"
+                             alt="{{ $subCategory->title }}"
+                             data-aos="fade-right" data-aos-delay="100">
+                    </a>
 
                     <div class="grid gtc-2-1 mb-5">
                         <div data-aos="fade-down" data-aos-delay="100">
