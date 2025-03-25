@@ -23,7 +23,7 @@ class ProductController extends Controller
     {
         $subCategories = Category::query()
             ->whereNotNull('parent_id')
-            ->latest()
+            ->orderByDesc('title')
             ->get();
 
         $products = Product::query()
