@@ -27,10 +27,9 @@ class ProductController extends Controller
     {
         $product = $urunler;
 
-        $similarProducts = ProductSimilar::query()
-            ->join('products', 'products.id', '=', 'product_similar.similar_id')
-            ->where('product_similar.product_id', $product->id)
-            ->get();
+        $similarProducts = Product::with('similarProducts.firstImage')
+            ->find($product->id)
+            ->similarProducts;
 
         return view('guest.product', compact('product', 'similarProducts'));
     }
