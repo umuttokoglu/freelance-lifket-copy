@@ -57,10 +57,10 @@
                                         <img src="/{{ $subCategory->image }}" width="150" alt="">
                                     </td>
                                     <td>
-                                        <p>{{ \Illuminate\Support\Str::limit($subCategory->title, 30) }}</p>
+                                        <p>{{ \Illuminate\Support\Str::limit($subCategory->title, 20) }}</p>
                                     </td>
                                     <td>
-                                        <p>{{ \Illuminate\Support\Str::limit($subCategory->parent->title, 30) }}</p>
+                                        <p>{{ \Illuminate\Support\Str::limit($subCategory->parent->title, 20) }}</p>
                                     </td>
                                     <td class="text-center">
                                         <a href="{{ route('admin.products.index') }}"
