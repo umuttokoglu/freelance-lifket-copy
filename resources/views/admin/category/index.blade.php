@@ -25,8 +25,16 @@
                     </div>
 
                     <div class="col-xl-6 col-md-6 col-sm-6 col-6 text-end">
-                        <a href="{{ route('admin.category.create') }}"
-                           class="btn btn-light-success mt-3">{{ __('admin/category.index.button.add') }}</a>
+                        <a href="{{ route('admin.category.create') }}" class="btn btn-success mt-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" class="feather feather-plus-circle">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="16"></line>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                            {{ __('admin/category.index.button.add') }}
+                        </a>
                     </div>
                 </div>
 
@@ -60,8 +68,8 @@
                                     </td>
                                     <td class="text-center">
                                         <a href="{{ route('admin.sub-category.index') }}"
-                                            class="badge badge-light-{{ $category->children_count ? 'success' : 'danger' }}"
-                                            title="{{ $category->children_count ? __('admin/category.index.table.th.sub_category_count.title.sub_cat') : __('admin/category.index.table.th.sub_category_count.title.no_asub_cat') }}">
+                                           class="badge badge-light-{{ $category->children_count ? 'success' : 'danger' }}"
+                                           title="{{ $category->children_count ? __('admin/category.index.table.th.sub_category_count.title.sub_cat') : __('admin/category.index.table.th.sub_category_count.title.no_asub_cat') }}">
                                             {{ __('admin/category.index.table.td.sub_category_count', ['sub_cat_count' => $category->children_count]) }}
                                         </a>
                                     </td>
