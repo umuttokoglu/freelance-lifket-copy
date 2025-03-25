@@ -31,7 +31,7 @@ class ProductController extends Controller
             ->with(['category'])
             ->latest()
             ->when(request()->has('category_id'), fn(Builder $query) => $query->where('category_id', request()->integer('category_id')))
-            ->simplePaginate(1);
+            ->simplePaginate(10);
 
         return view('admin.product.index', compact('products', 'subCategories'));
     }
