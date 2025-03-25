@@ -24,7 +24,7 @@
                         <h4>{{ __('admin/category.index.table.title') }}</h4>
                     </div>
 
-                    <div class="col-xl-6 col-md-6 col-sm-6 col-6">
+                    <div class="col-xl-6 col-md-6 col-sm-6 col-6 text-end">
                         <a href="{{ route('admin.category.create') }}"
                            class="btn btn-light-success mt-3">{{ __('admin/category.index.button.add') }}</a>
                     </div>

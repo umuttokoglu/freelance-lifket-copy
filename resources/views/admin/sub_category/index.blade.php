@@ -24,7 +24,7 @@
                         <h4>{{ 'Alt Ürün Kategorileri' }}</h4>
                     </div>
 
-                    <div class="col-xl-6 col-md-6 col-sm-6 col-6">
+                    <div class="col-xl-6 col-md-6 col-sm-6 col-6 text-end">
                         <a href="{{ route('admin.sub-category.create') }}"
                            class="btn btn-light-success mt-3">{{ 'Yeni Alt Ürün Kategorisi Ekle' }}</a>
                     </div>
