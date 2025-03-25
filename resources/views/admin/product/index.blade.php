@@ -95,7 +95,7 @@
                                         <p>{{ $product->title }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <p>{{ $product->category->title }}</p>
+                                        <p>{{ \Illuminate\Support\Str::limit($product->category->title, 30) }}</p>
                                     </td>
                                     <td class="text-center">
                                        <span class="badge badge-success image-count"
