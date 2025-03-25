@@ -21,6 +21,6 @@ class ContactController extends Controller
 
         session()->flash('message', 'Mesajınız başarıyla iletildi. En kısa sürede size dönüş yapılacaktır.');
 
-        return response()->redirectToRoute('guest.iletisim.index');
+        return redirect()->back();
     }
 }
