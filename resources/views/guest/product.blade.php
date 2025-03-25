@@ -69,7 +69,7 @@
                     @foreach($similarProducts as $product)
                         <article class="post" data-aos="fade-right" data-aos-delay="100">
                             <a href="{{ route('guest.urunler.show', $product->id) }}">
-                                <img src="/{{ $product->image }}" alt="{{ $product->title }}">
+                                <img src="/{{ $product->images()->first()->path }}" alt="{{ $product->title }}">
                             </a>
 
                             <h3>
