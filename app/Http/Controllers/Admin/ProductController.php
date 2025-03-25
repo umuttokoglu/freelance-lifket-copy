@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductFeature;
 use App\Models\ProductImage;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -20,13 +21,19 @@ class ProductController extends Controller
 {
     public function index(): View
     {
+        $subCategories = Category::query()
+            ->whereNotNull('parent_id')
+            ->latest()
+            ->get();
+
         $products = Product::query()
             ->withCount(['images', 'features'])
             ->with(['category'])
             ->latest()
-            ->paginate(10);
+            ->when(request()->has('category_id'), fn(Builder $query) => $query->where('category_id', request()->integer('category_id')))
+            ->simplePaginate(1);
 
-        return view('admin.product.index', compact('products'));
+        return view('admin.product.index', compact('products', 'subCategories'));
     }
 
     public function create(): View|RedirectResponse

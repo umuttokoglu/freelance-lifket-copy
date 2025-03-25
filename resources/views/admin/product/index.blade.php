@@ -18,6 +18,44 @@
 @endsection
 
 @section('content')
+    @if($subCategories->isNotEmpty())
+        <div id="tableCustomBasic" class="col-lg-12 col-12 layout-spacing">
+            <div class="statbox widget box box-shadow">
+                <div class="widget-header">
+                    <div class="row mb-1">
+                        <div class="col-xl-6 col-md-6 col-sm-6 col-6">
+                            <h4>{{ 'Filtrele' }}</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="widget-content widget-content-area">
+                    <div class="table-responsive ">
+                        <form class="row g-3" method="get" action="{{ route('admin.products.index') }}">
+                            <div class="col-md-12">
+                                <label for="category_id" class="form-label">{{ 'Alt Kategori' }}</label>
+                                <select id="category_id" name="category_id" placeholder="Alt Kategori Seç..."
+                                        autocomplete="off"
+                                        class="form-control">
+                                    <option value="">Alt Kategori Seç...</option>
+
+                                    @foreach($subCategories as $subCategory)
+                                        <option
+                                            value="{{ $subCategory->id }}" @selected(request()->integer('category_id') == $subCategory->id)>
+                                            {{ $subCategory->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-success">Filtrele</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div id="tableCustomBasic" class="col-lg-12 col-12 layout-spacing">
         <div class="statbox widget box box-shadow">
             <div class="widget-header">
@@ -150,6 +188,9 @@
                             </tbody>
                         </table>
 
+                    </div>
+
+                    <div class="text-center mt-3">
                         {{ $products->links() }}
                     </div>
                 @else
