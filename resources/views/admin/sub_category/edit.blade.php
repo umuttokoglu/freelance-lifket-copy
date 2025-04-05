@@ -2,17 +2,17 @@
 
 @extends('layout.admin.index')
 
-@section('adminPageTitle', __('admin/category.edit.title', ['category' => $category->title]))
+@section('adminPageTitle', $subCategory->title . ' Alt Kategorisini Düzenle')
 
 @section('adminBreadcrumb')
     <li class="breadcrumb-item active">
-        <a href="{{ route('admin.category.index') }}">
-            {{ __('admin/category.index.title') }}
+        <a href="{{ route('admin.sub-category.index') }}">
+            {{ 'Alt Kategoriler' }}
         </a>
     </li>
 
     <li class="breadcrumb-item">
-        {{ __('admin/category.edit.title', ['category' => $category->title]) }}
+        {{ $subCategory->title . ' Alt Kategorisini Düzenle' }}
     </li>
 @endsection
 
@@ -32,33 +32,51 @@
             <div class="widget-header">
                 <div class="row">
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                        <h4>{{ __('admin/category.edit.title', ['category' => $category->title]) }}</h4>
+                        <h4>{{ $subCategory->title . ' Alt Kategorisini Düzenle' }}</h4>
                     </div>
                 </div>
             </div>
 
             <div class="widget-content widget-content-area">
-                <form class="row g-3" method="post" action="{{ route('admin.category.update', $category) }}"
+                <form class="row g-3" method="post" action="{{ route('admin.sub-category.update', $subCategory) }}"
                       enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
 
+                    <div class="col-md-12">
+                        <label for="parent_id" class="form-label">{{ __('admin/category.create.form.parent_id.label') }}</label>
+                        <select id="parent_id" name="parent_id" placeholder="Ana Kategori Seç..." autocomplete="off"
+                                class="form-control">
+                            <option value="">Ana Kategori Seç...</option>
+
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}" @selected(old('parent_id', $subCategory->parent_id) == $category->id)>
+                                    {{ $category->title }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        @error('parent_id')
+                        <small class="text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
                     <div class="col-md-4">
-                        <img src="/{{ $category->image }}" alt="{{ $category->title }}" class="w-100">
+                        <img src="/{{ $subCategory->image }}" alt="{{ $subCategory->title }}" class="w-100">
                     </div>
 
                     <div class="col-md-8">
                         <div class="form-group">
-                            <label class="form-label">{{ __('admin/category.edit.form.image') }}</label>
+                            <label class="form-label">{{ 'Alt Kategori Görseli' }}</label>
                             <input type="file" class="form-control" id="image" name="image">
 
                             @error('image')
                             <small class="text text-danger">{{ $message }}</small>
                             @enderror
 
-                            <label for="title" class="form-label mt-4">{{ __('admin/category.edit.form.title.label') }}</label>
-                            <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $category->title) }}"
-                                   placeholder="{{ __('admin/category.edit.form.title.placeholder') }}">
+                            <label for="title" class="form-label mt-4">{{ 'Alt Kategori Adı' }}</label>
+                            <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $subCategory->title) }}"
+                                   placeholder="{{ 'Alt Kategori İçin Başlık' }}">
 
                             @error('title')
                             <small class="text text-danger">{{ $message }}</small>
@@ -68,16 +86,16 @@
 
                     <div class="col-md-12">
                         <label for="inputPassword4"
-                               class="form-label">{{ __('admin/category.edit.form.description_tr.label') }}</label>
+                               class="form-label">{{ 'Alt Kategori İçin Açıklama (TR)' }}</label>
 
                         <div class="row m-1">
                             <div id="description_tr"
-                                 data-placeholder="{{ __('admin/category.edit.form.description_tr.placeholder') }}">
-                                {!! old('description_tr', $category->description_tr) !!}
+                                 data-placeholder="{{ 'Alt Kategori için Türkçe açıklama gir...' }}">
+                                {!! old('description_tr', $subCategory->description_tr) !!}
                             </div>
 
                             <textarea id="hidden_description_tr" name="description_tr" class="d-none">
-                                {!! old('description_tr', $category->description_tr) !!}
+                                {!! old('description_tr', $subCategory->description_tr) !!}
                             </textarea>
                         </div>
 
@@ -88,16 +106,16 @@
 
                     <div class="col-12">
                         <label for="inputAddress"
-                               class="form-label">{{ __('admin/category.edit.form.description_en.label') }}</label>
+                               class="form-label">{{ 'Alt Kategori İçin Açıklama (EN)' }}</label>
 
                         <div class="row m-1">
                             <div id="description_en"
-                                 data-placeholder="{{ __('admin/category.edit.form.description_en.placeholder') }}">
-                                {!! old('description_en', $category->description_en) !!}
+                                 data-placeholder="{{ 'Alt Kategori için İngilizce açıklama gir...' }}">
+                                {!! old('description_en', $subCategory->description_en) !!}
                             </div>
 
                             <textarea id="hidden_description_en" name="description_en" class="d-none">
-                                {!! old('description_en', $category->description_en) !!}
+                                {!! old('description_en', $subCategory->description_en) !!}
                             </textarea>
                         </div>
 
@@ -108,7 +126,7 @@
 
                     <div class="col-12">
                         <button type="submit"
-                                class="btn btn-primary">{{ __('admin/category.edit.button.save') }}</button>
+                                class="btn btn-primary">{{ 'Alt Kategoriyi Güncelle' }}</button>
                     </div>
                 </form>
             </div>
