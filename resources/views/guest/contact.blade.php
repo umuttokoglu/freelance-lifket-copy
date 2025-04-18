@@ -60,6 +60,7 @@
 
         <form method="post" action="{{ route('guest.iletisim.store') }}" data-aos="zoom-in" data-aos-delay="100">
             @csrf
+            @honeypot()
 
             <input type="text" name="name" id="name" placeholder="Adınız...">
             @error('name')

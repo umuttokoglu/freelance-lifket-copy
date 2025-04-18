@@ -177,7 +177,10 @@
                                                class="action-btn btn-delete bs-tooltip"
                                                data-toggle="tooltip" data-placement="top"
                                                title="{{ __('admin/category.index.table.th.actions.delete') }}"
-                                               onclick="event.preventDefault(); document.getElementById('product-delete-form-{{ $product->id }}').submit();">
+                                               onclick="event.preventDefault();
+                                                    if (confirm('Bu ürünü silmek üzeresiniz. Devam etmek istediğinize emin misiniz?')) {
+                                                        document.getElementById('product-delete-form-{{ $product->id }}').submit();
+                                                    }">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                      stroke-width="2"

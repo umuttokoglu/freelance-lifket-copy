@@ -107,7 +107,12 @@
                                                class="action-btn btn-delete bs-tooltip"
                                                data-toggle="tooltip" data-placement="top"
                                                title="{{ __('admin/category.index.table.th.actions.delete') }}"
-                                               onclick="event.preventDefault(); document.getElementById('category-delete-form-{{ $category->id }}').submit();">
+                                               onclick="event.preventDefault();
+                                                         if (confirm('Bu kategoriyi silmek, bu kategoriye ait tüm alt kategoriler ve ürünleri siler. Devam etmek istediğinize emin misiniz?')) {
+                                                             document
+                                                               .getElementById('category-delete-form-{{ $category->id }}')
+                                                               .submit();
+                                                         }">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                      stroke-width="2"

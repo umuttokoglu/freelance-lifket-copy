@@ -14,6 +14,7 @@ use App\Http\Controllers\Guest\ContactController as GuestContactController;
 use App\Http\Controllers\Guest\HomeController;
 use App\Http\Controllers\Guest\ProductController as GuestProductController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 Route::name('guest.')
     ->group(function () {
@@ -21,11 +22,11 @@ Route::name('guest.')
 
         Route::get('hakkimizda', AboutController::class)->name('about');
 
-        Route::resource('hizmetler', GuestCategoryController::class)->only(['show']);
+        Route::resource('hizmetler', GuestCategoryController::class)->only(['index', 'show']);
 
         Route::resource('urunler', GuestProductController::class)->only(['index', 'show']);
 
-        Route::resource('iletisim', GuestContactController::class)->only('index', 'store');
+        Route::middleware(ProtectAgainstSpam::class)->resource('iletisim', GuestContactController::class)->only('index', 'store');
     });
 
 Route::name('admin.')

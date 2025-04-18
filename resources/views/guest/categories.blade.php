@@ -17,7 +17,7 @@
     </section>
 
     <section class="container">
-        <div class="grid gtc-3" id="product-grid">
+        <div class="grid" id="product-grid">
             @if($categories->isNotEmpty())
                 @foreach($categories as $category)
                     <div class="project design" data-aos="zoom-in" data-aos-delay="100">
@@ -28,19 +28,17 @@
                         <h3>{{ $category->title }}</h3>
                     </div>
                 @endforeach
-            @else
-
             @endif
         </div>
     </section>
 
-    <section class="border-y" data-aos="fade-up" data-aos-delay="100">
-        <div class="container flex flex-wrap align-center md-space-between g-2">
+    <section class="cta" data-aos="fade-up" data-aos-delay="100">
+        <div class="container">
             <div>
-                <h2>Başlık 7</h2>
-                <p>Metin 9</p>
+                <h2>Merak Ettikleriniz İçin</h2>
+                <p>Bizimle İletişime Geçin</p>
             </div>
-            <a href="{{ route('guest.iletisim.index') }}" class="btn">Bizimle İletişime Geçin</a>
+            <a href="{{ route('guest.iletisim.index') }}" class="btn">Mesaj Gönder</a>
         </div>
     </section>
 @endsection

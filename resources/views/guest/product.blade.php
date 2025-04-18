@@ -85,13 +85,13 @@
         </div>
     </section>
 
-    <section class="border-y" data-aos="fade-up" data-aos-delay="100">
-        <div class="container flex flex-wrap align-center md-space-between g-2">
+    <section class="cta" data-aos="fade-up" data-aos-delay="100">
+        <div class="container">
             <div>
-                <h2>Başlık 8</h2>
-                <p>Metin 10</p>
+                <h2>Merak Ettikleriniz İçin</h2>
+                <p>Bizimle İletişime Geçin</p>
             </div>
-            <a href="{{ route('guest.iletisim.index') }}" class="btn">Bizimle İletişime Geçin</a>
+            <a href="{{ route('guest.iletisim.index') }}" class="btn">Mesaj Gönder</a>
         </div>
     </section>
 @endsection

@@ -1,8 +1,5 @@
-
-<!-- footer -->
 <footer>
     <div class="container flex flex-wrap align-center space-between g-2">
-        <!-- your logo here -->
         <a href="{{ route('guest.home') }}" class="logo">
             <img src="{{ asset('assets/mva-makina.svg') }}" alt="{{ config('app.name') }} logo">
         </a>
@@ -11,12 +8,11 @@
             <ul class="flex align-center justify-center flex-wrap uppercase">
                 <li><a href="{{ route('guest.home') }}">Anasayfa</a></li>
                 <li><a href="{{ route('guest.about') }}">Hakkımızda</a></li>
-                <li><a href="{{ route('guest.home') }}">Ürünler</a></li>
+                <li><a href="{{ route('guest.hizmetler.index') }}">Ürünler</a></li>
                 <li><a href="{{ route('guest.iletisim.index') }}">İletişim</a></li>
             </ul>
         </nav>
 
-        <!-- info -->
         <div>
             <p class="mb-1">
                 <i class="fa-light fa-location-pin"></i>
@@ -43,10 +39,8 @@
 
     <div class="copy">
         <div class="container flex flex-wrap align-center md-space-between justify-center">
-            <!-- copyrights -->
             <p class="txt-center mb-0">&copy; MVA Makina 2018-<span id="thisYear"></span>. Tüm Hakları Saklıdır. Developed by <a href="https://github.com/umuttokoglu">umuttokoglu</a>.</p>
 
-            <!-- social links -->
             <ul class="flex align-center justify-center">
                 <li>
                     <a href="#" target="_self">

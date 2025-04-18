@@ -70,8 +70,11 @@
 
     <section class="cta" data-aos="fade-up" data-aos-delay="100">
         <div class="container">
-            <h3 class="mb-0">Soruların mı var? Bizimle Hemen İletişime Geç...</h3>
-            <a href="{{ route('guest.iletisim.index') }}" class="btn">Bize Yaz</a>
+            <div>
+                <h2>Merak Ettikleriniz İçin</h2>
+                <p>Bizimle İletişime Geçin</p>
+            </div>
+            <a href="{{ route('guest.iletisim.index') }}" class="btn">Mesaj Gönder</a>
         </div>
     </section>
 @endsection
