@@ -227,7 +227,6 @@ if (faqs) {
 /*--------------------------------------------------------
 *	FOOTER
 --------------------------------------------------------*/
-getElement('#thisYear').innerHTML= new Date().getFullYear();
 
 const main = getElement('main'),
 		footer = getElement('footer');

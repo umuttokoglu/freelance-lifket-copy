@@ -16,6 +16,10 @@ return Application::configure(basePath: dirname(__DIR__))
             users: '/admin/dashboard'
         );
 
+        $middleware->web([
+            \App\Http\Middleware\LocaleMiddleware::class,
+        ]);
+
         $middleware->validateCsrfTokens(except: [
             '/admin/logout',
         ]);

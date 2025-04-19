@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
 
 Route::name('guest.')
+    ->prefix('{locale?}')
+    ->where(['locale' => 'tr|en'])
     ->group(function () {
         Route::get('/', HomeController::class)->name('home');
 

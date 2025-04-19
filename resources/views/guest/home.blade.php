@@ -4,47 +4,43 @@
     <section class="hero-slider" data-aos="fade-down" data-aos-delay="100">
         <ul class="hero-slide">
             <li class="active" data-slide="1">
-                <img src="{{ asset('assets/guest/img/slide1.jpg') }}" alt="{{ config('app.name') }}">
-
+                <img src="{{ asset('assets/guest/img/slide1.jpg') }}"
+                     alt="{{ config('app.name') }}">
                 <div class="hero-box" data-aos="fade-down">
-                    <h2>Slider 1</h2>
+                    <h2>{{ __('guest/home.slider.1') }}</h2>
                     <a class="btn-plus" href="#">
-                        <i class="lnr lnr-cross" aria-hidden="true"></i>
+                        <i class="lnr lnr-cross"></i>
                     </a>
                 </div>
             </li>
-
             <li data-slide="2">
-                <img src="{{ asset('assets/guest/img/slide2.jpg') }}" alt="{{ config('app.name') }}">
-
+                <img src="{{ asset('assets/guest/img/slide2.jpg') }}"
+                     alt="{{ config('app.name') }}">
                 <div class="hero-box" data-aos="fade-down">
-                    <h2>Slider 2</h2>
+                    <h2>{{ __('guest/home.slider.2') }}</h2>
                     <a class="btn-plus" href="#">
-                        <i class="lnr lnr-cross" aria-hidden="true"></i>
+                        <i class="lnr lnr-cross"></i>
                     </a>
                 </div>
             </li>
-
             <li data-slide="3">
-                <img src="{{ asset('assets/guest/img/slide3.jpg') }}" alt="{{ config('app.name') }}">
-
+                <img src="{{ asset('assets/guest/img/slide3.jpg') }}"
+                     alt="{{ config('app.name') }}">
                 <div class="hero-box" data-aos="fade-down">
-                    <h2>Slider 3</h2>
+                    <h2>{{ __('guest/home.slider.3') }}</h2>
                     <a class="btn-plus" href="#">
-                        <i class="lnr lnr-cross" aria-hidden="true"></i>
+                        <i class="lnr lnr-cross"></i>
                     </a>
                 </div>
             </li>
         </ul>
-
         <div class="hero-commands">
             <button id="hero-btn-prev">
-                <i class="lnr lnr-chevron-left" aria-hidden="true"></i>
+                <i class="lnr lnr-chevron-left"></i>
                 <span class="sr-only">Geri</span>
             </button>
-
             <button id="hero-btn-next">
-                <i class="lnr lnr-chevron-right" aria-hidden="true"></i>
+                <i class="lnr lnr-chevron-right"></i>
                 <span class="sr-only">İleri</span>
             </button>
         </div>
@@ -57,73 +53,76 @@
             <span class="corner-line line3"></span>
             <span class="corner-line line4"></span>
 
-            <h2>Ürünlerimiz</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, quos obcaecati. Tempora laborum pariatur deserunt, reprehenderit illum voluptate.</p>
+            <h2>{{ __('guest/home.products.title') }}</h2>
+            <p>{{ __('guest/home.products.description') }}</p>
         </div>
 
-        @if($categories->isNotEmpty())
-            @foreach($categories as $category)
-                <article class="grid service-block">
-                    <a href="{{ route('guest.hizmetler.show', $category) }}">
-                        <img src="{{ $category->image }}" alt="{{ $category->title }}"
-                             style="padding-top: 80px;"
-                             data-aos="zoom-in" data-aos-delay="100">
-                    </a>
-
-                    <div>
-                        <div class="title-corners title-left" data-aos="fade-down">
-                            <span class="corner-line line1" aria-hidden="true"></span>
-                            <span class="corner-line line2" aria-hidden="true"></span>
-                            <span class="corner-line line3" aria-hidden="true"></span>
-                            <span class="corner-line line4" aria-hidden="true"></span>
-
-                            <h3 class="mb-0">{{ $category->title }}</h3>
-                        </div>
-
-                        <div data-aos="fade-down" data-aos-delay="200">{!! $category->description_tr !!}</div>
+        @foreach($categories as $category)
+            <article class="grid service-block">
+                <a href="{{ route('guest.hizmetler.show', ['locale' => \Illuminate\Support\Facades\App::getLocale(), 'hizmetler' => $category]) }}">
+                    <img src="{{ $category->image }}" alt="{{ $category->title }}"
+                         style="padding-top: 80px;"
+                         data-aos="zoom-in" data-aos-delay="100">
+                </a>
+                <div>
+                    <div class="title-corners title-left" data-aos="fade-down">
+                        <span class="corner-line line1"></span>
+                        <span class="corner-line line2"></span>
+                        <span class="corner-line line3"></span>
+                        <span class="corner-line line4"></span>
+                        <h3 class="mb-0">{{ $category->title }}</h3>
                     </div>
-                </article>
-            @endforeach
-        @endif
+                    <div data-aos="fade-down" data-aos-delay="200">
+                        {!! $category->{"description_".app()->getLocale()} !!}
+                    </div>
+                </div>
+            </article>
+        @endforeach
     </section>
 
     <section class="container grid">
         <div>
             <div class="title-corners title-left" data-aos="fade-down">
-                <span class="corner-line line1" aria-hidden="true"></span>
-                <span class="corner-line line2" aria-hidden="true"></span>
-                <span class="corner-line line3" aria-hidden="true"></span>
-                <span class="corner-line line4" aria-hidden="true"></span>
+                <span class="corner-line line1"></span>
+                <span class="corner-line line2"></span>
+                <span class="corner-line line3"></span>
+                <span class="corner-line line4"></span>
 
-                <h5>Merak Ettikleriniz İçin</h5>
-                <h2 class="mb-0">Bizimle İletişime Geçin</h2>
+                <h5>{{ __('guest/home.contact.heading_small') }}</h5>
+                <h2 class="mb-0">{{ __('guest/home.contact.heading') }}</h2>
             </div>
 
-            <p data-aos="fade-down" data-aos-delay="100">Lorem ipsum dolor sit amet consectetur adipiscing elit egestas,
-                dictum quis sed ad justo aliquet vivamus,
-                torquent nascetur diam montes eget lobortis euismod. Rutrum sapien pretium mollis sociis laoreet fames
-                dignissim aliquet scelerisque proin per lacinia nullam faucibus.</p></p>
+            <p data-aos="fade-down" data-aos-delay="100">
+                {{ __('guest/home.contact.paragraph') }}
+            </p>
         </div>
 
-        <form method="post" action="{{ route('guest.iletisim.store') }}" data-aos="zoom-in" data-aos-delay="100">
+        <form method="POST" action="{{ route('guest.iletisim.store') }}"
+              data-aos="zoom-in" data-aos-delay="100">
             @csrf
 
-            <input type="text" name="name" id="name" placeholder="Adınız...">
+            <input type="text" name="name" id="name"
+                   placeholder="{{ __('guest/home.contact.name_placeholder') }}">
             @error('name')
             <small class="text-danger">{{ $message }}</small>
             @enderror
-            <input type="email" name="email" id="email" placeholder="E-posta adresiniz...">
+
+            <input type="email" name="email" id="email"
+                   placeholder="{{ __('guest/home.contact.email_placeholder') }}">
             @error('email')
             <small class="text-danger">{{ $message }}</small>
             @enderror
-            <textarea name="message" id="message" rows="8" placeholder="Mesjınız..."></textarea>
+
+            <textarea name="message" id="message" rows="8"
+                      placeholder="{{ __('guest/home.contact.message_placeholder') }}"></textarea>
             @error('message')
             <small class="text-danger">{{ $message }}</small>
             @enderror
-            <button type="submit" style="margin-left: 5px;">Gönder</button>
+
+            <button type="submit">{{ __('guest/home.contact.submit') }}</button>
 
             @if(session()->has('message'))
-                <p> {{ session('message') }} </p>
+                <p>{{ __('guest/home.contact.success') }}</p>
             @endif
         </form>
     </section>

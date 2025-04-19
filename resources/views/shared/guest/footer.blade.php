@@ -1,37 +1,35 @@
 <footer>
     <div class="container flex flex-wrap align-center space-between g-2">
-        <a href="{{ route('guest.home') }}" class="logo">
+        <a href="{{ route('guest.home', ['locale' => app()->getLocale()]) }}" class="logo">
             <img src="{{ asset('assets/mva-makina.svg') }}" alt="{{ config('app.name') }} logo">
         </a>
 
         <nav>
             <ul class="flex align-center justify-center flex-wrap uppercase">
-                <li><a href="{{ route('guest.home') }}">Anasayfa</a></li>
-                <li><a href="{{ route('guest.about') }}">Hakkımızda</a></li>
-                <li><a href="{{ route('guest.hizmetler.index') }}">Ürünler</a></li>
-                <li><a href="{{ route('guest.iletisim.index') }}">İletişim</a></li>
+                <li><a href="{{ route('guest.home', ['locale' => app()->getLocale()]) }}">{{ __('guest/footer.nav.home') }}</a></li>
+                <li><a href="{{ route('guest.about', ['locale' => app()->getLocale()]) }}">{{ __('guest/footer.nav.about') }}</a></li>
+                <li><a href="{{ route('guest.hizmetler.index', ['locale' => app()->getLocale()]) }}">{{ __('guest/footer.nav.products') }}</a></li>
+                <li><a href="{{ route('guest.iletisim.index', ['locale' => app()->getLocale()]) }}">{{ __('guest/footer.nav.contact') }}</a></li>
             </ul>
         </nav>
 
         <div>
             <p class="mb-1">
                 <i class="fa-light fa-location-pin"></i>
-
                 <a href="#">
-                    Şeyhli Mah. Vadi Sok. No:6 Aktürk Sanayi Sitesi - A46 34906 Pendik/İstanbul/Türkiye
+                    {{ __('guest/footer.contact.address') }}
                 </a>
             </p>
             <p class="mb-1">
                 <i class="fa-light fa-envelope"></i>
-                <a href="mailto:info@mvamakina.com">
-                    info@mvamakina.com
+                <a href="mailto:{{ __('guest/footer.contact.email') }}">
+                    {{ __('guest/footer.contact.email') }}
                 </a>
             </p>
-
             <p class="mb-1">
                 <i class="fa-light fa-phone"></i>
-                <a href="tel:+90 (216) 378 16 13">
-                    +90 (216) 378 16 13
+                <a href="tel:{{ __('guest/footer.contact.phone') }}">
+                    {{ __('guest/footer.contact.phone') }}
                 </a>
             </p>
         </div>
@@ -39,7 +37,9 @@
 
     <div class="copy">
         <div class="container flex flex-wrap align-center md-space-between justify-center">
-            <p class="txt-center mb-0">&copy; MVA Makina 2018-<span id="thisYear"></span>. Tüm Hakları Saklıdır. Developed by <a href="https://github.com/umuttokoglu">umuttokoglu</a>.</p>
+            <p class="txt-center mb-0">
+                {!! __('guest/footer.copyright', [ 'year' => date('Y'),'developer' => '<a href="https://github.com/umuttokoglu">umuttokoglu</a>']) !!}
+            </p>
 
             <ul class="flex align-center justify-center">
                 <li>

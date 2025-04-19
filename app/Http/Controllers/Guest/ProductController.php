@@ -23,7 +23,7 @@ class ProductController extends Controller
         return view('guest.products', compact('category', 'products'));
     }
 
-    public function show(Product $urunler): View
+    public function show(string $locale, Product $urunler): View
     {
         $product = $urunler;
 

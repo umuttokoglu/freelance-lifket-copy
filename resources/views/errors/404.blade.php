@@ -43,7 +43,7 @@
                 <h2>Merak Ettikleriniz İçin</h2>
                 <p>Bizimle İletişime Geçin</p>
             </div>
-            <a href="{{ route('guest.iletisim.index') }}" class="btn">Mesaj Gönder</a>
+            <a href="{{ route('guest.iletisim.index', ['locale' => \Illuminate\Support\Facades\App::getLocale()]) }}" class="btn">Mesaj Gönder</a>
         </div>
     </section>
 @endsection

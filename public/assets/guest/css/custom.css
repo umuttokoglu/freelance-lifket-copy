@@ -3,3 +3,22 @@
 .text-danger {
     color: #DC3545!important;
 }
+
+.lang-switcher {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 0.5rem; /* Bayraklar arası boşluk */
+}
+
+.lang-switcher__item a {
+    display: inline-block;
+    font-size: 1.0rem;   /* Bayrak boyutu */
+    padding: 0.25rem 0;  /* Alt çizginin a’ya yakın olması için */
+    text-decoration: none;
+}
+
+.lang-switcher__item.active a {
+    border-bottom: 2px solid currentColor; /* Renk otomatik bayrağın rengine göre değil, text-color’a göre */
+}

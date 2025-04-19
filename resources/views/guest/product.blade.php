@@ -1,16 +1,23 @@
 @extends('layout.guest.index')
 
 @section('content')
-    <section class="page-title-breadcump-image px-5x100" style="--bgimage: url('../../../assets/bg-image.jpg');"
+    <section class="page-title-breadcump-image px-5x100"
+             style="--bgimage: url('../../../assets/bg-image.jpg');"
              data-aos="fade-up" data-aos-delay="100">
         <div class="breadcump-image">
             <div class="breadcump-box">
                 <h1 class="mb-1">{{ $product->title }}</h1>
 
                 <div class="breadcump">
-                    <a href="{{ route('guest.home') }}">Anasayfa</a>
+                    <a href="{{ route('guest.home') }}">
+                        {{ __('guest/product.breadcrumb.home') }}
+                    </a>
                     <span class="breadcump-delimiter"></span>
-                    <a href="{{ route('guest.hizmetler.show', $product->category->parent_id) }}">{{ $product->category->title }}</a>
+                    <a href="{{
+                        route('guest.hizmetler.show', ['hizmetler' => $product->category->parent_id])
+                    }}">
+                        {{ __('guest/product.breadcrumb.category', ['category' => $product->category->title]) }}
+                    </a>
                 </div>
             </div>
         </div>
@@ -25,7 +32,8 @@
                         <div class="slider">
                             @foreach($product->images as $image)
                                 <div class="slide">
-                                    <img src="/{{ $image->path }}" alt="Görsel {{ $loop->iteration }}">
+                                    <img src="{{ asset($image->path) }}"
+                                         alt="{{ __('guest/product.slider_image_alt', ['index' => $loop->iteration]) }}">
                                 </div>
                             @endforeach
                         </div>
@@ -44,9 +52,11 @@
                 <div class="right-col">
                     <h2 data-aos="fade-down" data-aos-delay="100">{{ $product->title }}</h2>
 
-                    <h4 style="font-weight:bold; margin: 10px 0;">Öne Çıkan Özellikler</h4>
+                    <h4 style="font-weight:bold; margin: 10px 0;">
+                        {{ __('guest/product.key_features') }}
+                    </h4>
 
-                    @if($product->features)
+                    @if($product->features->isNotEmpty())
                         <ul class="list-group" data-aos="fade-down" data-aos-delay="100">
                             @foreach($product->features as $feature)
                                 <li class="list-group-item">» {{ $feature->feature }}</li>
@@ -55,29 +65,38 @@
                     @endif
                 </div>
             </div>
-            <!-- Alt Satır: Ürün Açıklaması (Tam Genişlik) -->
+
+            <!-- Alt Satır: Ürün Açıklaması -->
             <div class="bottom-row" data-aos="fade-down" data-aos-delay="300">
-                {!! $product->description_tr !!}
+                {!! $product->{ 'description_' . app()->getLocale() } !!}
             </div>
         </div>
 
         <div class="p-5x100">
             @if($similarProducts->isNotEmpty())
-                <h2 class="mt-5" data-aos="fade-down" data-aos-delay="100">{{ 'Benzer Ürünler' }}</h2>
+                <h2 class="mt-5" data-aos="fade-down" data-aos-delay="100">
+                    {{ __('guest/product.similar_products') }}
+                </h2>
 
                 <div class="grid gtc-4 mt-3">
-                    @foreach($similarProducts as $product)
+                    @foreach($similarProducts as $item)
                         <article class="post" data-aos="fade-right" data-aos-delay="100">
-                            <a href="{{ route('guest.urunler.show', $product->id) }}">
-                                <img src="/{{ $product->firstImage->path }}" alt="{{ $product->title }}">
+                            <a href="{{ route('guest.urunler.show', ['locale' => \Illuminate\Support\Facades\App::getLocale(), 'urunler' => $item->id] ) }}">
+                                <img src="{{ asset($item->firstImage->path) }}"
+                                     alt="{{ $item->title }}">
                             </a>
 
                             <h3>
-                                <a href="{{ route('guest.urunler.show', $product->id) }}">{{ $product->title }}</a>
+                                <a href="{{ route('guest.urunler.show', ['locale' => \Illuminate\Support\Facades\App::getLocale(), 'urunler' => $item->id]) }}">
+                                    {{ $item->title }}
+                                </a>
                             </h3>
 
-                            <a href="{{ route('guest.urunler.show', $product->id) }}" class="btn-arrow">Ürünü İncele <i
-                                    class="lnr lnr-arrow-right" aria-hidden="true"></i></a>
+                            <a href="{{ route('guest.urunler.show', ['locale' => \Illuminate\Support\Facades\App::getLocale(), 'urunler' => $item->id]) }}"
+                               class="btn-arrow">
+                                {{ __('guest/product.view_product') }}
+                                <i class="lnr lnr-arrow-right" aria-hidden="true"></i>
+                            </a>
                         </article>
                     @endforeach
                 </div>
@@ -88,10 +107,12 @@
     <section class="cta" data-aos="fade-up" data-aos-delay="100">
         <div class="container">
             <div>
-                <h2>Merak Ettikleriniz İçin</h2>
-                <p>Bizimle İletişime Geçin</p>
+                <h2>{{ __('guest/product.cta.title') }}</h2>
+                <p>{{ __('guest/product.cta.subtitle') }}</p>
             </div>
-            <a href="{{ route('guest.iletisim.index') }}" class="btn">Mesaj Gönder</a>
+            <a href="{{ route('guest.iletisim.index', ['locale' => \Illuminate\Support\Facades\App::getLocale()]) }}" class="btn">
+                {{ __('guest/product.cta.button') }}
+            </a>
         </div>
     </section>
 @endsection

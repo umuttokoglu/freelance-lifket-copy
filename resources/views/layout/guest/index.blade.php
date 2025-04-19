@@ -12,33 +12,39 @@
 
     <!-- title page & SEO meta -->
     <title>{{ config('app.name') }}</title>
-    <meta name="description" content="Versatile and powerful HTML template to quickly create a professional website for your architecture studio or construction company">
-    <meta name="keywords" content="architects, builders, website, html template, website template, landing page, responsive, html5 themes, multipurpose template, html, html5, css, template, themes">
+    <meta name="description" content="{{ __('guest/layout.meta.description') }}">
+    <meta name="keywords" content="{{ __('guest/layout.meta.keywords') }}">
 
     @include('shared.guest.css')
 </head>
 
 <body>
-<a href="#main" class="skip-to-content">Skip to content</a>
+<a href="#main" class="skip-to-content">
+    {{ __('guest/layout.skip_to_content') }}
+</a>
 
 <div id="preload">
     <div class="container">
-        <img src="{{ asset('assets/admin/img/mva-makina.svg') }}" width="250" alt="{{ config('app.name') }} logo">
-        <span>Yükleniyor...</span>
+        <img src="{{ asset('assets/admin/img/mva-makina.svg') }}"
+             width="250"
+             alt="{{ config('app.name') }} logo">
+        <span>{{ __('guest/layout.loading') }}</span>
     </div>
 </div>
 
 @include('shared.guest.header')
 
 <main id="main">
-@yield('content')
+    @yield('content')
 </main>
 
 @include('shared.guest.footer')
 
 <button id="goTop">
     <i class="lnr lnr-chevron-up"></i>
-    <span class="sr-only">Yukarıya Dön</span>
+    <span class="sr-only">
+        {{ __('guest/layout.go_top') }}
+    </span>
 </button>
 
 @include('shared.guest.js')

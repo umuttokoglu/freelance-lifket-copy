@@ -17,7 +17,7 @@ class CategoryController extends Controller
 
         return view('guest.categories', compact('categories'));
     }
-    public function show(Category $hizmetler): View
+    public function show(string $locale, Category $hizmetler): View
     {
         $subCategories = Category::query()
             ->where('parent_id', $hizmetler->id)
