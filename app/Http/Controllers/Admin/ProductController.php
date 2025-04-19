@@ -24,7 +24,7 @@ class ProductController extends Controller
     {
         $subCategories = Category::query()
             ->whereNotNull('parent_id')
-            ->orderByDesc('title')
+            ->orderByDesc('title_tr')
             ->get();
 
         $products = Product::query()
