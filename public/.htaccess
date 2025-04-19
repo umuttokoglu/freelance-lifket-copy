@@ -22,4 +22,8 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+    RewriteEngine On
+    RewriteCond %{HTTP_HOST} ^www\.deltavinc\.com\.tr [NC]
+    RewriteRule ^(.*)$ http://deltavinc.com.tr/$1 [L,R=301]
 </IfModule>
