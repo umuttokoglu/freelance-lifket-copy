@@ -23,7 +23,11 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 
-    RewriteEngine On
-    RewriteCond %{HTTP_HOST} ^www\.deltavinc\.com\.tr [NC]
-    RewriteRule ^(.*)$ http://deltavinc.com.tr/$1 [L,R=301]
+    # www'den non-www'ye yönlendirme
+    RewriteCond %{HTTP_HOST} ^www\.deltavinc\.com\.tr$ [NC]
+    RewriteRule ^(.*)$ https://deltavinc.com.tr/$1 [L,R=301]
+
+    # HTTP'den HTTPS'ye yönlendirme
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://deltavinc.com.tr/$1 [L,R=301]
 </IfModule>
