@@ -15,10 +15,43 @@ class Product extends Model
     protected $fillable = [
         'category_id',
         'image',
-        'title',
+        'title_tr',
+        'title_en',
         'description_tr',
         'description_en',
     ];
+
+    public function getTitleAttribute(): ?string
+    {
+        $locale = app()->getLocale();                                   // "tr" or "en"
+        $key    = "title_{$locale}";                                    // "title_tr" or "title_en"
+
+        // if that column exists and not null, return it
+        if (! empty($this->attributes[$key] ?? null)) {
+            return $this->attributes[$key];
+        }
+
+        // otherwise try fallback locale
+        $fallback = config('app.fallback_locale');
+        $fallbackKey = "title_{$fallback}";
+        return $this->attributes[$fallbackKey] ?? null;
+    }
+
+    public function getDescriptionAttribute(): ?string
+    {
+        $locale = app()->getLocale();                                   // "tr" or "en"
+        $key    = "description_{$locale}";                                    // "title_tr" or "title_en"
+
+        // if that column exists and not null, return it
+        if (! empty($this->attributes[$key] ?? null)) {
+            return $this->attributes[$key];
+        }
+
+        // otherwise try fallback locale
+        $fallback = config('app.fallback_locale');
+        $fallbackKey = "description_{$fallback}";
+        return $this->attributes[$fallbackKey] ?? null;
+    }
 
     // Ürünün ait olduğu kategori
     public function category(): BelongsTo
@@ -45,10 +78,6 @@ class Product extends Model
     // Ürünün kaydedilmiş ilk görselini almak için ilişki
     public function firstImage()
     {
-        // Laravel 8 ve sonrası için oldestOfMany kullanabilirsiniz,
-        // veya klasik yöntemle orderBy kullanarak da yazabilirsiniz:
         return $this->hasOne(ProductImage::class)->oldestOfMany();
-        // Alternatif:
-        // return $this->hasOne(ProductImage::class)->orderBy('created_at', 'asc');
     }
 }

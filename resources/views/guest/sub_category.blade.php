@@ -35,7 +35,7 @@
                     <div class="grid gtc-2-1 mb-5">
                         <div data-aos="fade-down" data-aos-delay="100">
                             <h2 class="uppercase">{{ $subCategory->title }}</h2>
-                            {!! $subCategory->{'description_'.app()->getLocale()} !!}
+                            {!! $subCategory->description !!}
 
                             <a class="btn mt-3"
                                href="{{ route('guest.urunler.index', ['locale' => \Illuminate\Support\Facades\App::getLocale(), 'sub_category' => $subCategory->id]) }}">

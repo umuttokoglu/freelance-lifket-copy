@@ -56,11 +56,19 @@
                             <small class="text text-danger">{{ $message }}</small>
                             @enderror
 
-                            <label for="title" class="form-label mt-4">{{ __('admin/category.edit.form.title.label') }}</label>
-                            <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $category->title) }}"
-                                   placeholder="{{ __('admin/category.edit.form.title.placeholder') }}">
+                            <label for="title_tr" class="form-label mt-4">{{ 'Ana Kategori Adı (TR)' }}</label>
+                            <input type="text" class="form-control" id="title_tr" name="title_tr" value="{{ old('title_tr', $category->title_tr) }}"
+                                   placeholder="{{ 'Ana Kategori için Türkçe başlık...' }}">
 
-                            @error('title')
+                            @error('title_tr')
+                            <small class="text text-danger">{{ $message }}</small>
+                            @enderror
+
+                            <label for="title_en" class="form-label mt-4">{{ 'Ana Kategori Adı (EN)' }}</label>
+                            <input type="text" class="form-control" id="title_en" name="title_en" value="{{ old('title_en', $category->title_en) }}"
+                                   placeholder="{{ 'Ana Kategori için İngilizçe başlık...' }}">
+
+                            @error('title_en')
                             <small class="text text-danger">{{ $message }}</small>
                             @enderror
                         </div>

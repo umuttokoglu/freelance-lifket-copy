@@ -6,20 +6,20 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProductFeatureRequest extends FormRequest
 {
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
-            'existing_features_ids' => 'nullable|array',
-            'existing_features_ids.*' => 'integer',
-            'existing_features' => 'nullable|array',
-            'existing_features.*' => 'nullable|string|max:255',
-            'new_features' => 'nullable|array',
-            'new_features.*' => 'nullable|string|max:255',
+            'existing_features_ids'   => 'array',
+            'existing_features_ids.*' => 'integer|exists:product_features,id',
+            'existing_features_tr'    => 'array',
+            'existing_features_en'    => 'array',
+            'new_features_tr'         => 'array',
+            'new_features_en'         => 'array',
         ];
     }
 }

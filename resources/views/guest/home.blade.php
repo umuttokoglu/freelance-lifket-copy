@@ -73,7 +73,7 @@
                         <h3 class="mb-0">{{ $category->title }}</h3>
                     </div>
                     <div data-aos="fade-down" data-aos-delay="200">
-                        {!! $category->{"description_".app()->getLocale()} !!}
+                        {!! $category->description !!}
                     </div>
                 </div>
             </article>

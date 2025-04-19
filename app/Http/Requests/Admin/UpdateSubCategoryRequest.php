@@ -16,7 +16,8 @@ class UpdateSubCategoryRequest extends FormRequest
     {
         return [
             'parent_id' => ['required', 'integer', 'exists:categories,id'],
-            'title' => ['required', 'string', 'max:255', 'min:5'],
+            'title_tr' => ['required', 'string', 'max:255', 'min:5'],
+            'title_en' => ['required', 'string', 'max:255', 'min:5'],
             'image' => ['sometimes', 'file', 'mimes:jpg,png', 'max:1000'],
             'description_tr' => ['required', 'string', 'max:1000', 'min:5'],
             'description_en' => ['required', 'string', 'max:1000', 'min:5'],
@@ -27,7 +28,8 @@ class UpdateSubCategoryRequest extends FormRequest
     {
         return [
             'parent_id' => __('admin/category.create.form.parent_id.label'),
-            'title' => __('admin/category.create.form.title.label'),
+            'title_tr' => 'Alt Kategori Adı (TR)',
+            'title_en' => 'Alt Kategori Adı (EN)',
             'image' => __('admin/category.create.form.image'),
             'description_tr' => __('admin/category.create.form.description_tr.label'),
             'description_en' => __('admin/category.create.form.description_en.label'),

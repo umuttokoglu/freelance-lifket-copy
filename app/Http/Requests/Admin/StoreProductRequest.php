@@ -16,7 +16,8 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'category_id' => ['required', 'exists:categories,id'],
-            'title' => ['required', 'string', 'max:255', 'min:5'],
+            'title_tr' => ['required', 'string', 'max:255', 'min:5'],
+            'title_en' => ['required', 'string', 'max:255', 'min:5'],
             'temporary_images' => ['required', 'string'],
             'description_tr' => ['required', 'string', 'max:15000', 'min:5'],
             'description_en' => ['required', 'string', 'max:15000', 'min:5'],
@@ -27,7 +28,8 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'category_id' => 'Alt Kategori',
-            'title' => 'Ürün Adı',
+            'title_tr' => 'Ürün Adı (TR)',
+            'title_en' => 'Ürün Adı (EN)',
             'temporary_images' => 'Ürün Görsel(ler)i',
             'description_tr' => 'Ürün Açıklama (TR)',
             'description_en' => 'Ürün Açıklama (EN)',

@@ -68,7 +68,7 @@
 
             <!-- Alt Satır: Ürün Açıklaması -->
             <div class="bottom-row" data-aos="fade-down" data-aos-delay="300">
-                {!! $product->{ 'description_' . app()->getLocale() } !!}
+                {!! $product->description !!}
             </div>
         </div>
 

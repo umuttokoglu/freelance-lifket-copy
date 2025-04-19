@@ -51,7 +51,7 @@
 
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}" @selected(old('parent_id', $subCategory->parent_id) == $category->id)>
-                                    {{ $category->title }}
+                                    {{ $category->title_tr }}
                                 </option>
                             @endforeach
                         </select>
@@ -74,11 +74,19 @@
                             <small class="text text-danger">{{ $message }}</small>
                             @enderror
 
-                            <label for="title" class="form-label mt-4">{{ 'Alt Kategori Adı' }}</label>
-                            <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $subCategory->title) }}"
-                                   placeholder="{{ 'Alt Kategori İçin Başlık' }}">
+                            <label for="title_tr" class="form-label mt-4">{{ 'Alt Kategori Adı (TR)' }}</label>
+                            <input type="text" class="form-control" id="title_tr" name="title_tr" value="{{ old('title_tr', $subCategory->title_tr) }}"
+                                   placeholder="{{ 'Alt Kategori İçin Türkçe Başlık' }}">
 
-                            @error('title')
+                            @error('title_tr')
+                            <small class="text text-danger">{{ $message }}</small>
+                            @enderror
+
+                            <label for="title_en" class="form-label mt-4">{{ 'Alt Kategori Adı (EN)' }}</label>
+                            <input type="text" class="form-control" id="title_en" name="title_en" value="{{ old('title_en', $subCategory->title_en) }}"
+                                   placeholder="{{ 'Alt Kategori İçin Türkçe Başlık' }}">
+
+                            @error('title_en')
                             <small class="text text-danger">{{ $message }}</small>
                             @enderror
                         </div>

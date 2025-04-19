@@ -42,7 +42,7 @@
                                     @foreach($subCategories as $subCategory)
                                         <option
                                             value="{{ $subCategory->id }}" @selected(request()->integer('category_id') == $subCategory->id)>
-                                            {{ $subCategory->title }}
+                                            {{ $subCategory->title_tr }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -101,10 +101,10 @@
                             @foreach($products as $product)
                                 <tr>
                                     <td>
-                                        <p>{{ $product->title }}</p>
+                                        <p>{{ $product->title_tr }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <p>{{ \Illuminate\Support\Str::limit($product->category->title, 30) }}</p>
+                                        <p>{{ \Illuminate\Support\Str::limit($product->category->title_tr, 30) }}</p>
                                     </td>
                                     <td class="text-center">
                                        <span class="badge badge-success image-count"
@@ -125,8 +125,7 @@
                                             <a href="{{ route('admin.product.feature.add', ['product' => $product]) }}"
                                                class="action-btn btn-view bs-tooltip me-2"
                                                data-toggle="tooltip" data-placement="top"
-                                               title="{{ 'Ürüne Özellik Ekle' }}"
-                                               target="_blank">
+                                               title="{{ 'Ürüne Özellik Ekle' }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -139,8 +138,7 @@
                                             <a href="{{ route('admin.similar-products.edit', ['similar_product' => $product]) }}"
                                                class="action-btn btn-view bs-tooltip me-2"
                                                data-toggle="tooltip" data-placement="top"
-                                               title="{{ 'Benzer Ürün Seç' }}"
-                                               target="_blank">
+                                               title="{{ 'Benzer Ürün Seç' }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

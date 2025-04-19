@@ -47,7 +47,7 @@
                     @csrf
                     <input type="hidden" name="temporary_images" id="temporary_images">
 
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="category_id" class="form-label">{{ 'Alt Kategori' }}</label>
                         <select id="category_id" name="category_id" placeholder="Alt Kategori Seç..." autocomplete="off"
                                 class="form-control">
@@ -56,7 +56,7 @@
                             @foreach($subCategories as $subCategory)
                                 <option
                                     value="{{ $subCategory->id }}" @selected(old('category_id') == $subCategory->id)>
-                                    {{ $subCategory->title }}
+                                    {{ $subCategory->title_tr }}
                                 </option>
                             @endforeach
                         </select>
@@ -67,11 +67,21 @@
                     </div>
 
                     <div class="col-md-6">
-                        <label for="title" class="form-label">{{ 'Ürün Adı' }}</label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}"
-                               placeholder="{{ 'Ürün için başlık' }}">
+                        <label for="title_tr" class="form-label">{{ 'Ürün Adı (TR)' }}</label>
+                        <input type="text" class="form-control" id="title_tr" name="title_tr" value="{{ old('title_tr') }}"
+                               placeholder="{{ 'Ürün için başlık (TR)' }}">
 
-                        @error('title')
+                        @error('title_tr')
+                        <small class="text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="title_en" class="form-label">{{ 'Ürün Adı (EN)' }}</label>
+                        <input type="text" class="form-control" id="title_en" name="title_en" value="{{ old('title_en') }}"
+                               placeholder="{{ 'Ürün için başlık (EN)' }}">
+
+                        @error('title_en')
                         <small class="text text-danger">{{ $message }}</small>
                         @enderror
                     </div>

@@ -64,7 +64,7 @@
                                         <img src="/{{ $category->image }}" width="150" alt="">
                                     </td>
                                     <td>
-                                        <p>{{ \Illuminate\Support\Str::limit($category->title, 30) }}</p>
+                                        <p>{{ \Illuminate\Support\Str::limit($category->title_tr, 30) }}</p>
                                     </td>
                                     <td class="text-center">
                                         <a href="{{ route('admin.sub-category.index') }}"

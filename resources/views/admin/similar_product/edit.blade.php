@@ -27,7 +27,7 @@
             <div class="widget-header">
                 <div class="row mb-4">
                     <div class="col-xl-6 col-md-6 col-sm-6 col-6">
-                        <h4>{{ $product->title . ' Ürününe Benzer Ürünler' }}</h4>
+                        <h4>{{ $product->title_tr . ' Ürününe Benzer Ürünler' }}</h4>
                     </div>
                 </div>
 
@@ -38,10 +38,10 @@
                 <div class="row mb-5">
                     <div class="row col-md-6">
                         <div class="col-md-4">
-                            <img src="/{{ $product->images()->first()->path }}" alt="{{ $product->title }}" class="w-100">
+                            <img src="/{{ $product->images()->first()->path }}" alt="{{ $product->title_tr }}" class="w-100">
                         </div>
                         <div class="col-md-8">
-                            <p>{{ $product->title }}</p>
+                            <p>{{ $product->title_tr }}</p>
                         </div>
                     </div>
 
@@ -94,7 +94,7 @@
                             @foreach($similarProducts as $product)
                                 <tr>
                                     <td>
-                                        <p>{{ $product->title }}</p>
+                                        <p>{{ $product->title_tr }}</p>
                                     </td>
                                     <td class="text-center">
                                         <div class="action-btns">

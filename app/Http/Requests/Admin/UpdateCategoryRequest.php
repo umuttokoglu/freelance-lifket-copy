@@ -14,7 +14,8 @@ class UpdateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'max:255', 'min:5'],
+            'title_tr' => ['required', 'string', 'max:255', 'min:5'],
+            'title_en' => ['required', 'string', 'max:255', 'min:5'],
             'image' => ['sometimes', 'file', 'mimes:jpg,png', 'max:1000'],
             'description_tr' => ['required', 'string', 'max:1000', 'min:5'],
             'description_en' => ['required', 'string', 'max:1000', 'min:5'],
@@ -24,7 +25,8 @@ class UpdateCategoryRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'title' => __('admin/category.create.form.title.label'),
+            'title_tr' => 'Kategori Adı (TR)',
+            'title_en' => 'Kategori Adı (EN)',
             'image' => __('admin/category.create.form.image'),
             'description_tr' => __('admin/category.create.form.description_tr.label'),
             'description_en' => __('admin/category.create.form.description_en.label'),

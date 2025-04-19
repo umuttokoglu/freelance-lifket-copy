@@ -34,7 +34,7 @@
             <span class="corner-line line4" aria-hidden="true"></span>
 
             <h2>{{ $category->title }}</h2>
-            {!! $category->{'description_'.app()->getLocale()} !!}
+            {!! $category->description !!}
         </div>
 
         <div class="grid gtc-3">

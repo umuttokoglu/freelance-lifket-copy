@@ -42,7 +42,7 @@
                       enctype="multipart/form-data">
                     @csrf
 
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label for="parent_id" class="form-label">{{ __('admin/category.create.form.parent_id.label') }}</label>
                         <select id="parent_id" name="parent_id" placeholder="Ana Kategori Seç..." autocomplete="off"
                                 class="form-control">
@@ -50,7 +50,7 @@
 
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}" @selected(old('parent_id') == $category->id)>
-                                    {{ $category->title }}
+                                    {{ $category->title_tr }}
                                 </option>
                             @endforeach
                         </select>
@@ -70,11 +70,21 @@
                     </div>
 
                     <div class="col-md-6">
-                        <label for="title" class="form-label">{{ 'Alt Ürün Kategorisi Adı' }}</label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}"
-                               placeholder="{{ __('admin/category.create.form.title.placeholder') }}">
+                        <label for="title_tr" class="form-label">{{ 'Alt Ürün Kategorisi Adı (TR)' }}</label>
+                        <input type="text" class="form-control" id="title_tr" name="title_tr" value="{{ old('title_tr') }}"
+                               placeholder="{{ 'Alt Ürün Kategorisi için Türkçe başlık giriniz...' }}">
 
-                        @error('title')
+                        @error('title_tr')
+                        <small class="text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="title_en" class="form-label">{{ 'Alt Ürün Kategorisi Adı (EN)' }}</label>
+                        <input type="text" class="form-control" id="title_en" name="title_en" value="{{ old('title_en') }}"
+                               placeholder="{{ 'Alt Ürün Kategorisi için İngilizce başlık giriniz...' }}">
+
+                        @error('title_en')
                         <small class="text text-danger">{{ $message }}</small>
                         @enderror
                     </div>

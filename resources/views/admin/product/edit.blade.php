@@ -2,7 +2,7 @@
 
 @extends('layout.admin.index')
 
-@section('adminPageTitle', __('admin/category.edit.title', ['category' => $product->title]))
+@section('adminPageTitle', __('admin/category.edit.title', ['category' => $product->title_tr]))
 
 @section('adminBreadcrumb')
     <li class="breadcrumb-item active">
@@ -12,7 +12,7 @@
     </li>
 
     <li class="breadcrumb-item">
-        {{ __('admin/category.edit.title', ['category' => $product->title]) }}
+        {{ __('admin/category.edit.title', ['category' => $product->title_tr]) }}
     </li>
 @endsection
 
@@ -78,7 +78,7 @@
             <div class="widget-header">
                 <div class="row">
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                        <h4>{{ __('admin/category.edit.title', ['category' => $product->title]) }}</h4>
+                        <h4>{{ __('admin/category.edit.title', ['category' => $product->title_tr]) }}</h4>
                     </div>
                 </div>
             </div>
@@ -122,7 +122,7 @@
 
                             @foreach($subCategories as $subCategory)
                                 <option value="{{ $subCategory->id }}" @selected(old('category_id', $product->category_id) == $subCategory->id)>
-                                    {{ $subCategory->title }}
+                                    {{ $subCategory->title_tr }}
                                 </option>
                             @endforeach
                         </select>
@@ -132,13 +132,25 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label for="title" class="form-label mt-4">{{ 'Ürün Adı' }}</label>
-                            <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $product->title) }}"
-                                   placeholder="{{ 'Ürün için bir isim giriniz...' }}">
+                            <label for="title_tr" class="form-label mt-4">{{ 'Ürün Adı (TR)' }}</label>
+                            <input type="text" class="form-control" id="title_tr" name="title_tr" value="{{ old('title_tr', $product->title_tr) }}"
+                                   placeholder="{{ 'Ürün için Türkçe bir isim giriniz...' }}">
 
-                            @error('title')
+                            @error('title_tr')
+                            <small class="text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="title_en" class="form-label mt-4">{{ 'Ürün Adı (EN)' }}</label>
+                            <input type="text" class="form-control" id="title_en" name="title_en" value="{{ old('title_en', $product->title_en) }}"
+                                   placeholder="{{ 'Ürün için İngilizce bir isim giriniz...' }}">
+
+                            @error('title_en')
                             <small class="text text-danger">{{ $message }}</small>
                             @enderror
                         </div>

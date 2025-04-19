@@ -14,6 +14,7 @@ use App\Models\ProductImage;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -222,47 +223,48 @@ class ProductController extends Controller
         return view('admin.product.update_feature', compact('product'));
     }
 
-    public function updateFeature(UpdateProductFeatureRequest $request, Product $product)
+    public function updateFeature(Request $request, Product $product)
     {
-        // Formda gönderilen mevcut özellik id'leri (hidden input olarak gönderiliyor)
-        $submittedIds = $request->input('existing_features_ids', []);
-        // Formda gönderilen mevcut özelliklerin değerleri (anahtar: feature id)
-        $submittedFeatures = $request->input('existing_features', []);
+        $existingTr = $request->input('existing_features_tr', []);
+        $existingEn = $request->input('existing_features_en', []);
+        $newTr      = $request->input('new_features_tr',   []);
+        $newEn      = $request->input('new_features_en',   []);
 
-        // İşlem: Mevcut özellikler üzerinde güncelleme veya silme
-        foreach ($product->features as $feature) {
-            // Eğer formda bu özellik gönderilmişse
-            if (in_array($feature->id, $submittedIds)) {
-                $newValue = $submittedFeatures[$feature->id] ?? null;
-                if (!empty($newValue)) {
-                    // Yeni değer boş değilse, güncelle
-                    $feature->update(['feature' => $newValue]);
-                } else {
-                    // Değer boşsa, sil
-                    $feature->delete();
+        DB::transaction(function() use ($product, $existingTr, $existingEn, $newTr, $newEn) {
+            $product->features()->delete();
+
+            $all = [];
+
+            foreach ($existingTr as $key => $tr) {
+                $en = $existingEn[$key] ?? '';
+                $all[] = [
+                    'feature_tr' => trim($tr),
+                    'feature_en' => trim($en),
+                ];
+            }
+
+            foreach ($newTr as $i => $tr) {
+                $en = $newEn[$i] ?? '';
+                $all[] = [
+                    'feature_tr' => trim($tr),
+                    'feature_en' => trim($en),
+                ];
+            }
+
+            foreach ($all as $data) {
+                if ($data['feature_tr'] !== '' || $data['feature_en'] !== '') {
+                    $product->features()->create($data);
                 }
-            } else {
-                // Formda yer almayan özellikler, silinecek
-                $feature->delete();
             }
-        }
+        });
 
-        // İşlem: Yeni özelliklerin eklenmesi
-        $newFeatures = $request->input('new_features', []);
-        foreach ($newFeatures as $newFeature) {
-            if (!empty($newFeature)) {
-                $product->features()->create(['feature' => $newFeature]);
-            }
-        }
-
-        session()->flash('message', 'Özellikler başarıyla eklendi.');
+        session()->flash('message', 'Özellikler başarıyla güncellendi.');
 
         return redirect()->route('admin.products.index');
     }
 
     public function uploadDescriptionImage(Request $request)
     {
-        // 'upload' adındaki input, CKEditor tarafından gönderilen dosya adıdır.
         $request->validate([
             'upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -274,13 +276,7 @@ class ProductController extends Controller
             $image->move($destinationPath, $imageName);
 
             $url = asset('uploads/products/' . $imageName);
-            /*
-            CKEditor 5 beklediği yapı genellikle şu şekilde:
-            {
-              "uploaded": true,
-              "url": "görsel_url"
-            }
-            */
+
             return response()->json([
                 'uploaded' => true,
                 'url' => $url,
