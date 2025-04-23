@@ -416,7 +416,7 @@ header nav#navbar ul li:last-child {
 }
 header nav#navbar ul li,
 header nav#navbar ul li a {
-	font-size: .8rem;
+	font-size: 1.0rem;
 	font-weight: 500;
 	text-transform: uppercase;
 	padding-block: .5rem;
@@ -650,41 +650,14 @@ header #search-form {
 *	8. SERVICES
 -------------------------------------------------------*/
 .service-block {
+    gap: 0;
+}
+.service-block div {
     display: grid;
-    grid-template-columns: 30% 60%;
-    column-gap: 10%;
-    align-items: center;
-}
-
-/* Alternatif sıralama için grid alanlarını tanımlıyoruz */
-.service-block:nth-child(odd) {
-    grid-template-areas: "img text";
-}
-.service-block:nth-child(even) {
-    grid-template-areas: "text img";
-}
-
-/* Görsel ve metin konteynerine grid alanı ataması */
-.service-block a {
-    grid-area: img;
-}
-
-/* Sadece dış metin konteynerini hedefliyoruz */
-.service-block > div {
-    grid-area: text;
-    display: grid;
-    grid-template-rows: auto auto; /* Başlık ve açıklama için iki satır */
-    gap: 1rem; /* Satırlar arasında boşluk */
+    place-content: center;
+    place-items: start;
     padding: 10%;
 }
-
-/* Görselin kapsayıcıya tam oturması */
-.service-block a img {
-    width: 100%;
-    height: auto;
-}
-
-/* Ek servis stilleri */
 .service {
     padding: 2rem;
     border: .1rem solid var(--grey);
@@ -693,6 +666,7 @@ header #search-form {
     font-size: 3rem;
     margin-bottom: 1.5rem;
 }
+
 /*-------------------------------------------------------
 *	9. PROJECTS
 -------------------------------------------------------*/

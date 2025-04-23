@@ -11,13 +11,13 @@ return [
     'section' => [
         'small_title' => 'Bir Mesaj Yazın',
         'heading'     => 'Bizimle İletişime Geçin',
-        'intro'       => 'Lorem ipsum dolor sit amet consectetur adipiscing elit egestas, dictum quis sed ad justo aliquet vivamus, torquent nascetur diam montes eget lobortis euismod. Rutrum sapien pretium mollis sociis laoreet fames dignissim aliquet scelerisque proin per lacinia nullam faucibus.',
+        'intro'       => 'Delta zincirli vinçler ve kaldırma ekipmanları ile ilgili daha detaylı bilgi almak için bizimle her zaman iletişime geçebilirsiniz.',
     ],
 
     'details' => [
-        'address' => 'Şeyhli Mah. Vadi Sok. No:6 Aktürk Sanayi Sitesi - A46 34906 Pendik/İstanbul/Türkiye',
-        'email'   => 'info@mvamakina.com',
-        'phone'   => '+90 (216) 378 16 13',
+        'address' => 'Şeyhli Mah. Vadi Sok. No:6/A46 Pendik / İstanbul / Türkiye',
+        'email'   => 'satis@deltavinc.com.tr',
+        'phone'   => '+90 (532) 345 64 27',
     ],
 
     'form' => [

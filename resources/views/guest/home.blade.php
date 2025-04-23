@@ -4,41 +4,33 @@
     <section class="hero-slider" data-aos="fade-down" data-aos-delay="100">
         <ul class="hero-slide">
             <li class="active" data-slide="1">
-                <img src="{{ asset('assets/guest/img/slide1.jpg') }}"
-                     alt="{{ config('app.name') }}">
+                <img src="{{ asset('assets/guest/img/slide1.jpg') }}" alt="{{ config('app.name') }}">
                 <div class="hero-box" data-aos="fade-down">
                     <h2>{{ __('guest/home.slider.1') }}</h2>
-                    <a class="btn-plus" href="#">
-                        <i class="lnr lnr-cross"></i>
+                    <a class="btn"
+                       href="{{ route('guest.hizmetler.index', ['locale' => app()->getLocale()]) }}">
+                        {{ __('guest/sub_category.view_products') }}
                     </a>
                 </div>
             </li>
+
             <li data-slide="2">
-                <img src="{{ asset('assets/guest/img/slide2.jpg') }}"
-                     alt="{{ config('app.name') }}">
+                <img src="{{ asset('assets/guest/img/slide2.png') }}" alt="{{ config('app.name') }}">
                 <div class="hero-box" data-aos="fade-down">
                     <h2>{{ __('guest/home.slider.2') }}</h2>
-                    <a class="btn-plus" href="#">
-                        <i class="lnr lnr-cross"></i>
-                    </a>
-                </div>
-            </li>
-            <li data-slide="3">
-                <img src="{{ asset('assets/guest/img/slide3.jpg') }}"
-                     alt="{{ config('app.name') }}">
-                <div class="hero-box" data-aos="fade-down">
-                    <h2>{{ __('guest/home.slider.3') }}</h2>
-                    <a class="btn-plus" href="#">
-                        <i class="lnr lnr-cross"></i>
+                    <a class="btn " href="{{ route('guest.hizmetler.index', ['locale' => app()->getLocale()]) }}">
+                        {{ __('guest/home.contact.heading') }}
                     </a>
                 </div>
             </li>
         </ul>
+
         <div class="hero-commands">
             <button id="hero-btn-prev">
                 <i class="lnr lnr-chevron-left"></i>
                 <span class="sr-only">Geri</span>
             </button>
+
             <button id="hero-btn-next">
                 <i class="lnr lnr-chevron-right"></i>
                 <span class="sr-only">İleri</span>
@@ -46,7 +38,7 @@
         </div>
     </section>
 
-    <section class="pt-3">
+    <section class="pt-3 p-5x100">
         <div class="title-corners" data-aos="fade-up">
             <span class="corner-line line1"></span>
             <span class="corner-line line2"></span>
@@ -57,27 +49,45 @@
             <p>{{ __('guest/home.products.description') }}</p>
         </div>
 
-        @foreach($categories as $category)
-            <article class="grid service-block">
-                <a href="{{ route('guest.hizmetler.show', ['locale' => \Illuminate\Support\Facades\App::getLocale(), 'hizmetler' => $category]) }}">
-                    <img src="{{ $category->image }}" alt="{{ $category->title }}"
-                         style="padding-top: 80px;"
-                         data-aos="zoom-in" data-aos-delay="100">
-                </a>
-                <div>
-                    <div class="title-corners title-left" data-aos="fade-down">
-                        <span class="corner-line line1"></span>
-                        <span class="corner-line line2"></span>
-                        <span class="corner-line line3"></span>
-                        <span class="corner-line line4"></span>
+        <div class="grid gtc-3">
+            @foreach($categories as $category)
+                <article>
+                    <a href="{{ route('guest.hizmetler.show', ['locale' => app()->getLocale(), 'hizmetler' => $category]) }}">
+                        <img src="{{ $category->image }}" alt="{{ $category->title }}"
+                             style="padding-top: 80px;"
+                             data-aos="zoom-in" data-aos-delay="100">
+
                         <h3 class="mb-0">{{ $category->title }}</h3>
-                    </div>
-                    <div data-aos="fade-down" data-aos-delay="200">
-                        {!! $category->description !!}
-                    </div>
-                </div>
-            </article>
-        @endforeach
+                    </a>
+                </article>
+            @endforeach
+        </div>
+    </section>
+
+    <section class="pt-3 p-5x100">
+        <div>
+            <div class="title-corners" data-aos="fade-up">
+                <span class="corner-line line1"></span>
+                <span class="corner-line line2"></span>
+                <span class="corner-line line3"></span>
+                <span class="corner-line line4"></span>
+
+                <h2>{{ __('guest/about.company_name') }}</h2>
+                <p>{{ __('guest/about.description') }}</p>
+            </div>
+
+            <p data-aos="fade-down" data-aos-delay="100">
+                {{ __('guest/about.paragraph1') }}
+                {{ __('guest/about.paragraph2') }}
+                {{ __('guest/about.paragraph3') }}
+            </p>
+
+            <p data-aos="fade-down" data-aos-delay="100">
+                {{ __('guest/about.paragraph4') }}
+                {{ __('guest/about.paragraph5') }}
+                {{ __('guest/about.paragraph6') }}
+            </p>
+        </div>
     </section>
 
     <section class="container grid">
