@@ -6,7 +6,7 @@ return [
     'go_top'          => 'Yukarıya Dön',
 
     'meta' => [
-        'description' => 'Mimarlık stüdyonuz veya inşaat şirketiniz için profesyonel bir web sitesi oluşturmayı hızla sağlayan çok yönlü ve güçlü HTML şablonu',
-        'keywords'    => 'mimarlar, inşaatçılar, web sitesi, html şablon, açılış sayfası, duyarlı, html5 temalar, çok amaçlı şablon, html, html5, css, tema',
+        'description' => 'DELTA, kaldırma ekipmanları konusunda hizmet veren Hollanda merkezli bir üreticidir. Geçmişi 1960 yılına kadar uzanan firma, aradan geçen yıllarda kaldırma ekipmanları alanında uzman bir marka haline gelmiştir. Kaliteli ve uygun fiyatlı ürünleri ile DELTA artık Türkiye’de siz değerli müşterilerine hizmet vermeye başlamıştır.',
+        'keywords'    => 'Kaldırma makineleri, vinç ve ekipman imalatı, Standart Monoray Arabalı Vinç, Monoray vinç, Gezer Köprülü Vinç (Overhead Crane), Portal vinç, Zincirli vinç sistemleri, Yük asansörü, Dış cephe platformu, Çelik konstrüksiyon',
     ],
 ];
