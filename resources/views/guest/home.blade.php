@@ -39,7 +39,7 @@
     </section>
 
     <section class="pt-3 p-5x100">
-        <div class="title-corners" data-aos="fade-up">
+        <div class="title-corners">
             <span class="corner-line line1"></span>
             <span class="corner-line line2"></span>
             <span class="corner-line line3"></span>

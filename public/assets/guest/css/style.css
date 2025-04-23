@@ -454,7 +454,7 @@ header #search-form {
 -------------------------------------------------------*/
 .hero-slider {
 	position: relative;
-	height: 100vh;
+	height: 60vh;
 	padding: 0;
 	background: var(--grey);
 	overflow: hidden;
