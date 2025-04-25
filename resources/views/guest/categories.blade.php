@@ -20,15 +20,19 @@
     </section>
 
     <section class="container">
-        <div class="grid" id="product-grid">
-            @foreach($categories as $category)
+        <div class="grid gtc-3" id="product-grid">
+            @foreach($products as $product)
                 <div class="project design" data-aos="zoom-in" data-aos-delay="100">
-                    <a href="{{ route('guest.hizmetler.show', ['locale' => \Illuminate\Support\Facades\App::getLocale(), 'hizmetler' => $category]) }}">
-                        <img src="{{ asset($category->image) }}" alt="{{ $category->title }}">
+                    <a href="{{ route('guest.urunler.show', ['locale' => \Illuminate\Support\Facades\App::getLocale(), 'urunler' => $product]) }}">
+                        <img src="{{ asset($product->firstImage->path) }}" alt="{{ $product->title }}">
                     </a>
-                    <h3>{{ $category->title }}</h3>
+                    <h3>{{ $product->title }}</h3>
                 </div>
             @endforeach
+        </div>
+
+        <div class="pagination-wrapper" data-aos="fade-up" data-aos-delay="100">
+            {{ $products->links() }}
         </div>
     </section>
 

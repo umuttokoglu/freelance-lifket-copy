@@ -1,4 +1,4 @@
-<header data-aos="zoom-out">
+<header>
     <button class="mobile-nav-toggle" aria-controls="navbar" aria-expanded="false">
         <i class="lnr lnr-menu" aria-hidden="true"></i>
     </button>

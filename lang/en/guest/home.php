@@ -7,8 +7,8 @@ return [
     ],
 
     'products' => [
-        'title' => 'Our Products',
-        'description' => 'With DELTA, you can be confident that you’ll get the best value for your money without compromising on quality. Thanks to our efficient, well-controlled production processes, we maintain consistent excellence in our products, all compliant with European standards.',
+        'title' => 'DELTA Hoisting Equipment',
+        'description' => 'DELTA, A Netherlands-Based Manufacturer Of Hoisting Equipment, Has Now Begun Serving Its Valued Customers In Turkey With High-Quality And Affordable Products.',
     ],
 
     'paragraph1' => 'DELTA is a Netherlands-based manufacturer specializing in hoisting equipment. With roots dating back to 1960, the company has evolved into an expert brand in the lifting equipment industry.',

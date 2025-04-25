@@ -357,6 +357,11 @@ iframe {
 	color: var(--white);
 	background-color: var(--semidark);
 }
+@media (max-width: 768px) {
+    .title-corners {
+        max-width: 100%;
+    }
+}
 
 
 /*-------------------------------------------------------
@@ -454,7 +459,7 @@ header #search-form {
 -------------------------------------------------------*/
 .hero-slider {
 	position: relative;
-	height: 60vh;
+	height: 50vh;
 	padding: 0;
 	background: var(--grey);
 	overflow: hidden;
@@ -499,7 +504,7 @@ header #search-form {
 }
 .hero-commands {
 	position: absolute;
-	top: 50%;
+	bottom: 10%;
 	right: 0;
 	display: flex;
 	z-index: 2;
@@ -513,7 +518,6 @@ header #search-form {
 	color: var(--dark);
 	background: var(--white);
 }
-
 
 /*-------------------------------------------------------
 *	5. PAGE TITLE
@@ -838,7 +842,7 @@ footer .logo img {
 	/* HEADER */
 	header {
 		width: auto;
-		min-width: 60%;
+		min-width: 100%;
 		grid-template-columns: 11rem 1fr 1.2rem;
 		justify-items: start;
 		padding-block: 1.3rem;

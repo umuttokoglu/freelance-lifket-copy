@@ -1,26 +1,35 @@
 @extends('layout.guest.index')
 
 @section('content')
-    <section class="hero-slider" data-aos="fade-down" data-aos-delay="100">
+    <section class="hero-slider" data-aos="fade-down" data-aos-delay="100" style="padding-top: 70px;">
         <ul class="hero-slide">
             <li class="active" data-slide="1">
                 <img src="{{ asset('assets/guest/img/slide1.jpg') }}" alt="{{ config('app.name') }}">
-                <div class="hero-box" data-aos="fade-down">
-                    <h2>{{ __('guest/home.slider.1') }}</h2>
-                    <a class="btn"
-                       href="{{ route('guest.hizmetler.index', ['locale' => app()->getLocale()]) }}">
-                        {{ __('guest/sub_category.view_products') }}
-                    </a>
+
+                <!-- 1. Overlay katmanı -->
+                <div class="slider-overlay"></div>
+
+                <!-- 2. Metin içeriği -->
+                <div class="slide-content">
+                    <h1>DELTA Elektrikli Zincirli Vinçler</h1>
+                    <hr>
+                    <p>Güvenlik, kalite ve profesyonellik DELTA için üç anahtar kelimedir. Her türlü kaldırma işine
+                        uygun ekipmanı bulabileceğiniz geniş ürün yelpazemizi inceleyebilirsiniz.</p>
                 </div>
             </li>
 
-            <li data-slide="2">
+            <li class="" data-slide="2">
                 <img src="{{ asset('assets/guest/img/slide2.png') }}" alt="{{ config('app.name') }}">
-                <div class="hero-box" data-aos="fade-down">
-                    <h2>{{ __('guest/home.slider.2') }}</h2>
-                    <a class="btn " href="{{ route('guest.hizmetler.index', ['locale' => app()->getLocale()]) }}">
-                        {{ __('guest/home.contact.heading') }}
-                    </a>
+
+                <!-- 1. Overlay katmanı -->
+                <div class="slider-overlay"></div>
+
+                <!-- 2. Metin içeriği -->
+                <div class="slide-content">
+                    <h1>DELTA Ex-Proof Havalı Vinçler</h1>
+                    <hr>
+                    <p>Delta Havalı Ex-Proof vinçler, potansiyel olarak tehlikeli ve patlayıcı ortamlar için uygun olup
+                        ATEX Zone 2 sertifikasına sahiptir.</p>
                 </div>
             </li>
         </ul>
@@ -49,12 +58,12 @@
             <p>{{ __('guest/home.products.description') }}</p>
         </div>
 
-        <div class="grid gtc-3">
+        <div class="grid gtc-3" style="gap: 1rem 6rem; text-align: center;">
             @foreach($categories as $category)
                 <article>
                     <a href="{{ route('guest.hizmetler.show', ['locale' => app()->getLocale(), 'hizmetler' => $category]) }}">
                         <img src="{{ $category->image }}" alt="{{ $category->title }}"
-                             style="padding-top: 80px;"
+                             style="padding-top: 80px; width: 70%;"
                              data-aos="zoom-in" data-aos-delay="100">
 
                         <h3 class="mb-0">{{ $category->title }}</h3>

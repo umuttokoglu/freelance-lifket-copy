@@ -7,8 +7,8 @@ return [
     ],
 
     'products' => [
-        'title' => 'Ürünlerimiz',
-        'description' => 'DELTA ile kaliteden ödün vermeden paranızın karşılığını en iyi şekilde elde edeceğinizden emin olabilirsiniz. Verimli ve iyi kontrol edilen üretim süreçlerimizle, Avrupa standartlarına uygun ürünlerimizde kalitemizin sürekliliğini koruyoruz.',
+        'title' => 'DELTA KALDIRMA EKİPMANLARI',
+        'description' => 'DELTA, kaldırma ekipmanları konusunda hizmet veren Hollanda merkezli bir üretici olup kaliteli ve uygun fiyatlı ürünleri ile artık Türkiye’de siz değerli müşterilerine hizmet vermeye başlamıştır.',
     ],
 
     'paragraph1' => 'DELTA, kaldırma ekipmanları konusunda hizmet veren Hollanda merkezli bir üreticidir. Geçmişi 1960 yılına kadar uzanan firma, aradan geçen yıllarda kaldırma ekipmanları alanında uzman bir marka haline gelmiştir.',

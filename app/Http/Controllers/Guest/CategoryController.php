@@ -4,18 +4,19 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
     public function index(): View
     {
-        $categories = Category::query()
-            ->whereNull('parent_id')
+        $products = Product::query()
+            ->with('similarProducts.firstImage')
             ->latest()
-            ->get();
+            ->paginate(15);
 
-        return view('guest.categories', compact('categories'));
+        return view('guest.categories', compact('products'));
     }
     public function show(string $locale, Category $hizmetler): View
     {
