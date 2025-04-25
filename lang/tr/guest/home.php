@@ -2,8 +2,14 @@
 
 return [
     'slider' => [
-        '1' => 'DELTA Hoisting Equipments',
-        '2' => 'DELTA Hoisting Equipments',
+        '1' => [
+            'title' => 'DELTA Elektrikli Zincirli Vinçler',
+            'desc' => 'Güvenlik, kalite ve profesyonellik DELTA için üç anahtar kelimedir. Her türlü kaldırma işine uygun ekipmanı bulabileceğiniz geniş ürün yelpazemizi inceleyebilirsiniz.'
+        ],
+        '2' => [
+            'title' => 'DELTA Ex-Proof Havalı Vinçler',
+            'desc' => 'Delta Havalı Ex-Proof vinçler, potansiyel olarak tehlikeli ve patlayıcı ortamlar için uygun olup ATEX Zone 2 sertifikasına sahiptir.'
+        ],
     ],
 
     'products' => [

@@ -2,8 +2,14 @@
 
 return [
     'slider' => [
-        '1' => 'DELTA Hoisting Equipments',
-        '2' => 'DELTA Hoisting Equipments',
+        '1' => [
+            'title' => 'DELTA Electric Chain Hoists',
+            'desc'  => 'Safety, Quality, And Professionalism Are Three Key Words For DELTA. You Can Explore Our Extensive Product Range To Find Equipment Suitable For All Types Of Lifting Operations.',
+        ],
+        '2' => [
+            'title' => 'DELTA Ex-Proof Pneumatic Hoists',
+            'desc'  => 'DELTA Pneumatic Ex-Proof Hoists Are Suitable For Potentially Hazardous And Explosive Environments And Are ATEX Zone 2 Certified.',
+        ],
     ],
 
     'products' => [

@@ -6,30 +6,24 @@
             <li class="active" data-slide="1">
                 <img src="{{ asset('assets/guest/img/slide1.jpg') }}" alt="{{ config('app.name') }}">
 
-                <!-- 1. Overlay katmanı -->
                 <div class="slider-overlay"></div>
 
-                <!-- 2. Metin içeriği -->
                 <div class="slide-content">
-                    <h1>DELTA Elektrikli Zincirli Vinçler</h1>
+                    <h1>{{ __('guest/home.slider.1.title') }}</h1>
                     <hr>
-                    <p>Güvenlik, kalite ve profesyonellik DELTA için üç anahtar kelimedir. Her türlü kaldırma işine
-                        uygun ekipmanı bulabileceğiniz geniş ürün yelpazemizi inceleyebilirsiniz.</p>
+                    <p>{{ __('guest/home.slider.1.desc') }}</p>
                 </div>
             </li>
 
             <li class="" data-slide="2">
                 <img src="{{ asset('assets/guest/img/slide2.png') }}" alt="{{ config('app.name') }}">
 
-                <!-- 1. Overlay katmanı -->
                 <div class="slider-overlay"></div>
 
-                <!-- 2. Metin içeriği -->
                 <div class="slide-content">
-                    <h1>DELTA Ex-Proof Havalı Vinçler</h1>
+                    <h1>{{ __('guest/home.slider.2.title') }}</h1>
                     <hr>
-                    <p>Delta Havalı Ex-Proof vinçler, potansiyel olarak tehlikeli ve patlayıcı ortamlar için uygun olup
-                        ATEX Zone 2 sertifikasına sahiptir.</p>
+                    <p>{{ __('guest/home.slider.2.desc') }}</p>
                 </div>
             </li>
         </ul>
@@ -58,7 +52,7 @@
             <p>{{ __('guest/home.products.description') }}</p>
         </div>
 
-        <div class="grid gtc-3" style="gap: 1rem 6rem; text-align: center;">
+        <div class="grid gtc-3" style="gap: 1rem 3rem; text-align: center;">
             @foreach($categories as $category)
                 <article>
                     <a href="{{ route('guest.hizmetler.show', ['locale' => app()->getLocale(), 'hizmetler' => $category]) }}">
