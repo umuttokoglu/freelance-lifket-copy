@@ -40,7 +40,7 @@
                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="avatar-container">
                         <div class="avatar avatar-sm avatar-indicators avatar-online">
-                            <img alt="avatar" src="{{ asset('favicon.ico') }}" class="rounded-circle">
+                            <img alt="avatar" src="{{ asset('favicon.svg') }}" class="rounded-circle">
                         </div>
                     </div>
                 </a>
@@ -48,7 +48,7 @@
                 <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
                     <div class="user-profile-section">
                         <div class="media mx-auto">
-                            <img src="{{ asset('favicon.ico') }}" class="img-fluid me-2" alt="avatar">
+                            <img src="{{ asset('favicon.svg') }}" class="img-fluid me-2" alt="avatar">
                             <div class="media-body">
                                 <h5>{{ auth()->user()->name }}</h5>
                                 <p>Admin</p>

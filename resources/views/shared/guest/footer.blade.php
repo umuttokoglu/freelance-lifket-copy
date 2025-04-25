@@ -1,7 +1,7 @@
 <footer>
     <div class="container flex flex-wrap align-center space-between g-2">
         <a href="{{ route('guest.home', ['locale' => app()->getLocale()]) }}" class="logo">
-            <img src="{{ asset('assets/mva-makina.svg') }}" alt="{{ config('app.name') }} logo">
+            <img src="{{ asset('assets/logo-beyaz-no-bg.png') }}" alt="{{ config('app.name') }} logo">
         </a>
 
         <nav>

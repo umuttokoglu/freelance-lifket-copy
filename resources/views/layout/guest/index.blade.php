@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- favicons -->
-    <link rel="icon" href="{{ asset('favicon.ico') }}" />
-    <link rel="apple-touch-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="icon" href="{{ asset('favicon.svg') }}" />
+    <link rel="apple-touch-icon" href="{{ asset('favicon.svg') }}" />
     <meta name="author" content="{{ config('app.name') }}">
 
     <!-- title page & SEO meta -->
@@ -25,7 +25,7 @@
 
 <div id="preload">
     <div class="container">
-        <img src="{{ asset('assets/admin/img/mva-makina.svg') }}"
+        <img src="{{ asset('assets/admin/img/logo-no-bg.png') }}"
              width="250"
              alt="{{ config('app.name') }} logo">
         <span>{{ __('guest/layout.loading') }}</span>

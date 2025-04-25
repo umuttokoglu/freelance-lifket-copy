@@ -1,0 +1,14 @@
+<svg
+    width="50" height="50"
+    viewBox="0 0 30 30"
+    xmlns="http://www.w3.org/2000/svg"
+>
+    <polygon
+        points="15,3.48 28,26 2,26"
+        fill="none"
+        stroke="#60B3E2"
+        stroke-width="1"
+        stroke-linejoin="miter"
+        stroke-linecap="butt"
+    />
+</svg>

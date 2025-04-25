@@ -203,7 +203,7 @@ var App = function() {
                         document.body.classList.remove('dark')
                         ifStarterKit = document.body.getAttribute('page') === 'starter-pack' ? true : false;
                         if (ifStarterKit) {
-                            document.querySelector('.navbar-logo').setAttribute('src', '/assets/admin/img/mva-makina.svg')
+                            document.querySelector('.navbar-logo').setAttribute('src', '/assets/admin/img/logo-no-bg.png')
                         } else {
                             document.querySelector('.navbar-logo').setAttribute('src', getUpdatedParseObject.settings.layout.logo.lightLogo)
                         }
@@ -228,7 +228,7 @@ var App = function() {
                         ifStarterKit = document.body.getAttribute('page') === 'starter-pack' ? true : false;
 
                         if (ifStarterKit) {
-                            document.querySelector('.navbar-logo').setAttribute('src', '/assets/admin/img/mva-makina.svg')
+                            document.querySelector('.navbar-logo').setAttribute('src', '/assets/admin/img/logo-beyaz-no-bg.png')
                         } else {
                             document.querySelector('.navbar-logo').setAttribute('src', getUpdatedParseObject.settings.layout.logo.darkLogo)
                         }

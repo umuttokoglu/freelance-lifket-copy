@@ -4,7 +4,7 @@
             <div class="nav-logo">
                 <div class="nav-item theme-logo">
                     <a href="{{ route('admin.dashboard') }}">
-                        <img src="{{ asset('assets/admin/img/mva-makina.svg') }}" class="navbar-logo" alt="logo">
+                        <img src="{{ asset('assets/admin/img/logo-beyaz-no-bg.png') }}" class="navbar-logo" alt="logo">
                     </a>
                 </div>
             </div>
@@ -24,7 +24,7 @@
         <div class="profile-info">
             <div class="user-info">
                 <div class="profile-img">
-                    <img src="{{ asset('favicon.ico') }}" alt="avatar">
+                    <img src="{{ asset('favicon.svg') }}" alt="avatar">
                 </div>
 
                 <div class="profile-content">

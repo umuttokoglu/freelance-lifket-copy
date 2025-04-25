@@ -4,7 +4,7 @@
     </button>
 
     <a href="{{ route('guest.home', ['locale' => \Illuminate\Support\Facades\App::getLocale()]) }}" class="logo">
-        <img src="{{ asset('assets/mva-makina.svg') }}" alt="{{ config('app.name') }} logo">
+        <img src="{{ asset('assets/logo-no-bg.png') }}" alt="{{ config('app.name') }} logo">
     </a>
 
     <nav id="navbar" data-visible="false">
