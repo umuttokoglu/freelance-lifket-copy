@@ -20,7 +20,7 @@ class CategoryController extends Controller
             ->with('user')
             ->whereNull('parent_id')
             ->latest('categories.sort_order')
-            ->get();
+            ->simplePaginate(10);
 
         return view('admin.category.index', compact('categories'));
     }

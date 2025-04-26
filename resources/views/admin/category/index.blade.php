@@ -143,6 +143,10 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <div class="text-center mt-3">
+                        {{ $products->links() }}
+                    </div>
                 @else
                     <div class="alert alert-light-warning alert-dismissible fade show border-0 mb-4" role="alert">
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
