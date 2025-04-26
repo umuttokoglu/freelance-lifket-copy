@@ -5,9 +5,9 @@
 <!-- css -->
 <link rel="stylesheet" href="{{ asset('assets/guest/css/fontawesome.min.css') }}?v=1"/>
 <link rel="stylesheet" href="{{ asset('assets/guest/css/linearicons.min.css') }}?v=1"/>
-<link rel="stylesheet" href="{{ asset('assets/guest/css/aos.css') }}?v=2"/>
-<link rel="stylesheet" href="{{ asset('assets/guest/css/style.css') }}?v=2"/>
-<link rel="stylesheet" href="{{ asset('assets/guest/css/custom.css') }}?v=2"/>
+<link rel="stylesheet" href="{{ asset('assets/guest/css/aos.css') }}?v=3"/>
+<link rel="stylesheet" href="{{ asset('assets/guest/css/style.css') }}?v=3"/>
+<link rel="stylesheet" href="{{ asset('assets/guest/css/custom.css') }}?v=3"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
 
 @yield('pageCss')
