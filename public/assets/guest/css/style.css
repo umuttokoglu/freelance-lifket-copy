@@ -40,7 +40,7 @@
 	/* fonts */
 	--ff-primary: 'Open Sans', sans-serif;
 	--ff-secondary: 'Raleway', sans-serif;
-	--fs: 1.125rem;
+	--fs: 1.3rem;
 	/* utilities */
 	--g: 1rem;
 	--trnst: .6s ease-in-out;
@@ -310,9 +310,8 @@ iframe {
 .title-corners {
 	position: relative;
 	max-width: 65%;
-	margin: auto;
-	margin-bottom: 4rem;
-	padding: 2rem;
+    margin: auto auto 4rem;
+    padding: 2rem;
 	text-align: center;
 }
 .title-corners.title-left {

@@ -10,7 +10,7 @@
 
                 <div class="slide-content">
                     <h1>{{ __('guest/home.slider.1.title') }}</h1>
-                    <hr>
+                    <br>
                     <p>{{ __('guest/home.slider.1.desc') }}</p>
                 </div>
             </li>
@@ -22,7 +22,7 @@
 
                 <div class="slide-content">
                     <h1>{{ __('guest/home.slider.2.title') }}</h1>
-                    <hr>
+                    <br>
                     <p>{{ __('guest/home.slider.2.desc') }}</p>
                 </div>
             </li>
@@ -105,7 +105,7 @@
                 <h2 class="mb-0">{{ __('guest/home.contact.heading') }}</h2>
             </div>
 
-            <p data-aos="fade-down" data-aos-delay="100">
+            <p data-aos="fade-down" data-aos-delay="100" >
                 {{ __('guest/home.contact.paragraph') }}
             </p>
         </div>

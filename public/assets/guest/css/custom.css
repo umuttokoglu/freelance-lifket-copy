@@ -26,11 +26,12 @@
 /* 3. Yarı saydam siyah overlay */
 .hero-slider .hero-slide li .slider-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);  /* şeffaflığı ihtiyaca göre 0.4–0.7 arası ayarlayın */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 80%;
+    background: rgba(0,0,0,0.7);  /* şeffaflığı ihtiyaca göre 0.4–0.7 arası ayarlayın */
     z-index: 1;
 }
 
@@ -43,22 +44,18 @@
     text-align: center;
     color: #fff;
     z-index: 2;
-    max-width: 100%;   /* isterseniz sabit genişlik de verebilirsiniz, örn. 600px */
+    width: 70%;   /* isterseniz sabit genişlik de verebilirsiniz, örn. 600px */
     padding: 0 1rem;  /* küçük yan boşluklar */
 }
 
 /* 5. Başlık/altbaşlık/stil ayarları */
  .slide-content h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 0.5rem;
 }
- .slide-content hr {
-    width: 70%;
-    border: 1px solid #fff;
-    margin: 1rem auto;
-}
+
 .slide-content p {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     line-height: 1.4;
     margin-bottom: 1.5rem;
 }
