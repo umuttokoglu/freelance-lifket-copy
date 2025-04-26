@@ -14,7 +14,7 @@
                     </a>
                     <span class="breadcump-delimiter"></span>
                     <a href="{{
-                        route('guest.hizmetler.show', ['hizmetler' => $product->category->parent_id])
+                        route('guest.urun.show', ['locale' => app()->getLocale(), 'urun' => $product->category->parent_id])
                     }}">
                         {{ __('guest/product.breadcrumb.category', ['category' => $product->category->title]) }}
                     </a>

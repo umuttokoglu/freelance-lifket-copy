@@ -11,7 +11,7 @@
         <ul>
             <li><a href="{{ route('guest.home', ['locale' => \Illuminate\Support\Facades\App::getLocale()]) }}">{{ __('guest/header.home') }}</a></li>
             <li><a href="{{ route('guest.about', ['locale' => \Illuminate\Support\Facades\App::getLocale()]) }}">{{ __('guest/header.about') }}</a></li>
-            <li><a href="{{ route('guest.hizmetler.index', ['locale' => \Illuminate\Support\Facades\App::getLocale()]) }}">{{ __('guest/header.products') }}</a></li>
+            <li><a href="{{ route('guest.urunler.all', ['locale' => \Illuminate\Support\Facades\App::getLocale()]) }}">{{ __('guest/header.products') }}</a></li>
             <li><a href="{{ route('guest.iletisim.index', ['locale' => \Illuminate\Support\Facades\App::getLocale()]) }}">{{ __('guest/header.contact') }}</a></li>
         </ul>
     </nav>

@@ -98,7 +98,7 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="action-btns">
-                                            <a href="{{ route('guest.hizmetler.show', ['hizmetler' => $subCategory->parent_id]) }}"
+                                            <a href="{{ route('guest.urun.show', ['locale' => app()->getLocale(), 'urun' => $subCategory->parent_id]) }}"
                                                class="action-btn btn-view bs-tooltip me-2"
                                                data-toggle="tooltip" data-placement="top"
                                                title="{{ __('admin/category.index.table.th.actions.view') }}"

@@ -55,7 +55,7 @@
         <div class="grid gtc-3" style="gap: 1rem 3rem; text-align: center;">
             @foreach($categories as $category)
                 <article>
-                    <a href="{{ route('guest.hizmetler.show', ['locale' => app()->getLocale(), 'hizmetler' => $category]) }}">
+                    <a href="{{ route('guest.urun.show', ['locale' => app()->getLocale(), 'urun' => $category]) }}">
                         <img src="{{ $category->image }}" alt="{{ $category->title }}"
                              style="padding-top: 80px; width: 70%;"
                              data-aos="zoom-in" data-aos-delay="100">

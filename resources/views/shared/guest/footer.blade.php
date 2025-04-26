@@ -8,7 +8,7 @@
             <ul class="flex align-center justify-center flex-wrap uppercase">
                 <li><a href="{{ route('guest.home', ['locale' => app()->getLocale()]) }}">{{ __('guest/footer.nav.home') }}</a></li>
                 <li><a href="{{ route('guest.about', ['locale' => app()->getLocale()]) }}">{{ __('guest/footer.nav.about') }}</a></li>
-                <li><a href="{{ route('guest.hizmetler.index', ['locale' => app()->getLocale()]) }}">{{ __('guest/footer.nav.products') }}</a></li>
+                <li><a href="{{ route('guest.urunler.all', ['locale' => app()->getLocale()]) }}">{{ __('guest/footer.nav.products') }}</a></li>
                 <li><a href="{{ route('guest.iletisim.index', ['locale' => app()->getLocale()]) }}">{{ __('guest/footer.nav.contact') }}</a></li>
             </ul>
         </nav>

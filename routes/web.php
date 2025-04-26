@@ -24,9 +24,10 @@ Route::name('guest.')
 
         Route::get('hakkimizda', AboutController::class)->name('about');
 
-        Route::resource('hizmetler', GuestCategoryController::class)->only(['index', 'show']);
+        Route::resource('urun', GuestCategoryController::class)->only(['show']);
 
         Route::resource('urunler', GuestProductController::class)->only(['index', 'show']);
+        Route::get('tum-urunler', [GuestProductController::class, 'allProducts'])->name('urunler.all');
 
         Route::middleware(ProtectAgainstSpam::class)->resource('iletisim', GuestContactController::class)->only('index', 'store');
     });

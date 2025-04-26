@@ -10,6 +10,16 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
+    public function allProducts(): View
+    {
+        $products = Product::query()
+            ->with('similarProducts.firstImage')
+            ->oldest('sort_order')
+            ->paginate(15);
+
+        return view('guest.categories', compact('products'));
+    }
+
     public function index(): View
     {
         $subCategoryId = request()->get('sub_category');

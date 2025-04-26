@@ -13,9 +13,9 @@
                         {{ __('guest/products.breadcrumb.home') }}
                     </a>
                     <span class="breadcump-delimiter"></span>
-                    <a href="{{ route('guest.hizmetler.show', [
+                    <a href="{{ route('guest.urun.show', [
                             'locale'    => app()->getLocale(),
-                            'hizmetler' => $category->parent_id
+                            'urun' => $category->parent_id
                         ]) }}">
                         {{ $category->title }}
                     </a>

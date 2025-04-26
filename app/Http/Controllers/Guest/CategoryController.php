@@ -9,22 +9,14 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-    public function index(): View
-    {
-        $products = Product::query()
-            ->with('similarProducts.firstImage')
-            ->oldest('sort_order')
-            ->paginate(15);
-
-        return view('guest.categories', compact('products'));
-    }
-
-    public function show(string $locale, Category $hizmetler): View
+    public function show(string $locale, Category $urun): View
     {
         $subCategories = Category::query()
-            ->where('parent_id', $hizmetler->id)
+            ->where('parent_id', $urun->id)
             ->oldest('sort_order')
             ->get();
+
+        $hizmetler = $urun;
 
         return view('guest.sub_category', compact('hizmetler', 'subCategories'));
     }
