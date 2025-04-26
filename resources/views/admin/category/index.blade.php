@@ -48,6 +48,7 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
+                                <th class="text-center" scope="col">{{ '#' }}</th>
                                 <th class="text-center" scope="col">{{ __('admin/category.index.table.th.image') }}</th>
                                 <th scope="col">{{ __('admin/category.index.table.th.title') }}</th>
                                 <th class="text-center"
@@ -57,9 +58,19 @@
                                 <th class="text-center" scope="col"></th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="categories-table-body">
                             @foreach($categories as $category)
-                                <tr>
+                                <tr data-id="{{ $category->id }}" class="sortable-row">
+                                    <td>
+                                        <input
+                                            type="number"
+                                            min="1"
+                                            class="form-control form-control-sm order-input text-center"
+                                            data-id="{{ $category->id }}"
+                                            value="{{ $category->sort_order }}"
+                                            style="max-width: 4rem; margin: 0 auto;"
+                                        >
+                                    </td>
                                     <td class="text-center">
                                         <img src="/{{ $category->image }}" width="150" alt="">
                                     </td>
@@ -152,6 +163,62 @@
     </div>
 @endsection
 
+@section('adminPageCs')
+    <style>
+        /* Spin düğmelerini gizleyelim (isteğe bağlı) */
+        .order-input::-webkit-inner-spin-button,
+        .order-input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Hover ve focus efekte renk katarız */
+        .order-input {
+            border-radius: .25rem;
+            transition: border-color .3s, box-shadow .3s;
+        }
+
+        .order-input:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 .2rem rgba(0,123,255,.25);
+            outline: none;
+        }
+    </style>
+@endsection
+
 @section('adminPageJs')
+    <script>
+        $(function(){
+            $('.order-input').on('change', function(){
+                const $inp     = $(this);
+                const id       = $inp.data('id');
+                const newOrder = parseInt($inp.val(), 10);
+
+                if (isNaN(newOrder) || newOrder < 1) {
+                    alert('Lütfen 1 veya daha büyük bir sayı girin.');
+                    $inp.val($inp.prop('defaultValue'));
+                    return;
+                }
+
+                $.ajax({
+                    url: '{{ route('admin.category.reorder') }}',
+                    method: 'POST',
+                    data: {
+                        id:    id,
+                        order: newOrder,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success() {
+                        // Basitçe sayfayı yenilemek en garantisi:
+                        location.reload();
+                    },
+                    error() {
+                        alert('Sıralama güncellenirken bir hata oluştu.');
+                    }
+                });
+            });
+        });
+    </script>
+
     <script src="{{ asset('assets/admin/js/scrollspyNav.js') }}"></script>
 @endsection

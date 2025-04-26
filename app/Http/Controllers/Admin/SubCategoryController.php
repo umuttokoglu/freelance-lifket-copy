@@ -9,6 +9,8 @@ use App\Http\Requests\Admin\UpdateCategoryRequest;
 use App\Http\Requests\Admin\UpdateSubCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class SubCategoryController extends Controller
@@ -19,8 +21,8 @@ class SubCategoryController extends Controller
             ->withCount('products')
             ->with(['user', 'parent'])
             ->whereNotNull('parent_id')
-            ->latest()
-            ->paginate(10);
+            ->latest('categories.sort_order')
+            ->simplePaginate(10);
 
         return view('admin.sub_category.index', compact('subCategories'));
     }
@@ -50,6 +52,10 @@ class SubCategoryController extends Controller
         $data = $request->validated();
         $data['user_id'] = auth()->user()->id;
         $data['image'] = $filePath;
+
+        $max = Category::whereNotNull('parent_id')
+            ->max('sort_order') ?: 0;
+        $data['sort_order'] = $max + 1;
 
         Category::query()->create($data);
 
@@ -97,18 +103,50 @@ class SubCategoryController extends Controller
     public function destroy(Category $subCategory): RedirectResponse
     {
         $image = $subCategory->image;
-        $isDeleted = $subCategory->delete();
 
-        if (!$isDeleted) {
-            session()->flash('error', 'Alt ürün kategorisi ile ilişkili ürünler olduğu için kayıt silinemedi. İlk önce ürünleri silmelisiniz.');
+        DB::transaction(function() use($subCategory, $image) {
+            $subCategory->delete();
 
-            return response()->redirectToRoute('admin.sub-category.index');
-        }
+            if(file_exists(public_path($image))) {
+                unlink(public_path($image));
+            }
 
-        unlink(public_path($image));
+            Category::whereNotNull('parent_id')
+                ->orderBy('sort_order')
+                ->get()
+                ->each(function($cat, $idx){
+                    $cat->update(['sort_order'=> $idx+1]);
+                });
+        });
 
         session()->flash('message', 'Alt ürün kategorisi başarıyla silindi!');
 
         return response()->redirectToRoute('admin.sub-category.index');
+    }
+
+    public function reorder(Request $request)
+    {
+        $id       = $request->input('id');
+        $newOrder = (int)$request->input('order');
+
+        DB::transaction(function() use($id, $newOrder) {
+            // 1) Aynı parent_id’li alt kategorileri al (id hariç)
+            $siblings = Category::whereNotNull('parent_id')
+                ->where('id', '!=', $id)
+                ->orderBy('sort_order')
+                ->pluck('id')
+                ->toArray();
+
+            // 2) $id’yi yeni pozisyona ekle
+            array_splice($siblings, max(0, $newOrder - 1), 0, [$id]);
+
+            // 3) Baştan 1’den başlayarak güncelle
+            foreach($siblings as $index => $catId) {
+                Category::where('id', $catId)
+                    ->update(['sort_order' => $index + 1]);
+            }
+        });
+
+        return response()->json(['status'=>'ok']);
     }
 }

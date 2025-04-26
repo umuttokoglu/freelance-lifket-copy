@@ -30,7 +30,7 @@ class ProductController extends Controller
         $products = Product::query()
             ->withCount(['images', 'features'])
             ->with(['category'])
-            ->latest()
+            ->latest('products.sort_order')
             ->when(request()->has('category_id'), fn(Builder $query) => $query->where('category_id', request()->integer('category_id')))
             ->simplePaginate(10);
 
@@ -57,6 +57,10 @@ class ProductController extends Controller
     {
         $data = $request->validated();
         $data['user_id'] = auth()->user()->id;
+
+        $max = Product::query()
+            ->max('sort_order') ?: 0;
+        $data['sort_order'] = $max + 1;
 
         $product = Product::query()->create($data);
 
@@ -175,6 +179,13 @@ class ProductController extends Controller
 
         $isDeleted = $product->delete();
 
+        Product::query()
+            ->orderBy('sort_order')
+            ->get()
+            ->each(function(Product $p, $idx) {
+                $p->update(['sort_order' => $idx + 1]);
+            });
+
         if (!$isDeleted) {
             session()->flash('message', 'Ürün silinirken bir sorun oluştu!');
 
@@ -287,5 +298,31 @@ class ProductController extends Controller
             'uploaded' => false,
             'error' => ['message' => 'Dosya yüklenemedi.']
         ]);
+    }
+
+    public function reorder(Request $request)
+    {
+
+        $id         = $request->input('id');
+        $newOrder   = (int)$request->input('order');
+
+        DB::transaction(function() use ($id, $newOrder) {
+            $siblings = Product::query()
+                ->where('id', '!=', $id)
+                ->orderBy('sort_order')
+                ->pluck('id')
+                ->toArray();
+
+            // $id’yi diziye yeni pozisyona ekle
+            array_splice($siblings, max(0, $newOrder - 1), 0, [$id]);
+
+            // Baştan 1’den başlayarak güncelle
+            foreach ($siblings as $index => $prodId) {
+                Product::where('id', $prodId)
+                    ->update(['sort_order' => $index + 1]);
+            }
+        });
+
+        return response()->json(['status' => 'ok']);
     }
 }

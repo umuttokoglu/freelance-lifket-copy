@@ -20,6 +20,7 @@ class Category extends Model
         'image',
         'description_tr',
         'description_en',
+        'sort_order',
     ];
 
     public function getTitleAttribute(): ?string
@@ -63,7 +64,8 @@ class Category extends Model
     // Alt kategoriler (children)
     public function children(): HasMany|Category
     {
-        return $this->hasMany(Category::class, 'parent_id');
+        return $this->hasMany(Category::class, 'parent_id')
+            ->orderBy('sort_order');;
     }
 
     // Recursive olarak tüm alt kategorileri çekmek için

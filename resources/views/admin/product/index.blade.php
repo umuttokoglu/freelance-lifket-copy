@@ -89,6 +89,7 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
+                                <th class="text-center">#</th>
                                 <th scope="col">{{ 'Ürün Adı' }}</th>
                                 <th class="text-center" scope="col">{{ 'Alt Kategori Adı' }}</th>
                                 <th class="text-center" scope="col">{{ 'Görseller' }}</th>
@@ -100,6 +101,16 @@
                             <tbody>
                             @foreach($products as $product)
                                 <tr>
+                                    <td class="text-center">
+                                        <input
+                                            type="number"
+                                            min="1"
+                                            class="form-control form-control-sm product-order-input text-center"
+                                            data-id="{{ $product->id }}"
+                                            value="{{ $product->sort_order }}"
+                                            style="max-width:4rem; margin:0 auto;"
+                                        >
+                                    </td>
                                     <td>
                                         <p>{{ $product->title_tr }}</p>
                                     </td>
@@ -197,7 +208,6 @@
                             @endforeach
                             </tbody>
                         </table>
-
                     </div>
 
                     <div class="text-center mt-3">
@@ -281,4 +291,38 @@
             });
         });
     </script>
+
+    <script>
+        $(function(){
+            $('.product-order-input').on('change', function(){
+                const $input     = $(this);
+                const id         = $input.data('id');
+                const newOrder   = parseInt($input.val(), 10);
+
+                if (isNaN(newOrder) || newOrder < 1) {
+                    alert('Lütfen 1 veya daha büyük bir sayı girin.');
+                    $input.val($input.prop('defaultValue'));
+                    return;
+                }
+
+                $.ajax({
+                    url: '{{ route('admin.product.reorder') }}',
+                    method: 'POST',
+                    data: {
+                        id:          id,
+                        order:       newOrder,
+                        _token:      '{{ csrf_token() }}'
+                    },
+                    success() {
+                        // En basit halde sayfayı yenile:
+                        location.reload();
+                    },
+                    error() {
+                        alert('Sıralama güncellenirken hata oluştu.');
+                    }
+                });
+            });
+        });
+    </script>
+
 @endsection

@@ -19,6 +19,7 @@ class Product extends Model
         'title_en',
         'description_tr',
         'description_en',
+        'sort_order',
     ];
 
     public function getTitleAttribute(): ?string

@@ -42,8 +42,10 @@ Route::name('admin.')
             Route::get('/', DashboardController::class)->name('dashboard');
 
             Route::resource('category', AdminCategoryController::class)->except('show');
+            Route::post('category/reorder', [AdminCategoryController::class, 'reorder'])->name('category.reorder');
 
             Route::resource('sub-category', SubCategoryController::class)->except('show');
+            Route::post('sub-category/reorder', [SubCategoryController::class, 'reorder'])->name('sub-category.reorder');
 
             Route::post('/upload', [UploadController::class, 'upload'])->name('upload');
             Route::post('/upload/delete', [UploadController::class, 'delete'])->name('upload.delete');
@@ -57,6 +59,7 @@ Route::name('admin.')
             Route::get('/product/feature/{product}/add', [AdminProductController::class, 'addFeature'])->name('product.feature.add');
             Route::post('/product/feature/{product}/store', [AdminProductController::class, 'storeFeature'])->name('product.feature.store');
             Route::put('/product/feature/{product}/update', [AdminProductController::class, 'updateFeature'])->name('product.feature.update');
+            Route::post('/product/reorder', [AdminProductController::class, 'reorder'])->name('product.reorder');
 
             Route::resource('similar-products', SimilarProductController::class)->only('edit', 'update', 'destroy');
 

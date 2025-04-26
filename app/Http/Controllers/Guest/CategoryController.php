@@ -13,15 +13,17 @@ class CategoryController extends Controller
     {
         $products = Product::query()
             ->with('similarProducts.firstImage')
-            ->latest()
+            ->oldest('sort_order')
             ->paginate(15);
 
         return view('guest.categories', compact('products'));
     }
+
     public function show(string $locale, Category $hizmetler): View
     {
         $subCategories = Category::query()
             ->where('parent_id', $hizmetler->id)
+            ->oldest('sort_order')
             ->get();
 
         return view('guest.sub_category', compact('hizmetler', 'subCategories'));

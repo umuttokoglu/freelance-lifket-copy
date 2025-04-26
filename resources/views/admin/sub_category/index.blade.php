@@ -49,6 +49,7 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
+                                <th class="text-center" scope="col">#</th>
                                 <th class="text-center" scope="col">{{ 'Görsel' }}</th>
                                 <th scope="col">{{ 'Alt Kategori Adı' }}</th>
                                 <th scope="col">{{ 'Ana Kategori' }}</th>
@@ -62,6 +63,17 @@
                             <tbody>
                             @foreach($subCategories as $subCategory)
                                 <tr>
+                                    <td class="text-center">
+                                        <input
+                                            type="number"
+                                            min="1"
+                                            class="form-control form-control-sm sub-order-input text-center"
+                                            data-id="{{ $subCategory->id }}"
+                                            data-parent-id="{{ $subCategory->parent_id }}"
+                                            value="{{ $subCategory->sort_order }}"
+                                            style="max-width:4rem; margin:0 auto;"
+                                        >
+                                    </td>
                                     <td class="text-center">
                                         <img src="/{{ $subCategory->image }}" width="150" alt="">
                                     </td>
@@ -101,8 +113,10 @@
                                                 </svg>
                                             </a>
 
-                                            <a href="{{ route('admin.sub-category.edit', $subCategory) }}" class="action-btn btn-edit bs-tooltip me-2"
-                                               data-toggle="tooltip" data-placement="top" title="{{ __('admin/category.index.table.th.actions.update') }}">
+                                            <a href="{{ route('admin.sub-category.edit', $subCategory) }}"
+                                               class="action-btn btn-edit bs-tooltip me-2"
+                                               data-toggle="tooltip" data-placement="top"
+                                               title="{{ __('admin/category.index.table.th.actions.update') }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                      stroke-width="2"
@@ -148,6 +162,10 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <div class="text-center mt-3">
+                        {{ $subCategories->links() }}
+                    </div>
                 @else
                     <div class="alert alert-light-warning alert-dismissible fade show border-0 mb-4" role="alert">
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
@@ -169,5 +187,39 @@
 @endsection
 
 @section('adminPageJs')
+    <script>
+        $(function () {
+            $('.sub-order-input').on('change', function () {
+                const $i = $(this);
+                const id = $i.data('id');
+                const parent = $i.data('parent-id');
+                const order = parseInt($i.val(), 10);
+
+                if (isNaN(order) || order < 1) {
+                    alert('1 veya daha büyük bir sayı girin.');
+                    $i.val($i.prop('defaultValue'));
+                    return;
+                }
+
+                $.ajax({
+                    url: '{{ route('admin.sub-category.reorder') }}',
+                    method: 'POST',
+                    data: {
+                        id: id,
+                        parent_id: parent,
+                        order: order,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success() {
+                        location.reload();
+                    },
+                    error() {
+                        alert('Güncelleme sırasında hata oluştu.');
+                    }
+                });
+            });
+        });
+    </script>
+
     <script src="{{ asset('assets/admin/js/scrollspyNav.js') }}"></script>
 @endsection

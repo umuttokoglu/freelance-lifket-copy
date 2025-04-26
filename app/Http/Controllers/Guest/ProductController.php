@@ -18,6 +18,7 @@ class ProductController extends Controller
 
         $products = Product::query()
             ->where('category_id', $subCategoryId)
+            ->oldest('sort_order')
             ->get();
 
         return view('guest.products', compact('category', 'products'));
